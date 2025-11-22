@@ -1,0 +1,337 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-15 00:00:00",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "profile_details_tab",
+  "first_name",
+  "last_name",
+  "email",
+  "country",
+  "state",
+  "city",
+  "country_code",
+  "mobile",
+  "destination_country",
+  "birthday",
+  "area_of_interest",
+  "highest_education",
+  "testscore",
+  "gender",
+  "comment",
+  "preferred_study_level",
+  "assigned_to",
+  "lead_link",
+  "documents_tab",
+  "education",
+  "work_experience",
+  "english_test",
+  "passport_travel",
+  "other",
+  "visa",
+  "refusal_letter",
+  "tuition_fee_receipt",
+  "loa",
+  "shortlisted_program_tab",
+  "shortlisted_programs",
+  "applications_tab",
+  "applications"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "no_copy": 1,
+   "options": "STU-.YYYY.-",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Title",
+   "read_only": 1
+  },
+  {
+   "fieldname": "profile_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Profile Details"
+  },
+  {
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "First Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "label": "Last Name"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Email",
+   "options": "Email",
+   "reqd": 1
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "Country"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "country_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Country Code",
+   "reqd": 1
+  },
+  {
+   "fieldname": "mobile",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Mobile",
+   "options": "Phone",
+   "reqd": 1
+  },
+  {
+   "fieldname": "destination_country",
+   "fieldtype": "Link",
+   "label": "Destination Country (Want to study in)",
+   "options": "Country"
+  },
+  {
+   "fieldname": "birthday",
+   "fieldtype": "Date",
+   "label": "Birthday"
+  },
+  {
+   "fieldname": "area_of_interest",
+   "fieldtype": "Data",
+   "label": "Area of Interest",
+   "reqd": 1
+  },
+  {
+   "fieldname": "highest_education",
+   "fieldtype": "Data",
+   "label": "Highest Education"
+  },
+  {
+   "fieldname": "testscore",
+   "fieldtype": "Data",
+   "label": "Testscore"
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "label": "Gender",
+   "options": "\nMale\nFemale\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "comment",
+   "fieldtype": "Small Text",
+   "label": "Comment"
+  },
+  {
+   "fieldname": "preferred_study_level",
+   "fieldtype": "Data",
+   "label": "Preferred Study Level"
+  },
+  {
+   "fieldname": "assigned_to",
+   "fieldtype": "Link",
+   "label": "Assigned Staff",
+   "options": "User"
+  },
+  {
+   "fieldname": "lead_link",
+   "fieldtype": "Link",
+   "label": "Lead",
+   "options": "Lead",
+   "read_only": 1
+  },
+  {
+   "fieldname": "documents_tab",
+   "fieldtype": "Tab Break",
+   "label": "Documents"
+  },
+  {
+   "fieldname": "education",
+   "fieldtype": "Attach",
+   "label": "Education"
+  },
+  {
+   "fieldname": "work_experience",
+   "fieldtype": "Attach",
+   "label": "Work Experience"
+  },
+  {
+   "fieldname": "english_test",
+   "fieldtype": "Attach",
+   "label": "English Test"
+  },
+  {
+   "fieldname": "passport_travel",
+   "fieldtype": "Attach",
+   "label": "Passport & Travel"
+  },
+  {
+   "fieldname": "other",
+   "fieldtype": "Attach",
+   "label": "Other"
+  },
+  {
+   "fieldname": "visa",
+   "fieldtype": "Attach",
+   "label": "Visa"
+  },
+  {
+   "fieldname": "refusal_letter",
+   "fieldtype": "Attach",
+   "label": "Refusal Letter"
+  },
+  {
+   "fieldname": "tuition_fee_receipt",
+   "fieldtype": "Attach",
+   "label": "Tuition Fee Receipt"
+  },
+  {
+   "fieldname": "loa",
+   "fieldtype": "Attach",
+   "label": "LOA"
+  },
+  {
+   "fieldname": "shortlisted_program_tab",
+   "fieldtype": "Tab Break",
+   "label": "Shortlisted Program"
+  },
+  {
+   "fieldname": "shortlisted_programs",
+   "fieldtype": "Table",
+   "label": "Shortlisted Programs",
+   "options": "Shortlisted Program"
+  },
+  {
+   "fieldname": "applications_tab",
+   "fieldtype": "Tab Break",
+   "label": "Create Application"
+  },
+  {
+   "fieldname": "applications",
+   "fieldtype": "Table",
+   "label": "Applications",
+   "options": "Student Application"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-11-17 10:15:08.944429",
+ "modified_by": "Administrator",
+ "module": "CRM",
+ "name": "Student",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "CRM Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "CRM Sales Staff",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 0,
+   "print": 1,
+   "read": 1,
+   "report": 0,
+   "role": "B2B Agent",
+   "share": 0,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 0,
+   "print": 1,
+   "read": 1,
+   "report": 0,
+   "role": "B2C Agent",
+   "share": 0,
+   "write": 1
+  },
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 0,
+   "export": 0,
+   "print": 1,
+   "read": 1,
+   "report": 0,
+   "role": "Institution",
+   "share": 0,
+   "write": 0
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "search_fields": "first_name,last_name,email,title",
+ "show_title_field_in_link": 1,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "title"
+}

@@ -1,0 +1,32 @@
+/* Custom Sidebar Color Styling */
+
+/* Change the left sidebar (menu bar) background color */
+.body-sidebar {
+	background: #1e3a5f !important; /* Change this color to your preferred color */
+}
+
+/* Optional: Change hover color for sidebar items */
+.body-sidebar .standard-sidebar-item .item-anchor:hover {
+	background-color: rgba(255, 255, 255, 0.1) !important;
+	border-radius: 6px;
+}
+
+/* Optional: Change active item color */
+.body-sidebar .standard-sidebar-item .item-anchor.active {
+	background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Optional: Change the expanded sidebar background */
+.main-menu {
+	background: #1e3a5f !important; /* Match with sidebar color */
+}
+
+/* Optional: Change text color for better contrast */
+.body-sidebar .standard-sidebar-item .item-anchor {
+	color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.body-sidebar .standard-sidebar-item .item-anchor:hover {
+	color: rgba(255, 255, 255, 1) !important;
+}
+

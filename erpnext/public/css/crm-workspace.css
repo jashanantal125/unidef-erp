@@ -1,0 +1,433 @@
+/* Unideft CRM Workspace Custom Styling */
+/* Copyright (c) 2025, Unideft and contributors */
+
+/* Unideft Color Variables */
+:root {
+	--unideft-orange: #FF7800;
+	--unideft-black: #282828;
+	--unideft-white: #FFFFFF;
+	--unideft-grey: #F3F5F7;
+	/* Override navbar background */
+	--navbar-bg: #FF7800 !important;
+}
+
+/* NAVBAR - UNIDEFT ORANGE - HIGHEST PRIORITY */
+.sticky-top header.navbar,
+.sticky-top header.navbar.navbar-expand,
+.sticky-top .navbar,
+header.navbar,
+header.navbar.navbar-expand,
+.navbar.navbar-expand,
+body .navbar {
+	background: #FF7800 !important;
+	background-color: #FF7800 !important;
+	border-bottom: 1px solid rgba(40, 40, 40, 0.1) !important;
+}
+
+/* Target the sticky-top wrapper itself */
+.sticky-top {
+	background: #FF7800 !important;
+}
+
+/* Even more specific for desk navbar */
+body[data-route*="app"] .sticky-top header.navbar,
+body[data-route*="app"] header.navbar {
+	background: #FF7800 !important;
+	background-color: #FF7800 !important;
+}
+
+/* Navbar Brand/Logo */
+.navbar .navbar-brand,
+.navbar .navbar-home {
+	color: var(--unideft-white) !important;
+}
+
+.navbar .navbar-brand img,
+.navbar .navbar-home img {
+	filter: brightness(0) invert(1) !important;
+}
+
+/* Navbar Links */
+header.navbar .nav-link,
+.navbar .nav-link,
+.navbar .navbar-nav .nav-link,
+.navbar .nav-item .nav-link,
+.navbar .btn-reset.nav-link {
+	color: #FFFFFF !important;
+}
+
+header.navbar .nav-link:hover,
+.navbar .nav-link:hover,
+.navbar .navbar-nav .nav-link:hover,
+.navbar .nav-item .nav-link:hover,
+.navbar .btn-reset.nav-link:hover {
+	color: rgba(255, 255, 255, 0.9) !important;
+	background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Navbar Icons */
+header.navbar svg,
+.navbar svg,
+.navbar .icon,
+.navbar .es-icon,
+.navbar .notifications-icon svg {
+	--icon-stroke: #FFFFFF !important;
+	color: #FFFFFF !important;
+	fill: #FFFFFF !important;
+	stroke: #FFFFFF !important;
+}
+
+header.navbar svg use,
+.navbar svg use {
+	--icon-stroke: #FFFFFF !important;
+	stroke: #FFFFFF !important;
+}
+
+.navbar .text-muted {
+	color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Search Bar in Navbar */
+.navbar .search-bar input,
+.navbar .awesomplete input,
+.navbar #navbar-search,
+.navbar .form-control {
+	background-color: rgba(255, 255, 255, 0.2) !important;
+	border: 1px solid rgba(255, 255, 255, 0.3) !important;
+	color: #FFFFFF !important;
+}
+
+.navbar .search-bar input::placeholder,
+.navbar #navbar-search::placeholder,
+.navbar .form-control::placeholder {
+	color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.navbar .search-bar input:focus,
+.navbar #navbar-search:focus,
+.navbar .form-control:focus {
+	background-color: rgba(255, 255, 255, 0.3) !important;
+	border-color: rgba(255, 255, 255, 0.5) !important;
+	color: #FFFFFF !important;
+}
+
+.navbar .search-bar .search-icon svg,
+.navbar .search-icon svg {
+	stroke: #FFFFFF !important;
+	color: #FFFFFF !important;
+}
+
+/* Dropdown Menus */
+.navbar .dropdown-menu {
+	background-color: var(--unideft-white) !important;
+	border: 1px solid var(--unideft-grey) !important;
+	box-shadow: 0 4px 12px rgba(40, 40, 40, 0.15) !important;
+}
+
+.navbar .dropdown-item {
+	color: var(--unideft-black) !important;
+}
+
+.navbar .dropdown-item:hover {
+	background-color: var(--unideft-grey) !important;
+	color: var(--unideft-orange) !important;
+}
+
+/* Vertical Bar Separator */
+.navbar .vertical-bar {
+	border-right-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Breadcrumbs */
+.navbar #navbar-breadcrumbs {
+	color: #FFFFFF !important;
+}
+
+.navbar #navbar-breadcrumbs a {
+	color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.navbar #navbar-breadcrumbs a:hover {
+	color: #FFFFFF !important;
+}
+
+/* Indicator Pills in Navbar */
+.navbar .indicator-pill {
+	background-color: rgba(255, 255, 255, 0.2) !important;
+	color: #FFFFFF !important;
+	border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Avatar and User Menu */
+.navbar .avatar,
+.navbar .avatar-frame {
+	border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Container in Navbar */
+.navbar .container {
+	background: transparent !important;
+}
+
+/* CRM Workspace Container */
+[data-page-route="CRM"] .layout-main-section,
+[data-page-route="crm"] .layout-main-section {
+	background: linear-gradient(135deg, var(--unideft-grey) 0%, var(--unideft-white) 100%);
+	padding: 30px !important;
+}
+
+/* Workspace Header */
+[data-page-route="CRM"] .page-head,
+[data-page-route="crm"] .page-head {
+	background: var(--unideft-white) !important;
+	border-bottom: 4px solid var(--unideft-orange) !important;
+	box-shadow: 0 4px 12px rgba(40, 40, 40, 0.1) !important;
+	padding: 25px 30px !important;
+}
+
+[data-page-route="CRM"] .workspace-title,
+[data-page-route="crm"] .workspace-title {
+	color: var(--unideft-black) !important;
+	font-weight: 700 !important;
+	font-size: 32px !important;
+}
+
+/* Section Headers */
+[data-page-route="CRM"] h4,
+[data-page-route="CRM"] .workspace-block-header,
+[data-page-route="crm"] h4,
+[data-page-route="crm"] .workspace-block-header {
+	color: var(--unideft-black) !important;
+	font-weight: 700 !important;
+	font-size: 22px !important;
+	margin: 30px 0 20px 0 !important;
+	padding-bottom: 12px !important;
+	border-bottom: 3px solid var(--unideft-orange) !important;
+}
+
+/* SHORTCUT CARDS - BIGGER & BOLD WITH UNIDEFT BRANDING */
+[data-page-route="CRM"] .shortcut-widget-box,
+[data-page-route="crm"] .shortcut-widget-box {
+	background: var(--unideft-white) !important;
+	border: 3px solid var(--unideft-grey) !important;
+	border-radius: 16px !important;
+	padding: 35px 30px !important;
+	transition: all 0.3s ease !important;
+	box-shadow: 0 4px 12px rgba(40, 40, 40, 0.08) !important;
+	cursor: pointer !important;
+	min-height: 180px !important;
+	display: flex !important;
+	flex-direction: column !important;
+	justify-content: center !important;
+	align-items: center !important;
+	text-align: center !important;
+	margin-bottom: 20px !important;
+}
+
+/* Hover Effect */
+[data-page-route="CRM"] .shortcut-widget-box:hover,
+[data-page-route="crm"] .shortcut-widget-box:hover {
+	border-color: var(--unideft-orange) !important;
+	box-shadow: 0 8px 24px rgba(255, 120, 0, 0.3) !important;
+	transform: translateY(-4px) scale(1.02) !important;
+	background: linear-gradient(135deg, var(--unideft-white) 0%, #FFF8F0 100%) !important;
+}
+
+/* Shortcut Icons - BIGGER & ORANGE */
+[data-page-route="CRM"] .shortcut-widget-box .widget-icon,
+[data-page-route="CRM"] .shortcut-widget-box svg,
+[data-page-route="crm"] .shortcut-widget-box .widget-icon,
+[data-page-route="crm"] .shortcut-widget-box svg {
+	color: var(--unideft-orange) !important;
+	fill: var(--unideft-orange) !important;
+	width: 56px !important;
+	height: 56px !important;
+	margin-bottom: 15px !important;
+}
+
+[data-page-route="CRM"] .shortcut-widget-box .widget-icon svg,
+[data-page-route="crm"] .shortcut-widget-box .widget-icon svg {
+	width: 56px !important;
+	height: 56px !important;
+}
+
+/* Shortcut Labels - BIGGER & BOLD */
+[data-page-route="CRM"] .shortcut-widget-box .widget-label,
+[data-page-route="CRM"] .shortcut-widget-box .widget-title,
+[data-page-route="crm"] .shortcut-widget-box .widget-label,
+[data-page-route="crm"] .shortcut-widget-box .widget-title {
+	color: var(--unideft-black) !important;
+	font-weight: 700 !important;
+	font-size: 20px !important;
+	margin-top: 10px !important;
+	line-height: 1.4 !important;
+}
+
+/* Shortcut Count/Badge - ORANGE */
+[data-page-route="CRM"] .shortcut-widget-box .indicator-pill,
+[data-page-route="CRM"] .shortcut-widget-box .widget-count,
+[data-page-route="crm"] .shortcut-widget-box .indicator-pill,
+[data-page-route="crm"] .shortcut-widget-box .widget-count {
+	background: var(--unideft-orange) !important;
+	color: var(--unideft-white) !important;
+	border-radius: 25px !important;
+	padding: 8px 16px !important;
+	font-weight: 700 !important;
+	font-size: 16px !important;
+	margin-top: 12px !important;
+	box-shadow: 0 2px 8px rgba(255, 120, 0, 0.3) !important;
+}
+
+/* Primary Shortcut (Leads) - ORANGE GRADIENT BACKGROUND */
+[data-page-route="CRM"] .shortcut-widget-box[shortcut_name="Leads"],
+[data-page-route="crm"] .shortcut-widget-box[shortcut_name="Leads"] {
+	background: linear-gradient(135deg, var(--unideft-orange) 0%, #FF9500 100%) !important;
+	border-color: var(--unideft-orange) !important;
+}
+
+[data-page-route="CRM"] .shortcut-widget-box[shortcut_name="Leads"] .widget-title,
+[data-page-route="CRM"] .shortcut-widget-box[shortcut_name="Leads"] .widget-label,
+[data-page-route="crm"] .shortcut-widget-box[shortcut_name="Leads"] .widget-title,
+[data-page-route="crm"] .shortcut-widget-box[shortcut_name="Leads"] .widget-label {
+	color: var(--unideft-white) !important;
+}
+
+[data-page-route="CRM"] .shortcut-widget-box[shortcut_name="Leads"] .widget-icon,
+[data-page-route="CRM"] .shortcut-widget-box[shortcut_name="Leads"] svg,
+[data-page-route="crm"] .shortcut-widget-box[shortcut_name="Leads"] .widget-icon,
+[data-page-route="crm"] .shortcut-widget-box[shortcut_name="Leads"] svg {
+	color: var(--unideft-white) !important;
+	fill: var(--unideft-white) !important;
+}
+
+[data-page-route="CRM"] .shortcut-widget-box[shortcut_name="Leads"] .indicator-pill,
+[data-page-route="CRM"] .shortcut-widget-box[shortcut_name="Leads"] .widget-count,
+[data-page-route="crm"] .shortcut-widget-box[shortcut_name="Leads"] .indicator-pill,
+[data-page-route="crm"] .shortcut-widget-box[shortcut_name="Leads"] .widget-count {
+	background: rgba(255, 255, 255, 0.3) !important;
+	color: var(--unideft-white) !important;
+	border: 2px solid rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Secondary Shortcuts - ORANGE LEFT BORDER */
+[data-page-route="CRM"] .shortcut-widget-box:not([shortcut_name="Leads"]):not([shortcut_name="Dashboard"]),
+[data-page-route="crm"] .shortcut-widget-box:not([shortcut_name="Leads"]):not([shortcut_name="Dashboard"]) {
+	border-left: 6px solid var(--unideft-orange) !important;
+}
+
+/* Dashboard Shortcut */
+[data-page-route="CRM"] .shortcut-widget-box[shortcut_name="Dashboard"],
+[data-page-route="crm"] .shortcut-widget-box[shortcut_name="Dashboard"] {
+	background: var(--unideft-grey) !important;
+	border: 3px solid var(--unideft-grey) !important;
+}
+
+[data-page-route="CRM"] .shortcut-widget-box[shortcut_name="Dashboard"] .widget-icon,
+[data-page-route="CRM"] .shortcut-widget-box[shortcut_name="Dashboard"] svg,
+[data-page-route="crm"] .shortcut-widget-box[shortcut_name="Dashboard"] .widget-icon,
+[data-page-route="crm"] .shortcut-widget-box[shortcut_name="Dashboard"] svg {
+	color: var(--unideft-orange) !important;
+	fill: var(--unideft-orange) !important;
+}
+
+/* Widget Body */
+[data-page-route="CRM"] .shortcut-widget-box .widget-body,
+[data-page-route="crm"] .shortcut-widget-box .widget-body {
+	padding: 0 !important;
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	justify-content: center !important;
+}
+
+/* Links Section */
+[data-page-route="CRM"] .links-widget-box,
+[data-page-route="crm"] .links-widget-box {
+	background: var(--unideft-white) !important;
+	border-radius: 12px !important;
+	padding: 25px !important;
+	margin-top: 30px !important;
+	box-shadow: 0 4px 12px rgba(40, 40, 40, 0.08) !important;
+	border-top: 4px solid var(--unideft-orange) !important;
+}
+
+/* Charts Section */
+[data-page-route="CRM"] .chart-widget-box,
+[data-page-route="crm"] .chart-widget-box {
+	background: var(--unideft-white) !important;
+	border-radius: 12px !important;
+	padding: 25px !important;
+	margin-bottom: 25px !important;
+	box-shadow: 0 4px 12px rgba(40, 40, 40, 0.08) !important;
+	border-top: 4px solid var(--unideft-orange) !important;
+}
+
+/* Number Cards */
+[data-page-route="CRM"] .number-widget-box,
+[data-page-route="crm"] .number-widget-box {
+	background: var(--unideft-white) !important;
+	border-left: 6px solid var(--unideft-orange) !important;
+	border-radius: 12px !important;
+	padding: 25px !important;
+	box-shadow: 0 4px 12px rgba(40, 40, 40, 0.08) !important;
+}
+
+[data-page-route="CRM"] .number-widget-box .number,
+[data-page-route="crm"] .number-widget-box .number {
+	color: var(--unideft-orange) !important;
+	font-weight: 700 !important;
+	font-size: 36px !important;
+}
+
+[data-page-route="CRM"] .number-widget-box .label,
+[data-page-route="crm"] .number-widget-box .label {
+	color: var(--unideft-black) !important;
+	font-weight: 600 !important;
+	font-size: 18px !important;
+}
+
+/* Buttons in Workspace */
+[data-page-route="CRM"] .btn-primary,
+[data-page-route="crm"] .btn-primary {
+	background-color: var(--unideft-orange) !important;
+	border-color: var(--unideft-orange) !important;
+	color: var(--unideft-white) !important;
+	font-weight: 600 !important;
+	padding: 12px 24px !important;
+	border-radius: 8px !important;
+}
+
+[data-page-route="CRM"] .btn-primary:hover,
+[data-page-route="crm"] .btn-primary:hover {
+	background-color: #E66900 !important;
+	border-color: #E66900 !important;
+	transform: translateY(-2px) !important;
+	box-shadow: 0 4px 12px rgba(255, 120, 0, 0.3) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+	[data-page-route="CRM"] .shortcut-widget-box,
+	[data-page-route="crm"] .shortcut-widget-box {
+		padding: 25px 20px !important;
+		min-height: 150px !important;
+	}
+	
+	[data-page-route="CRM"] .shortcut-widget-box .widget-icon,
+	[data-page-route="CRM"] .shortcut-widget-box svg,
+	[data-page-route="crm"] .shortcut-widget-box .widget-icon,
+	[data-page-route="crm"] .shortcut-widget-box svg {
+		width: 48px !important;
+		height: 48px !important;
+	}
+	
+	[data-page-route="CRM"] .shortcut-widget-box .widget-title,
+	[data-page-route="crm"] .shortcut-widget-box .widget-title {
+		font-size: 18px !important;
+	}
+	
+	[data-page-route="CRM"] .workspace-title,
+	[data-page-route="crm"] .workspace-title {
+		font-size: 26px !important;
+	}
+}

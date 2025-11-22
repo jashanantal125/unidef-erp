@@ -1,7 +1,7 @@
 app_name = "erpnext"
-app_title = "ERPNext"
-app_publisher = "Frappe Technologies Pvt. Ltd."
-app_description = """ERP made simple"""
+app_title = "Unideft"
+app_publisher = "Unideft"
+app_description = """Empowering Dreams Worldwide"""
 app_icon = "fa fa-th"
 app_color = "#e74c3c"
 app_email = "hello@frappe.io"
@@ -23,7 +23,10 @@ add_to_apps_screen = [
 develop_version = "15.x.x-develop"
 
 app_include_js = "erpnext.bundle.js"
-app_include_css = "erpnext.bundle.css"
+app_include_css = [
+	"erpnext.bundle.css",
+	"erpnext/css/crm-workspace.css",
+]
 web_include_css = "erpnext-web.bundle.css"
 email_css = "email_erpnext.bundle.css"
 
@@ -478,8 +481,8 @@ email_brand_image = "assets/erpnext/images/erpnext-logo.jpg"
 default_mail_footer = """
 	<span>
 		Sent via
-		<a class="text-muted" href="https://frappe.io/erpnext?source=via_email_footer" target="_blank">
-			ERPNext
+		<a class="text-muted" href="#" target="_blank">
+			Unideft
 		</a>
 	</span>
 """
@@ -668,3 +671,4 @@ fields_for_group_similar_items = ["qty", "amount"]
 # ------------
 # List of apps whose translatable strings should be excluded from this app's translations.
 ignore_translatable_strings_from = ["frappe"]
+

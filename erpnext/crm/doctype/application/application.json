@@ -1,0 +1,201 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-15 00:00:00",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "application_section",
+  "student",
+  "application_type",
+  "agent",
+  "status",
+  "destination_country",
+  "preferred_university",
+  "campus",
+  "preferred_courses",
+  "intake",
+  "year"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "no_copy": 1,
+   "options": "APP-.YYYY.-",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "application_section",
+   "fieldtype": "Section Break",
+   "label": "Application Information"
+  },
+  {
+   "fieldname": "student",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Student",
+   "options": "Student",
+   "reqd": 1
+  },
+  {
+   "fieldname": "application_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Application Type",
+   "options": "\nB2B\nB2C",
+   "reqd": 1
+  },
+  {
+   "fieldname": "agent",
+   "depends_on": "eval:doc.application_type == 'B2B' || doc.application_type == 'B2C'",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Agent",
+   "options": "Agent"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "\nApplication Fee Paid\nStarted & Submitted\nReview & Course Finalizations\nSubmitted\nLOA/OL\nTuition Fee Paid\nVisa Applied\nVisa Approved\nCancel Withdrawn\nRefund Required\nEnrolled and Closed\nOffer Letter Expired\nRefund and Closed\nRejection from Institution",
+   "reqd": 1
+  },
+  {
+   "fieldname": "destination_country",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Destination Country",
+   "options": "Country",
+   "reqd": 1
+  },
+  {
+   "fieldname": "preferred_university",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Preferred University",
+   "options": "University",
+   "reqd": 1
+  },
+  {
+   "fieldname": "campus",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Campus",
+   "options": "Campus"
+  },
+  {
+   "fieldname": "preferred_courses",
+   "fieldtype": "Table",
+   "label": "Preferred Course",
+   "options": "Application Course",
+   "reqd": 1
+  },
+  {
+   "fieldname": "intake",
+   "fieldtype": "Select",
+   "label": "Intake",
+   "options": "\nFall\nSpring\nSummer\nWinter",
+   "reqd": 1
+  },
+  {
+   "fieldname": "year",
+   "fieldtype": "Int",
+   "label": "Year",
+   "reqd": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "icon": "fa fa-file-text",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-11-19 12:50:18.204379",
+ "modified_by": "Administrator",
+ "module": "CRM",
+ "name": "Application",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "CRM Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "CRM Sales Staff",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 0,
+   "print": 1,
+   "read": 1,
+   "report": 0,
+   "role": "B2B Agent",
+   "share": 0,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 0,
+   "print": 1,
+   "read": 1,
+   "report": 0,
+   "role": "B2C Agent",
+   "share": 0,
+   "write": 1
+  },
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 0,
+   "export": 0,
+   "print": 1,
+   "read": 1,
+   "report": 0,
+   "role": "Institution",
+   "share": 0,
+   "write": 0
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

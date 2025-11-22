@@ -1,115 +1,106 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
- "creation": "2025-11-15 13:56:36.900212",
+ "autoname": "field:course_name",
+ "creation": "2025-01-15 00:00:00.000000",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "university_details",
-  "uniname",
-  "country",
-  "state",
-  "city",
-  "address",
-  "website",
-  "email",
-  "phone",
-  "university_type",
-  "ranking",
-  "established_year",
-  "courses_section",
-  "courses"
+  "course_section",
+  "course_name",
+  "university",
+  "course_code",
+  "degree_level",
+  "duration",
+  "duration_unit",
+  "tuition_fee",
+  "currency",
+  "intake_months",
+  "description",
+  "entry_requirements"
  ],
  "fields": [
   {
-   "fieldname": "university_details",
+   "fieldname": "course_section",
    "fieldtype": "Section Break",
-   "label": "University Details"
+   "label": "Course Information"
   },
   {
-   "fieldname": "uniname",
+   "fieldname": "course_name",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "University Name",
-   "reqd": 1
+   "label": "Course Name",
+   "reqd": 1,
+   "unique": 1
   },
   {
-   "fieldname": "country",
+   "fieldname": "university",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Country",
-   "options": "Country",
+   "label": "University",
+   "options": "University",
    "reqd": 1
   },
   {
-   "fieldname": "state",
+   "fieldname": "course_code",
    "fieldtype": "Data",
-   "label": "State/Province"
+   "label": "Course Code"
   },
   {
-   "fieldname": "city",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "City"
-  },
-  {
-   "fieldname": "address",
-   "fieldtype": "Small Text",
-   "label": "Address"
-  },
-  {
-   "fieldname": "website",
-   "fieldtype": "Data",
-   "label": "Website",
-   "options": "URL"
-  },
-  {
-   "fieldname": "email",
-   "fieldtype": "Data",
-   "label": "Email",
-   "options": "Email"
-  },
-  {
-   "fieldname": "phone",
-   "fieldtype": "Data",
-   "label": "Phone",
-   "options": "Phone"
-  },
-  {
-   "fieldname": "university_type",
+   "fieldname": "degree_level",
    "fieldtype": "Select",
-   "label": "University Type",
-   "options": "\nPublic\nPrivate\nCommunity College\nTechnical Institute"
+   "in_list_view": 1,
+   "label": "Degree Level",
+   "options": "\nCertificate\nDiploma\nBachelor's\nMaster's\nPhD\nFoundation"
   },
   {
-   "fieldname": "ranking",
+   "fieldname": "duration",
    "fieldtype": "Int",
-   "label": "World Ranking"
+   "label": "Duration"
   },
   {
-   "fieldname": "established_year",
-   "fieldtype": "Int",
-   "label": "Established Year"
+   "fieldname": "duration_unit",
+   "fieldtype": "Select",
+   "label": "Duration Unit",
+   "options": "\nMonths\nYears"
   },
   {
-   "fieldname": "courses_section",
-   "fieldtype": "Section Break",
-   "label": "Courses & Programs"
+   "fieldname": "tuition_fee",
+   "fieldtype": "Currency",
+   "label": "Tuition Fee"
   },
   {
-   "fieldname": "courses",
-   "fieldtype": "Table",
-   "label": "Courses",
-   "options": "University Course"
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "intake_months",
+   "fieldtype": "Small Text",
+   "label": "Intake Months",
+   "description": "Comma separated: January, September"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "fieldname": "entry_requirements",
+   "fieldtype": "Text Editor",
+   "label": "Entry Requirements"
   }
  ],
  "grid_page_length": 50,
+ "icon": "fa fa-graduation-cap",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-15 13:58:13.465090",
+ "modified": "2025-01-15 00:00:00.000000",
  "modified_by": "Administrator",
  "module": "CRM",
- "name": "University",
+ "name": "Course",
  "owner": "Administrator",
  "permissions": [
   {
@@ -186,10 +177,11 @@
   }
  ],
  "row_format": "Dynamic",
- "rows_threshold_for_grid_search": 20,
+ "search_fields": "course_name,university",
  "show_title_field_in_link": 1,
  "sort_field": "creation",
  "sort_order": "DESC",
  "states": [],
- "title_field": "uniname"
+ "title_field": "course_name"
 }
+
