@@ -2,31 +2,43 @@
 /* Copyright (c) 2025, Unideft and contributors */
 
 /* Unideft Color Variables */
-:root {
+:root,
+html,
+body {
 	--unideft-orange: #FF7800;
 	--unideft-black: #282828;
 	--unideft-white: #FFFFFF;
 	--unideft-grey: #F3F5F7;
-	/* Override navbar background */
+	/* Override navbar background variables */
 	--navbar-bg: #FF7800 !important;
+	--neutral: #FF7800 !important;
 }
 
 /* NAVBAR - UNIDEFT ORANGE - HIGHEST PRIORITY */
+.sticky-top,
 .sticky-top header.navbar,
 .sticky-top header.navbar.navbar-expand,
 .sticky-top .navbar,
 header.navbar,
 header.navbar.navbar-expand,
 .navbar.navbar-expand,
+<<<<<<< HEAD
 body .navbar,
 .navbar,
 .navbar[style*="background"],
 .navbar[style*="var(--navbar-bg)"] {
+=======
+.navbar,
+body .navbar,
+body .sticky-top,
+body .sticky-top header.navbar {
+>>>>>>> f3181734d36b2cecf745d09d0106eaebf91f4afc
 	background: #FF7800 !important;
 	background-color: #FF7800 !important;
 	border-bottom: 1px solid rgba(40, 40, 40, 0.1) !important;
 }
 
+<<<<<<< HEAD
 /* Override any inline styles or CSS variables */
 .navbar,
 header.navbar,
@@ -38,13 +50,25 @@ header.navbar,
 /* Target the sticky-top wrapper itself */
 .sticky-top {
 	background: #FF7800 !important;
+=======
+/* Override CSS variable at element level */
+.sticky-top header.navbar,
+header.navbar {
+	--navbar-bg: #FF7800 !important;
+	--neutral: #FF7800 !important;
+	background: var(--navbar-bg) !important;
+	background-color: var(--navbar-bg) !important;
+>>>>>>> f3181734d36b2cecf745d09d0106eaebf91f4afc
 }
 
 /* Even more specific for desk navbar */
+body[data-route*="app"] .sticky-top,
 body[data-route*="app"] .sticky-top header.navbar,
 body[data-route*="app"] header.navbar {
 	background: #FF7800 !important;
 	background-color: #FF7800 !important;
+	--navbar-bg: #FF7800 !important;
+	--neutral: #FF7800 !important;
 }
 
 /* Navbar Brand/Logo */
