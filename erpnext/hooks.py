@@ -7,13 +7,13 @@ app_color = "#e74c3c"
 app_email = "hello@frappe.io"
 app_license = "GNU General Public License (v3)"
 source_link = "https://github.com/frappe/erpnext"
-app_logo_url = "/assets/erpnext/images/erpnext-logo.svg"
+app_logo_url = "/assets/erpnext/images/unideft-logo.svg"
 app_home = "/app/home"
 
 add_to_apps_screen = [
 	{
 		"name": app_name,
-		"logo": "/assets/erpnext/images/erpnext-logo.svg",
+		"logo": "/assets/erpnext/images/unideft-logo.svg",
 		"title": app_title,
 		"route": app_home,
 		"has_permission": "erpnext.check_app_permission",
@@ -25,7 +25,9 @@ develop_version = "15.x.x-develop"
 app_include_js = "erpnext.bundle.js"
 app_include_css = [
 	"erpnext.bundle.css",
-	"erpnext/css/crm-workspace.css",
+	"/assets/erpnext/css/crm-workspace.css",
+	"/assets/erpnext/css/custom_sidebar.css",
+	"/assets/erpnext/css/unideft-theme.css",
 ]
 web_include_css = "erpnext-web.bundle.css"
 email_css = "email_erpnext.bundle.css"

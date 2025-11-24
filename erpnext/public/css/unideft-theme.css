@@ -1,0 +1,436 @@
+/* Unideft Brand Theme - Comprehensive UI Theming */
+/* Based on Unideft Brand Guidelines */
+
+/* ============================================
+   BRAND COLOR VARIABLES
+   ============================================ */
+:root {
+	/* Primary Brand Colors */
+	--unideft-primary: #FF7800;
+	--unideft-primary-dark: #E66A00;
+	--unideft-primary-light: #FF9933;
+	--unideft-primary-hover: #FF8A1A;
+	
+	/* Neutral Colors */
+	--unideft-black: #282828;
+	--unideft-white: #FFFFFF;
+	--unideft-grey: #F3F5F7;
+	--unideft-grey-dark: #E0E4E8;
+	--unideft-grey-light: #F8F9FA;
+	
+	/* Text Colors */
+	--unideft-text-primary: #282828;
+	--unideft-text-secondary: #6B7280;
+	--unideft-text-muted: #9CA3AF;
+	
+	/* Override Frappe Primary Colors */
+	--primary: var(--unideft-primary) !important;
+	--primary-color: var(--unideft-primary) !important;
+	--brand-color: var(--unideft-primary) !important;
+	
+	/* Navbar */
+	--navbar-bg: #FF7800 !important;
+}
+
+/* ============================================
+   NAVBAR - DIRECT BACKGROUND OVERRIDE
+   ============================================ */
+.navbar,
+header.navbar,
+.sticky-top .navbar,
+.sticky-top header.navbar,
+body .navbar,
+.navbar.navbar-expand,
+header.navbar.navbar-expand,
+.sticky-top header.navbar.navbar-expand,
+[class*="navbar"] {
+	background: #FF7800 !important;
+	background-color: #FF7800 !important;
+}
+
+:root {
+	/* Buttons */
+	--btn-primary: var(--unideft-primary) !important;
+	--btn-primary-hover: var(--unideft-primary-hover) !important;
+	
+	/* Links */
+	--link-color: var(--unideft-primary) !important;
+	--link-hover-color: var(--unideft-primary-dark) !important;
+}
+
+/* ============================================
+   PRIMARY BUTTONS
+   ============================================ */
+.btn-primary,
+.btn-primary:not(:disabled):not(.disabled) {
+	background-color: var(--unideft-primary) !important;
+	border-color: var(--unideft-primary) !important;
+	color: var(--unideft-white) !important;
+}
+
+.btn-primary:hover:not(:disabled):not(.disabled),
+.btn-primary:focus:not(:disabled):not(.disabled),
+.btn-primary:active:not(:disabled):not(.disabled) {
+	background-color: var(--unideft-primary-hover) !important;
+	border-color: var(--unideft-primary-hover) !important;
+	color: var(--unideft-white) !important;
+}
+
+.btn-primary:active:not(:disabled):not(.disabled) {
+	background-color: var(--unideft-primary-dark) !important;
+	border-color: var(--unideft-primary-dark) !important;
+}
+
+/* ============================================
+   LINKS
+   ============================================ */
+a,
+.link-primary {
+	color: var(--unideft-primary) !important;
+}
+
+a:hover,
+.link-primary:hover {
+	color: var(--unideft-primary-dark) !important;
+	text-decoration: underline;
+}
+
+/* ============================================
+   FORM CONTROLS - FOCUS STATES
+   ============================================ */
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus,
+.form-range:focus {
+	border-color: var(--unideft-primary) !important;
+	box-shadow: 0 0 0 0.25rem rgba(255, 120, 0, 0.25) !important;
+}
+
+.form-check-input:checked {
+	background-color: var(--unideft-primary) !important;
+	border-color: var(--unideft-primary) !important;
+}
+
+.form-check-input:focus {
+	border-color: var(--unideft-primary) !important;
+	box-shadow: 0 0 0 0.25rem rgba(255, 120, 0, 0.25) !important;
+}
+
+/* ============================================
+   BADGES & PILLS
+   ============================================ */
+.badge.bg-primary,
+.badge-primary {
+	background-color: var(--unideft-primary) !important;
+	color: var(--unideft-white) !important;
+}
+
+.indicator-pill[data-indicator="blue"],
+.indicator-pill[data-indicator="primary"] {
+	background-color: var(--unideft-primary) !important;
+}
+
+/* ============================================
+   ALERTS
+   ============================================ */
+.alert-primary {
+	background-color: rgba(255, 120, 0, 0.1) !important;
+	border-color: var(--unideft-primary) !important;
+	color: var(--unideft-primary-dark) !important;
+}
+
+/* ============================================
+   CARDS & MODALS
+   ============================================ */
+.card-header {
+	background-color: var(--unideft-grey-light) !important;
+	border-bottom-color: var(--unideft-grey-dark) !important;
+}
+
+.modal-header {
+	border-bottom-color: var(--unideft-grey-dark) !important;
+}
+
+.modal-footer {
+	border-top-color: var(--unideft-grey-dark) !important;
+}
+
+/* ============================================
+   NAVBAR (Already styled in crm-workspace.css)
+   ============================================ */
+/* Navbar styling is handled in crm-workspace.css */
+
+/* ============================================
+   SIDEBAR (Already styled in custom_sidebar.css)
+   ============================================ */
+/* Sidebar styling is handled in custom_sidebar.css */
+
+/* ============================================
+   DROPDOWNS
+   ============================================ */
+.dropdown-item.active,
+.dropdown-item:active {
+	background-color: var(--unideft-primary) !important;
+	color: var(--unideft-white) !important;
+}
+
+.dropdown-item:hover {
+	background-color: rgba(255, 120, 0, 0.1) !important;
+}
+
+/* ============================================
+   TABS
+   ============================================ */
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+	color: var(--unideft-primary) !important;
+	border-bottom-color: var(--unideft-primary) !important;
+}
+
+.nav-tabs .nav-link:hover {
+	color: var(--unideft-primary-dark) !important;
+}
+
+/* ============================================
+   PROGRESS BARS
+   ============================================ */
+.progress-bar {
+	background-color: var(--unideft-primary) !important;
+}
+
+/* ============================================
+   PAGINATION
+   ============================================ */
+.page-link {
+	color: var(--unideft-primary) !important;
+}
+
+.page-link:hover {
+	color: var(--unideft-primary-dark) !important;
+	background-color: rgba(255, 120, 0, 0.1) !important;
+}
+
+.page-item.active .page-link {
+	background-color: var(--unideft-primary) !important;
+	border-color: var(--unideft-primary) !important;
+}
+
+/* ============================================
+   BREADCRUMBS
+   ============================================ */
+.breadcrumb-item a {
+	color: var(--unideft-primary) !important;
+}
+
+.breadcrumb-item a:hover {
+	color: var(--unideft-primary-dark) !important;
+}
+
+/* ============================================
+   TOOLTIPS & POPOVERS
+   ============================================ */
+.tooltip-inner {
+	background-color: var(--unideft-black) !important;
+}
+
+.popover-header {
+	background-color: var(--unideft-grey-light) !important;
+	border-bottom-color: var(--unideft-grey-dark) !important;
+}
+
+/* ============================================
+   SWITCHES & TOGGLES
+   ============================================ */
+.form-check-input:checked[type="checkbox"] {
+	background-color: var(--unideft-primary) !important;
+	border-color: var(--unideft-primary) !important;
+}
+
+.form-switch .form-check-input:checked {
+	background-color: var(--unideft-primary) !important;
+}
+
+/* ============================================
+   RANGE SLIDERS
+   ============================================ */
+.form-range::-webkit-slider-thumb {
+	background-color: var(--unideft-primary) !important;
+}
+
+.form-range::-moz-range-thumb {
+	background-color: var(--unideft-primary) !important;
+	border-color: var(--unideft-primary) !important;
+}
+
+/* ============================================
+   TABLE ROWS - HOVER
+   ============================================ */
+.table-hover tbody tr:hover {
+	background-color: rgba(255, 120, 0, 0.05) !important;
+}
+
+/* ============================================
+   LIST GROUP ITEMS
+   ============================================ */
+.list-group-item.active {
+	background-color: var(--unideft-primary) !important;
+	border-color: var(--unideft-primary) !important;
+	color: var(--unideft-white) !important;
+}
+
+.list-group-item-action:hover {
+	background-color: rgba(255, 120, 0, 0.1) !important;
+}
+
+/* ============================================
+   ACCORDION
+   ============================================ */
+.accordion-button:not(.collapsed) {
+	background-color: rgba(255, 120, 0, 0.1) !important;
+	color: var(--unideft-primary-dark) !important;
+}
+
+.accordion-button:not(.collapsed)::after {
+	filter: brightness(0) saturate(100%) invert(48%) sepia(100%) saturate(2000%) hue-rotate(0deg) brightness(1) contrast(1);
+}
+
+.accordion-button:focus {
+	border-color: var(--unideft-primary) !important;
+	box-shadow: 0 0 0 0.25rem rgba(255, 120, 0, 0.25) !important;
+}
+
+/* ============================================
+   SELECT2 & CUSTOM SELECTS
+   ============================================ */
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+	background-color: var(--unideft-primary) !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+	color: var(--unideft-text-primary) !important;
+}
+
+/* ============================================
+   FONT STYLING (if custom font specified)
+   ============================================ */
+/* Add custom font imports here if specified in brand guidelines */
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ============================================
+   ICONS - PRIMARY COLOR
+   ============================================ */
+.icon-primary,
+[class*="icon-"].text-primary {
+	color: var(--unideft-primary) !important;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.text-unideft-primary {
+	color: var(--unideft-primary) !important;
+}
+
+.bg-unideft-primary {
+	background-color: var(--unideft-primary) !important;
+}
+
+.border-unideft-primary {
+	border-color: var(--unideft-primary) !important;
+}
+
+/* ============================================
+   FOCUS RINGS
+   ============================================ */
+*:focus-visible {
+	outline-color: var(--unideft-primary) !important;
+}
+
+/* ============================================
+   CHECKBOX & RADIO CUSTOM STYLING
+   ============================================ */
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+	accent-color: var(--unideft-primary) !important;
+}
+
+/* ============================================
+   DATE PICKER & CALENDAR
+   ============================================ */
+.datepicker table tr td.active.active,
+.datepicker table tr td.active.highlighted.active,
+.datepicker table tr td.active.highlighted.active:hover,
+.datepicker table tr td.active:hover {
+	background-color: var(--unideft-primary) !important;
+	border-color: var(--unideft-primary) !important;
+}
+
+/* ============================================
+   DATA TABLES
+   ============================================ */
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+	background-color: var(--unideft-primary) !important;
+	border-color: var(--unideft-primary) !important;
+	color: var(--unideft-white) !important;
+}
+
+/* ============================================
+   FRAPPE SPECIFIC COMPONENTS
+   ============================================ */
+/* Indicator dots */
+.indicator {
+	background-color: var(--unideft-primary) !important;
+}
+
+/* Status indicators */
+.status-indicator[data-status="active"],
+.status-indicator[data-status="success"] {
+	background-color: var(--unideft-primary) !important;
+}
+
+/* Action buttons in lists */
+.list-row-head .list-row-actions .btn-link {
+	color: var(--unideft-primary) !important;
+}
+
+.list-row-head .list-row-actions .btn-link:hover {
+	color: var(--unideft-primary-dark) !important;
+}
+
+/* Form section headers */
+.form-section {
+	border-bottom-color: var(--unideft-grey-dark) !important;
+}
+
+/* Control label active state */
+.control-label.active {
+	color: var(--unideft-primary) !important;
+}
+
+/* Awesomebar (search) focus */
+.awesomebar .awesomplete > ul > li[aria-selected="true"] {
+	background-color: var(--unideft-primary) !important;
+}
+
+/* Timeline items */
+.timeline-item.active .timeline-content {
+	border-left-color: var(--unideft-primary) !important;
+}
+
+/* Comment box */
+.comment-box .comment-input:focus {
+	border-color: var(--unideft-primary) !important;
+}
+
+/* Attachment links */
+.attached-file a {
+	color: var(--unideft-primary) !important;
+}
+
+.attached-file a:hover {
+	color: var(--unideft-primary-dark) !important;
+}
+

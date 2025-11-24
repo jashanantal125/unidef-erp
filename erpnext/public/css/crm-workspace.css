@@ -18,10 +18,21 @@
 header.navbar,
 header.navbar.navbar-expand,
 .navbar.navbar-expand,
-body .navbar {
+body .navbar,
+.navbar,
+.navbar[style*="background"],
+.navbar[style*="var(--navbar-bg)"] {
 	background: #FF7800 !important;
 	background-color: #FF7800 !important;
 	border-bottom: 1px solid rgba(40, 40, 40, 0.1) !important;
+}
+
+/* Override any inline styles or CSS variables */
+.navbar,
+header.navbar,
+.sticky-top .navbar {
+	background: #FF7800 !important;
+	background-color: #FF7800 !important;
 }
 
 /* Target the sticky-top wrapper itself */

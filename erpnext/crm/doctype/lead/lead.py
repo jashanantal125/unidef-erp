@@ -26,31 +26,49 @@ class Lead(SellingController, CRMNote):
 	from typing import TYPE_CHECKING
 
 	if TYPE_CHECKING:
+		from erpnext.crm.doctype.crm_note.crm_note import CRMNote
 		from frappe.types import DF
 
+		annual_revenue: DF.Currency
 		area_of_interest: DF.Data
 		birthday: DF.Date | None
 		city: DF.Data | None
 		comment: DF.SmallText | None
+		company: DF.Link | None
+		company_name: DF.Data | None
 		country: DF.Link | None
 		country_code: DF.Data
+		customer: DF.Link | None
 		destination_country: DF.Link | None
 		email_id: DF.Data
+		fax: DF.Data | None
 		first_name: DF.Data | None
 		gender: DF.Literal["", "Male", "Female", "Other"]
 		highest_education: DF.Data | None
 		image: DF.AttachImage | None
+		industry: DF.Link | None
+		job_title: DF.Data | None
 		last_name: DF.Data | None
 		lead_name: DF.Data | None
 		lead_owner: DF.Link | None
 		lead_source: DF.Literal["", "Website", "Referral", "Social Media", "Advertisement", "Other"]
+		market_segment: DF.Link | None
+		middle_name: DF.Data | None
 		mobile_no: DF.Data
 		naming_series: DF.Literal["CRM-LEAD-.YYYY.-"]
+		no_of_employees: DF.Literal["1-10", "11-50", "51-200", "201-500", "501-1000", "1000+"]
+		notes: DF.Table[CRMNote]
+		phone: DF.Data | None
+		salutation: DF.Link | None
 		state: DF.Data | None
 		status: DF.Literal["Lead", "Open", "Replied", "Opportunity", "Quotation", "Lost Quotation", "Interested", "Converted", "Do Not Contact"]
+		territory: DF.Link | None
 		testscore: DF.Data | None
 		title: DF.Data | None
+		utm_source: DF.Link | None
 		want_to_create_user_profile: DF.Literal["", "Yes", "No"]
+		website: DF.Data | None
+		whatsapp_no: DF.Data | None
 	# end: auto-generated types
 
 	def onload(self):

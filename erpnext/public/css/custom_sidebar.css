@@ -1,32 +1,198 @@
 /* Custom Sidebar Color Styling */
+/* Background: #282828, Text: #ffffff */
 
-/* Change the left sidebar (menu bar) background color */
-.body-sidebar {
-	background: #1e3a5f !important; /* Change this color to your preferred color */
+/* Override CSS variables for sidebar */
+:root {
+	--subtle-accent: #282828 !important;
+	--sidebar-active-color: #FF7800 !important;
+	--sidebar-hover-color: #FF7800 !important;
 }
 
-/* Optional: Change hover color for sidebar items */
-.body-sidebar .standard-sidebar-item .item-anchor:hover {
-	background-color: rgba(255, 255, 255, 0.1) !important;
+/* Sidebar Body Background Color - Override CSS variable */
+.body-sidebar,
+.body-sidebar-container .body-sidebar,
+body .body-sidebar {
+	background: #282828 !important;
+	background-color: #282828 !important;
+}
+
+/* Change text color for sidebar items */
+.body-sidebar .standard-sidebar-item .item-anchor {
+	color: #ffffff !important;
+}
+
+.body-sidebar .standard-sidebar-item .item-anchor:hover,
+.body-sidebar .standard-sidebar-item.hover,
+.body-sidebar .standard-sidebar-item.hover .item-anchor,
+.body-sidebar .standard-sidebar-item:hover,
+.body-sidebar .standard-sidebar-item:hover .item-anchor {
+	color: #ffffff !important;
+	background: #FF7800 !important;
+	background-color: #FF7800 !important;
 	border-radius: 6px;
 }
 
-/* Optional: Change active item color */
-.body-sidebar .standard-sidebar-item .item-anchor.active {
-	background-color: rgba(255, 255, 255, 0.15) !important;
+/* Change active item color */
+.body-sidebar .standard-sidebar-item .item-anchor.active,
+.body-sidebar .standard-sidebar-item.active-sidebar,
+.active-sidebar {
+	background: #FF7800 !important;
+	background-color: #FF7800 !important;
+	color: #ffffff !important;
 }
 
-/* Optional: Change the expanded sidebar background */
-.main-menu {
-	background: #1e3a5f !important; /* Match with sidebar color */
+/* Sidebar item labels */
+.body-sidebar .standard-sidebar-item .sidebar-item-label {
+	color: #ffffff !important;
 }
 
-/* Optional: Change text color for better contrast */
-.body-sidebar .standard-sidebar-item .item-anchor {
-	color: rgba(255, 255, 255, 0.9) !important;
+/* App switcher text */
+.body-sidebar .app-switcher-dropdown .sidebar-item-label {
+	color: #ffffff !important;
 }
 
-.body-sidebar .standard-sidebar-item .item-anchor:hover {
-	color: rgba(255, 255, 255, 1) !important;
+.body-sidebar .app-switcher-dropdown {
+	color: #ffffff !important;
+}
+
+/* Sidebar icons */
+.body-sidebar .standard-sidebar-item .item-anchor svg,
+.body-sidebar .standard-sidebar-item .item-anchor .sidebar-item-icon svg,
+.body-sidebar .standard-sidebar-item .sidebar-item-icon svg {
+	color: #ffffff !important;
+	fill: #ffffff !important;
+	stroke: #ffffff !important;
+	--icon-stroke: #ffffff !important;
+}
+
+.body-sidebar .standard-sidebar-item .item-anchor:hover svg,
+.body-sidebar .standard-sidebar-item .item-anchor:hover .sidebar-item-icon svg,
+.body-sidebar .standard-sidebar-item .sidebar-item-icon:hover svg {
+	color: #ffffff !important;
+	fill: #ffffff !important;
+	stroke: #ffffff !important;
+	--icon-stroke: #ffffff !important;
+}
+
+/* Sidebar item icon container */
+.body-sidebar .sidebar-item-icon {
+	color: #ffffff !important;
+}
+
+.body-sidebar .sidebar-item-icon svg {
+	color: #ffffff !important;
+	fill: #ffffff !important;
+	stroke: #ffffff !important;
+	--icon-stroke: #ffffff !important;
+}
+
+/* Child menu items (nested items) */
+.body-sidebar .sidebar-item-container .sidebar-item-container .item-anchor {
+	color: #ffffff !important;
+}
+
+.body-sidebar .sidebar-item-container .sidebar-item-container .item-anchor:hover {
+	color: #ffffff !important;
+	background: #FF7800 !important;
+	background-color: #FF7800 !important;
+}
+
+.body-sidebar .sidebar-item-container .sidebar-item-container .item-anchor.active {
+	color: #ffffff !important;
+	background: #FF7800 !important;
+	background-color: #FF7800 !important;
+}
+
+/* Sidebar item control (dropdown arrows) */
+.body-sidebar .standard-sidebar-item .sidebar-item-control svg {
+	color: #ffffff !important;
+	fill: #ffffff !important;
+	stroke: #ffffff !important;
+}
+
+/* Divider color */
+.body-sidebar .divider {
+	border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.app-switcher-menu .app-item .app-item-title {
+	color: #ffffff !important;
+}
+
+.app-switcher-menu .app-item:hover {
+	background: #FF7800 !important;
+	background-color: #FF7800 !important;
+}
+
+.app-switcher-menu .app-item a {
+	color: #ffffff !important;
+}
+
+/* App switcher menu icons */
+.app-switcher-menu .app-item .sidebar-item-icon svg,
+.app-switcher-menu .app-item svg {
+	color: #ffffff !important;
+	fill: #ffffff !important;
+	stroke: #ffffff !important;
+	--icon-stroke: #ffffff !important;
+}
+
+/* Collapse sidebar link */
+.body-sidebar .collapse-sidebar-link {
+	color: #ffffff !important;
+}
+
+.body-sidebar .collapse-sidebar-link svg {
+	color: #ffffff !important;
+	fill: #ffffff !important;
+	stroke: #ffffff !important;
+	--icon-stroke: #ffffff !important;
+}
+
+/* App title */
+.body-sidebar .app-title {
+	color: #ffffff !important;
+}
+
+/* Hover State - Orange Background */
+.body-sidebar .standard-sidebar-item.hover,
+.body-sidebar .standard-sidebar-item.hover .item-anchor,
+.body-sidebar .hover,
+.body-sidebar .hover .item-anchor,
+.body-sidebar .standard-sidebar-item:hover,
+.body-sidebar .standard-sidebar-item:hover .item-anchor {
+	background: #FF7800 !important;
+	background-color: #FF7800 !important;
+	color: #ffffff !important;
+}
+
+.body-sidebar .standard-sidebar-item.hover .sidebar-item-icon svg,
+.body-sidebar .standard-sidebar-item.hover .item-anchor svg,
+.body-sidebar .hover .sidebar-item-icon svg,
+.body-sidebar .hover .item-anchor svg,
+.body-sidebar .standard-sidebar-item:hover .sidebar-item-icon svg,
+.body-sidebar .standard-sidebar-item:hover .item-anchor svg {
+	color: #ffffff !important;
+	fill: #ffffff !important;
+	stroke: #ffffff !important;
+	--icon-stroke: #ffffff !important;
+}
+
+/* Active Sidebar Item - Orange Background */
+.body-sidebar .standard-sidebar-item.active-sidebar,
+.body-sidebar .standard-sidebar-item.active-sidebar .item-anchor,
+.active-sidebar,
+.active-sidebar .item-anchor {
+	background: #FF7800 !important;
+	background-color: #FF7800 !important;
+	color: #ffffff !important;
+}
+
+.active-sidebar .sidebar-item-icon svg,
+.active-sidebar .item-anchor svg {
+	color: #ffffff !important;
+	fill: #ffffff !important;
+	stroke: #ffffff !important;
+	--icon-stroke: #ffffff !important;
 }
 
