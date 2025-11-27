@@ -1,8 +1,13 @@
 {
  "app": "erpnext",
- "charts": [],
- "content": "[]",
- "creation": "2025-01-15 00:00:00.000000",
+ "charts": [
+  {
+   "chart_name": "Lead from Agent",
+   "label": "Leads from Agents"
+  }
+ ],
+ "content": "[{\"id\":\"spacer1\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"YPXTYQOEVe\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Agents\",\"col\":4}},{\"id\":\"opKL0wjd0l\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Agent Leads (This Month)\",\"col\":4}},{\"id\":\"k9g1p2Cn_F\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Applications from Agents (This month)\",\"col\":4}},{\"id\":\"header2\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Quick Actions</b></span>\",\"col\":12}},{\"id\":\"shortcut1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"View All Agents\",\"col\":6}},{\"id\":\"shortcut2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Create New Agent\",\"col\":6}},{\"id\":\"BWnxFzMKrp\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Leads from Agents\",\"col\":12}},{\"id\":\"G8-l3vl77l\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Recent Applications by Agents\",\"col\":6}},{\"id\":\"2FkMgsaE2P\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Recent Leads by Agents\",\"col\":6}}]",
+ "creation": "2025-01-15 00:00:00",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
@@ -12,23 +17,64 @@
  "idx": 0,
  "is_hidden": 0,
  "label": "Agents",
+ "link_to": "Agent",
+ "link_type": "DocType",
  "links": [],
- "modified": "2025-01-15 00:00:00.000000",
+ "modified": "2025-11-26 18:44:35.498029",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Agents",
- "number_cards": [],
+ "number_cards": [
+  {
+   "label": "Agent Leads (This Month)",
+   "number_card_name": "Agent Leads (This Month)"
+  },
+  {
+   "label": "Applications from Agents (This month)",
+   "number_card_name": "Applications from Agents"
+  },
+  {
+   "label": "Total Agents",
+   "number_card_name": "total agents"
+  }
+ ],
  "owner": "Administrator",
  "parent_page": "",
  "public": 1,
- "quick_lists": [],
+ "quick_lists": [
+  {
+   "document_type": "Application",
+   "label": "Recent Applications by Agents",
+   "quick_list_filter": "[[\"Application\",\"application_type\",\"=\",\"B2B\",false]]"
+  },
+  {
+   "document_type": "Lead",
+   "label": "Recent Leads by Agents",
+   "quick_list_filter": "[[\"Lead\",\"lead_source\",\"=\",\"Agent\",false]]"
+  }
+ ],
  "restrict_to_domain": "",
  "roles": [],
  "sequence_id": 20.0,
- "shortcuts": [],
+ "shortcuts": [
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "icon": "fa fa-list",
+   "label": "View All Agents",
+   "link_to": "Agent",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "New",
+   "icon": "fa fa-plus",
+   "label": "Create New Agent",
+   "link_to": "Agent",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
  "title": "Agents",
- "type": "Link",
- "link_type": "DocType",
- "link_to": "Agent"
+ "type": "Workspace"
 }
-

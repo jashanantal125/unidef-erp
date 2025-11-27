@@ -33,6 +33,7 @@
   "gender",
   "lead_owner",
   "lead_source",
+  "agent",
   "status",
   "want_to_create_user_profile",
   "customer",
@@ -245,7 +246,7 @@
    "fieldname": "lead_source",
    "fieldtype": "Select",
    "label": "Lead Source",
-   "options": "\nWebsite\nReferral\nSocial Media\nAdvertisement\nOther",
+   "options": "\nWebsite\nReferral\nSocial Media\nAdvertisement\nAgent\nOther",
    "reqd": 1
   },
   {
@@ -423,6 +424,14 @@
    "oldfieldtype": "Select",
    "options": "UTM Source",
    "print_hide": 1
+  },
+  {
+   "depends_on": "eval:doc.lead_source == 'Agent'",
+   "fieldname": "agent",
+   "fieldtype": "Link",
+   "label": "Agent ",
+   "options": "Agent",
+   "reqd": 1
   }
  ],
  "grid_page_length": 50,
@@ -430,7 +439,7 @@
  "idx": 5,
  "image_field": "image",
  "links": [],
- "modified": "2025-11-23 11:16:10.577281",
+ "modified": "2025-11-26 18:34:47.137903",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Lead",
@@ -487,6 +496,14 @@
    "report": 1,
    "role": "CRM Admin",
    "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Agent",
    "write": 1
   },
   {

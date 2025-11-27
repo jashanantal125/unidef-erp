@@ -6,6 +6,20 @@ from frappe.model.document import Document
 
 
 class Application(Document):
+	@staticmethod
+	def get_list_query(query):
+		"""Filter applications for Agent role - only show applications where agent matches logged-in user's agent"""
+		if "Agent" in frappe.get_roles():
+			# Get the agent record linked to the current user
+			agent_name = frappe.db.get_value("Agent", {"user": frappe.session.user}, "name")
+			if agent_name:
+				Application = frappe.qb.DocType("Application")
+				query = query.where(Application.agent == agent_name)
+			else:
+				# If user has no agent record, show nothing
+				Application = frappe.qb.DocType("Application")
+				query = query.where(Application.agent == "")
+		return query
 	# begin: auto-generated types
 	# This code is auto-generated. Do not modify anything in this block.
 

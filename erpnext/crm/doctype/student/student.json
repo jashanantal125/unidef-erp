@@ -27,19 +27,13 @@
   "assigned_to",
   "lead_link",
   "documents_tab",
-  "education",
-  "work_experience",
-  "english_test",
-  "passport_travel",
-  "other",
-  "visa",
-  "refusal_letter",
-  "tuition_fee_receipt",
-  "loa",
+  "section_break_wmtu",
+  "table_rnxy",
   "shortlisted_program_tab",
   "shortlisted_programs",
   "applications_tab",
-  "applications"
+  "applications",
+  "title"
  ],
  "fields": [
   {
@@ -91,7 +85,8 @@
   {
    "fieldname": "state",
    "fieldtype": "Data",
-   "label": "State"
+   "label": "State",
+   "reqd": 1
   },
   {
    "fieldname": "city",
@@ -176,51 +171,6 @@
    "label": "Documents"
   },
   {
-   "fieldname": "education",
-   "fieldtype": "Attach",
-   "label": "Education"
-  },
-  {
-   "fieldname": "work_experience",
-   "fieldtype": "Attach",
-   "label": "Work Experience"
-  },
-  {
-   "fieldname": "english_test",
-   "fieldtype": "Attach",
-   "label": "English Test"
-  },
-  {
-   "fieldname": "passport_travel",
-   "fieldtype": "Attach",
-   "label": "Passport & Travel"
-  },
-  {
-   "fieldname": "other",
-   "fieldtype": "Attach",
-   "label": "Other"
-  },
-  {
-   "fieldname": "visa",
-   "fieldtype": "Attach",
-   "label": "Visa"
-  },
-  {
-   "fieldname": "refusal_letter",
-   "fieldtype": "Attach",
-   "label": "Refusal Letter"
-  },
-  {
-   "fieldname": "tuition_fee_receipt",
-   "fieldtype": "Attach",
-   "label": "Tuition Fee Receipt"
-  },
-  {
-   "fieldname": "loa",
-   "fieldtype": "Attach",
-   "label": "LOA"
-  },
-  {
    "fieldname": "shortlisted_program_tab",
    "fieldtype": "Tab Break",
    "label": "Shortlisted Program"
@@ -241,12 +191,21 @@
    "fieldtype": "Table",
    "label": "Applications",
    "options": "Student Application"
+  },
+  {
+   "fieldname": "section_break_wmtu",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "table_rnxy",
+   "fieldtype": "Table",
+   "options": "student documents"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-17 10:15:08.944429",
+ "modified": "2025-11-27 14:29:41.442166",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Student",
@@ -279,7 +238,6 @@
   },
   {
    "create": 1,
-   "delete": 0,
    "email": 1,
    "export": 1,
    "print": 1,
@@ -291,39 +249,32 @@
   },
   {
    "create": 1,
-   "delete": 0,
    "email": 1,
-   "export": 0,
    "print": 1,
    "read": 1,
-   "report": 0,
    "role": "B2B Agent",
-   "share": 0,
    "write": 1
   },
   {
    "create": 1,
-   "delete": 0,
    "email": 1,
-   "export": 0,
    "print": 1,
    "read": 1,
-   "report": 0,
    "role": "B2C Agent",
-   "share": 0,
    "write": 1
   },
   {
-   "create": 0,
-   "delete": 0,
-   "email": 0,
-   "export": 0,
+   "create": 1,
+   "email": 1,
    "print": 1,
    "read": 1,
-   "report": 0,
-   "role": "Institution",
-   "share": 0,
-   "write": 0
+   "role": "Agent",
+   "write": 1
+  },
+  {
+   "print": 1,
+   "read": 1,
+   "role": "Institution"
   }
  ],
  "row_format": "Dynamic",

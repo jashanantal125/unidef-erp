@@ -1,34 +1,75 @@
 {
  "app": "erpnext",
  "charts": [],
- "content": "[]",
+ "content": "[{\"id\":\"header1\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h3\\\"><b>Leads Dashboard</b></span>\",\"col\":12}},{\"id\":\"spacer1\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"number_card1\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Leads\",\"col\":4}},{\"id\":\"number_card2\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Open Leads\",\"col\":4}},{\"id\":\"number_card3\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Converted Leads\",\"col\":4}},{\"id\":\"spacer2\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"header2\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Quick Actions</b></span>\",\"col\":12}},{\"id\":\"shortcut1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"View All Leads\",\"col\":4}},{\"id\":\"shortcut2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Create New Lead\",\"col\":4}},{\"id\":\"shortcut3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Students\",\"col\":4}}]",
  "creation": "2025-11-21 00:00:00.000000",
  "custom_blocks": [],
  "docstatus": 0,
  "doctype": "Workspace",
  "for_user": "",
  "hide_custom": 0,
- "icon": "list",
+ "icon": "users",
  "idx": 0,
  "is_hidden": 0,
  "label": "Leads",
  "links": [],
- "modified": "2025-11-21 00:00:00.000000",
+ "modified": "2025-11-25 00:00:00.000000",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "CRM Leads",
- "number_cards": [],
+ "number_cards": [
+  {
+   "label": "Total Leads",
+   "number_card_name": "Total Leads"
+  },
+  {
+   "label": "Open Leads",
+   "number_card_name": "Open Leads"
+  },
+  {
+   "label": "Converted Leads",
+   "number_card_name": "Converted Leads"
+  }
+ ],
  "owner": "Administrator",
- "parent_page": "CRM",
+ "parent_page": "",
  "public": 1,
  "quick_lists": [],
  "restrict_to_domain": "",
  "roles": [],
  "sequence_id": 17.1,
- "shortcuts": [],
+ "shortcuts": [
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "format": "{}",
+   "icon": "fa fa-list",
+   "label": "View All Leads",
+   "link_to": "Lead",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "",
+   "format": "{}",
+   "icon": "fa fa-plus",
+   "label": "Create New Lead",
+   "link_to": "Lead",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "format": "{}",
+   "icon": "fa fa-user-graduate",
+   "label": "Students",
+   "link_to": "Student",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
  "title": "Leads",
- "type": "Link",
- "link_type": "DocType",
- "link_to": "Lead"
+ "type": "Workspace"
 }
-

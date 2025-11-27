@@ -18,7 +18,9 @@
   "ranking",
   "established_year",
   "courses_section",
-  "courses"
+  "courses",
+  "commission_section",
+  "commission_amount"
  ],
  "fields": [
   {
@@ -101,12 +103,22 @@
    "fieldtype": "Table",
    "label": "Courses",
    "options": "University Course"
+  },
+  {
+   "fieldname": "commission_section",
+   "fieldtype": "Section Break",
+   "label": "Commission"
+  },
+  {
+   "fieldname": "commission_amount",
+   "fieldtype": "Currency",
+   "label": "Commission Amount"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-15 13:58:13.465090",
+ "modified": "2025-11-27 13:09:50.807863",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "University",
@@ -137,51 +149,25 @@
    "write": 1
   },
   {
-   "create": 0,
-   "delete": 0,
-   "email": 0,
-   "export": 0,
    "print": 1,
    "read": 1,
-   "report": 0,
-   "role": "CRM Sales Staff",
-   "share": 0,
-   "write": 0
+   "role": "CRM Sales Staff"
   },
   {
-   "create": 0,
-   "delete": 0,
-   "email": 0,
-   "export": 0,
    "print": 1,
    "read": 1,
-   "report": 0,
-   "role": "B2B Agent",
-   "share": 0,
-   "write": 0
+   "role": "B2B Agent"
   },
   {
-   "create": 0,
-   "delete": 0,
-   "email": 0,
-   "export": 0,
    "print": 1,
    "read": 1,
-   "report": 0,
-   "role": "B2C Agent",
-   "share": 0,
-   "write": 0
+   "role": "B2C Agent"
   },
   {
    "create": 1,
-   "delete": 0,
-   "email": 0,
-   "export": 0,
    "print": 1,
    "read": 1,
-   "report": 0,
    "role": "Institution",
-   "share": 0,
    "write": 1
   }
  ],

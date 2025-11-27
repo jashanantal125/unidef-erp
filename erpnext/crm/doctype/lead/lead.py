@@ -20,6 +20,42 @@ from erpnext.selling.doctype.customer.customer import parse_full_name
 
 
 class Lead(SellingController, CRMNote):
+	@staticmethod
+	def get_list_query(query):
+		"""Filter leads for Agent role - show leads that are either:
+		1. Linked to students that are linked to applications where agent matches logged-in user's agent
+		2. Owned by the Agent's user (for newly created leads that don't have students yet)
+		"""
+		if "Agent" in frappe.get_roles():
+			# Get the agent record linked to the current user
+			agent_name = frappe.db.get_value("Agent", {"user": frappe.session.user}, "name")
+			if agent_name:
+				Lead = frappe.qb.DocType("Lead")
+				Student = frappe.qb.DocType("Student")
+				Application = frappe.qb.DocType("Application")
+				
+				# Get leads that are linked to applications with this agent
+				leads_with_apps = (
+					frappe.qb.from_(Lead)
+					.join(Student).on(Student.lead_link == Lead.name)
+					.join(Application).on(Application.student == Student.name)
+					.where(Application.agent == agent_name)
+					.select(Lead.name)
+				)
+				
+				# Show leads that either:
+				# 1. Are linked to applications with this agent, OR
+				# 2. Are owned by the Agent's user (for newly created leads)
+				query = query.where(
+					(Lead.name.isin(leads_with_apps)) | 
+					(Lead.owner == frappe.session.user)
+				)
+			else:
+				# If user has no agent record, show nothing
+				Lead = frappe.qb.DocType("Lead")
+				query = query.where(Lead.name == "")
+		return query
+	
 	# begin: auto-generated types
 	# This code is auto-generated. Do not modify anything in this block.
 
@@ -29,6 +65,7 @@ class Lead(SellingController, CRMNote):
 		from erpnext.crm.doctype.crm_note.crm_note import CRMNote
 		from frappe.types import DF
 
+		agent: DF.Link
 		annual_revenue: DF.Currency
 		area_of_interest: DF.Data
 		birthday: DF.Date | None
@@ -51,7 +88,7 @@ class Lead(SellingController, CRMNote):
 		last_name: DF.Data | None
 		lead_name: DF.Data | None
 		lead_owner: DF.Link | None
-		lead_source: DF.Literal["", "Website", "Referral", "Social Media", "Advertisement", "Other"]
+		lead_source: DF.Literal["", "Website", "Referral", "Social Media", "Advertisement", "Agent", "Other"]
 		market_segment: DF.Link | None
 		middle_name: DF.Data | None
 		mobile_no: DF.Data
