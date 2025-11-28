@@ -6,6 +6,7 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "naming_series",
   "profile_details_tab",
   "first_name",
   "last_name",
@@ -202,11 +203,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
-<<<<<<< HEAD
- "modified": "2025-11-24 18:05:55.909282",
-=======
  "modified": "2025-11-27 14:29:41.442166",
->>>>>>> 7bb4a0a26ff1bc430b1b557a68e08fcd6bbaecbe
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Student",
@@ -265,10 +262,6 @@
    "write": 1
   },
   {
-<<<<<<< HEAD
-   "print": 1,
-   "read": 1,
-=======
    "create": 1,
    "email": 1,
    "print": 1,
@@ -279,7 +272,6 @@
   {
    "print": 1,
    "read": 1,
->>>>>>> 7bb4a0a26ff1bc430b1b557a68e08fcd6bbaecbe
    "role": "Institution"
   }
  ],

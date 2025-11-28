@@ -1,41 +1,28 @@
+
 {
-<<<<<<< HEAD
- "background_color": "#ED6396",
- "color": "#ffffff",
- "creation": "2025-11-22 18:02:26.517068",
-=======
- "aggregate_function_based_on": "",
- "background_color": "",
- "color": "#FF7800",
- "creation": "2025-11-15 13:17:16.456685",
->>>>>>> 7bb4a0a26ff1bc430b1b557a68e08fcd6bbaecbe
- "docstatus": 0,
- "doctype": "Number Card",
- "document_type": "Lead",
- "dynamic_filters_json": "[]",
- "filters_json": "[]",
- "function": "Count",
- "idx": 0,
- "is_public": 1,
- "is_standard": 1,
- "label": "New Lead (Last 1 Month)",
-<<<<<<< HEAD
- "modified": "2025-11-24 19:42:08.087307",
- "modified_by": "Administrator",
- "module": "CRM",
- "name": "New Lead (Last 1 Month)",
- "owner": "pradeep.antal@gmail.com",
- "show_full_number": 0,
-=======
- "modified": "2025-11-25 11:48:28.395303",
- "modified_by": "Administrator",
- "module": "CRM",
- "name": "New Lead (Last 1 Month)",
- "owner": "pk@ldttechnology.com",
- "parent_document_type": "",
- "show_full_number": 1,
->>>>>>> 7bb4a0a26ff1bc430b1b557a68e08fcd6bbaecbe
- "show_percentage_stats": 1,
- "stats_time_interval": "Weekly",
- "type": "Document Type"
-}
+    "aggregate_function_based_on": "",
+    "background_color": "",
+    "color": "#FF7800",
+    "creation": "2025-11-15 13:17:16.456685",
+    "docstatus": 0,
+    "doctype": "Number Card",
+    "document_type": "Lead",
+    "dynamic_filters_json": "[]",
+    "filters_json": "[]",
+    "function": "Count",
+    "idx": 0,
+    "is_public": 1,
+    "is_standard": 1,
+    "label": "New Lead (Last 1 Month)",
+    "modified": "2025-11-25 11:48:28.395303",
+    "modified_by": "Administrator",
+    "module": "CRM",
+    "name": "New Lead (Last 1 Month)",
+    "owner": "pk@ldttechnology.com",
+    "parent_document_type": "",
+    "show_full_number": 1,
+    "show_percentage_stats": 1,
+    "stats_time_interval": "Weekly",
+    "type": "Document Type"
+   }
+   

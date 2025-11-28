@@ -31,10 +31,7 @@ class Student(Document):
 	if TYPE_CHECKING:
 		from erpnext.crm.doctype.shortlisted_program.shortlisted_program import ShortlistedProgram
 		from erpnext.crm.doctype.student_application.student_application import StudentApplication
-<<<<<<< HEAD
-=======
 		from erpnext.crm.doctype.student_documents.student_documents import studentdocuments
->>>>>>> 7bb4a0a26ff1bc430b1b557a68e08fcd6bbaecbe
 		from frappe.types import DF
 
 		applications: DF.Table[StudentApplication]
@@ -53,25 +50,13 @@ class Student(Document):
 		last_name: DF.Data | None
 		lead_link: DF.Link | None
 		mobile: DF.Data
-<<<<<<< HEAD
-		naming_series: DF.Literal[None]
-		other: DF.Attach | None
-		passport_travel: DF.Attach | None
-=======
 		naming_series: DF.Literal["STU-.YYYY.-"]
->>>>>>> 7bb4a0a26ff1bc430b1b557a68e08fcd6bbaecbe
 		preferred_study_level: DF.Data | None
 		shortlisted_programs: DF.Table[ShortlistedProgram]
 		state: DF.Data
 		table_rnxy: DF.Table[studentdocuments]
 		testscore: DF.Data | None
 		title: DF.Data | None
-<<<<<<< HEAD
-		tuition_fee_receipt: DF.Attach | None
-		visa: DF.Attach | None
-		work_experience: DF.Attach | None
-=======
->>>>>>> 7bb4a0a26ff1bc430b1b557a68e08fcd6bbaecbe
 	# end: auto-generated types
 
 	def validate(self):

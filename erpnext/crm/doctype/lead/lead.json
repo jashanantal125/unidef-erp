@@ -1,537 +1,532 @@
 {
- "actions": [],
- "allow_events_in_timeline": 1,
- "allow_import": 1,
- "allow_rename": 1,
- "autoname": "naming_series:",
- "creation": "2022-02-08 13:14:41.083327",
- "doctype": "DocType",
- "document_type": "Document",
- "email_append_to": 1,
- "engine": "InnoDB",
- "field_order": [
-  "naming_series",
-  "lead_section",
-  "first_name",
-  "last_name",
-  "lead_name",
-  "email_id",
-  "country",
-  "state",
-  "city",
-  "title",
-  "column_break_name",
-  "country_code",
-  "mobile_no",
-  "destination_country",
-  "birthday",
-  "area_of_interest",
-  "highest_education",
-  "testscore",
-  "company",
-  "col_break123",
-  "gender",
-  "lead_owner",
-  "lead_source",
-  "agent",
-  "status",
-  "want_to_create_user_profile",
-  "customer",
-  "comment",
-  "image",
-  "activities_tab",
-  "open_activities_html",
-  "all_activities_section",
-  "all_activities_html",
-  "notes_tab",
-  "notes_html",
-  "notes",
-  "salutation",
-  "middle_name",
-  "company_name",
-  "job_title",
-  "phone",
-  "no_of_employees",
-  "industry",
-  "market_segment",
-  "annual_revenue",
-  "territory",
-  "fax",
-  "website",
-  "whatsapp_no",
-  "utm_source"
- ],
- "fields": [
-  {
-   "fieldname": "naming_series",
-   "fieldtype": "Select",
-   "hidden": 1,
-   "label": "Series",
-   "no_copy": 1,
-   "oldfieldname": "naming_series",
-   "oldfieldtype": "Select",
-   "options": "CRM-LEAD-.YYYY.-",
-   "set_only_once": 1
-  },
-  {
-   "depends_on": "eval:!doc.__islocal",
-   "fieldname": "lead_name",
-   "fieldtype": "Data",
-   "in_global_search": 1,
-   "label": "Full Name",
-   "oldfieldname": "lead_name",
-   "oldfieldtype": "Data",
-   "read_only": 1,
-   "search_index": 1
-  },
-  {
-   "fieldname": "email_id",
-   "fieldtype": "Data",
-   "label": "Email",
-   "oldfieldname": "email_id",
-   "oldfieldtype": "Data",
-   "options": "Email",
-   "reqd": 1,
-   "search_index": 1
-  },
-  {
-   "fieldname": "col_break123",
-   "fieldtype": "Column Break",
-   "width": "50%"
-  },
-  {
-   "default": "__user",
-   "fieldname": "lead_owner",
-   "fieldtype": "Link",
-   "label": "Lead Owner",
-   "oldfieldname": "lead_owner",
-   "oldfieldtype": "Link",
-   "options": "User",
-   "search_index": 1
-  },
-  {
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Status",
-   "no_copy": 1,
-   "oldfieldname": "status",
-   "oldfieldtype": "Select",
-   "options": "Lead\nOpen\nReplied\nOpportunity\nQuotation\nLost Quotation\nInterested\nConverted\nDo Not Contact",
-   "reqd": 1,
-   "search_index": 1
-  },
-  {
-   "fieldname": "gender",
-   "fieldtype": "Select",
-   "label": "Gender",
-   "options": "\nMale\nFemale\nOther",
-   "reqd": 1
-  },
-  {
-   "fieldname": "image",
-   "fieldtype": "Attach Image",
-   "hidden": 1,
-   "label": "Image",
-   "print_hide": 1
-  },
-  {
-   "fieldname": "mobile_no",
-   "fieldtype": "Data",
-   "label": "Mobile",
-   "oldfieldname": "mobile_no",
-   "oldfieldtype": "Data",
-   "options": "Phone",
-   "reqd": 1
-  },
-  {
-   "fieldname": "title",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Title",
-   "print_hide": 1,
-   "read_only": 1
-  },
-  {
-   "fieldname": "first_name",
-   "fieldtype": "Data",
-   "label": "First Name",
-   "mandatory_depends_on": "eval: !(doc.company_name)"
-  },
-  {
-   "fieldname": "last_name",
-   "fieldtype": "Data",
-   "label": "Last Name"
-  },
-  {
-   "fieldname": "open_activities_html",
-   "fieldtype": "HTML",
-   "label": "Open Activities HTML"
-  },
-  {
-   "fieldname": "all_activities_section",
-   "fieldtype": "Section Break",
-   "label": "All Activities"
-  },
-  {
-   "fieldname": "all_activities_html",
-   "fieldtype": "HTML",
-   "label": "All Activities HTML"
-  },
-  {
-   "fieldname": "city",
-   "fieldtype": "Data",
-   "label": "City"
-  },
-  {
-   "fieldname": "state",
-   "fieldtype": "Data",
-   "label": "State/Province"
-  },
-  {
-   "fieldname": "country",
-   "fieldtype": "Link",
-   "label": "Country",
-   "options": "Country"
-  },
-  {
-   "fieldname": "lead_section",
-   "fieldtype": "Section Break",
-   "label": "Lead Information"
-  },
-  {
-   "fieldname": "column_break_name",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "country_code",
-   "fieldtype": "Data",
-   "label": "Country Code",
-   "reqd": 1
-  },
-  {
-   "fieldname": "destination_country",
-   "fieldtype": "Link",
-   "label": "Destination Country (Want to study in)",
-   "options": "Country"
-  },
-  {
-   "fieldname": "birthday",
-   "fieldtype": "Date",
-   "label": "Birthday"
-  },
-  {
-   "fieldname": "area_of_interest",
-   "fieldtype": "Data",
-   "label": "Area of Interest",
-   "reqd": 1
-  },
-  {
-   "fieldname": "highest_education",
-   "fieldtype": "Data",
-   "label": "Highest Education"
-  },
-  {
-   "fieldname": "testscore",
-   "fieldtype": "Data",
-   "label": "Testscore"
-  },
-  {
-   "fieldname": "comment",
-   "fieldtype": "Small Text",
-   "label": "Comment"
-  },
-  {
-   "fieldname": "lead_source",
-   "fieldtype": "Select",
-   "label": "Lead Source",
-   "options": "\nWebsite\nReferral\nSocial Media\nAdvertisement\nAgent\nOther",
-   "reqd": 1
-  },
-  {
-   "fieldname": "want_to_create_user_profile",
-   "fieldtype": "Select",
-   "label": "Want to create user profile?",
-   "options": "\nYes\nNo",
-   "reqd": 1
-  },
-  {
-   "depends_on": "eval:doc.source == 'Existing Customer'",
-   "fieldname": "customer",
-   "fieldtype": "Link",
-   "label": "From Customer",
-   "no_copy": 1,
-   "oldfieldname": "customer",
-   "oldfieldtype": "Link",
-   "options": "Customer"
-  },
-  {
-   "depends_on": "eval:!doc.__islocal",
-   "fieldname": "activities_tab",
-   "fieldtype": "Tab Break",
-   "label": "Activities"
-  },
-  {
-   "depends_on": "eval:!doc.__islocal",
-   "fieldname": "notes_tab",
-   "fieldtype": "Tab Break",
-   "label": "Notes"
-  },
-  {
-   "fieldname": "notes_html",
-   "fieldtype": "HTML",
-   "label": "Notes HTML"
-  },
-  {
-   "fieldname": "notes",
-   "fieldtype": "Table",
-   "hidden": 1,
-   "label": "Notes",
-   "no_copy": 1,
-   "options": "CRM Note"
-  },
-  {
-   "fieldname": "salutation",
-   "fieldtype": "Link",
-   "hidden": 1,
-   "label": "Salutation",
-   "options": "Salutation",
-   "print_hide": 1
-  },
-  {
-   "fieldname": "middle_name",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Middle Name",
-   "print_hide": 1
-  },
-  {
-   "fieldname": "company_name",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Organization Name",
-   "mandatory_depends_on": "eval: !(doc.first_name)",
-   "oldfieldname": "company_name",
-   "oldfieldtype": "Data",
-   "print_hide": 1
-  },
-  {
-   "fieldname": "job_title",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Job Title",
-   "print_hide": 1
-  },
-  {
-   "fieldname": "phone",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Phone",
-   "oldfieldname": "contact_no",
-   "oldfieldtype": "Data",
-   "options": "Phone",
-   "print_hide": 1
-  },
-  {
-   "fieldname": "no_of_employees",
-   "fieldtype": "Select",
-   "hidden": 1,
-   "label": "No of Employees",
-   "options": "1-10\n11-50\n51-200\n201-500\n501-1000\n1000+",
-   "print_hide": 1
-  },
-  {
-   "fieldname": "industry",
-   "fieldtype": "Link",
-   "hidden": 1,
-   "label": "Industry",
-   "oldfieldname": "industry",
-   "oldfieldtype": "Link",
-   "options": "Industry Type",
-   "print_hide": 1
-  },
-  {
-   "fieldname": "market_segment",
-   "fieldtype": "Link",
-   "hidden": 1,
-   "label": "Market Segment",
-   "oldfieldname": "market_segment",
-   "oldfieldtype": "Select",
-   "options": "Market Segment",
-   "print_hide": 1
-  },
-  {
-   "fieldname": "annual_revenue",
-   "fieldtype": "Currency",
-   "hidden": 1,
-   "label": "Annual Revenue",
-   "print_hide": 1
-  },
-  {
-   "fieldname": "territory",
-   "fieldtype": "Link",
-   "hidden": 1,
-   "label": "Territory",
-   "oldfieldname": "territory",
-   "oldfieldtype": "Link",
-   "options": "Territory",
-   "print_hide": 1
-  },
-  {
-   "fieldname": "fax",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Fax",
-   "oldfieldname": "fax",
-   "oldfieldtype": "Data",
-   "print_hide": 1
-  },
-  {
-   "fieldname": "website",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Website",
-   "oldfieldname": "website",
-   "oldfieldtype": "Data",
-   "print_hide": 1
-  },
-  {
-   "fieldname": "whatsapp_no",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "WhatsApp",
-   "options": "Phone",
-   "print_hide": 1
-  },
-  {
-   "fieldname": "utm_source",
-   "fieldtype": "Link",
-   "hidden": 1,
-   "label": "Source",
-   "oldfieldname": "source",
-   "oldfieldtype": "Select",
-   "options": "UTM Source",
-   "print_hide": 1
-  },
-  {
-<<<<<<< HEAD
-   "default": "Unideft",
-   "fieldname": "company",
-   "fieldtype": "Read Only",
-   "hidden": 1,
-   "label": "Company",
-   "mandatory_depends_on": "frappe.defaults.get_user_default(\"Company\")",
-   "options": "unideft"
-=======
-   "depends_on": "eval:doc.lead_source == 'Agent'",
-   "fieldname": "agent",
-   "fieldtype": "Link",
-   "label": "Agent ",
-   "options": "Agent",
-   "reqd": 1
->>>>>>> 7bb4a0a26ff1bc430b1b557a68e08fcd6bbaecbe
+   "actions": [],
+   "allow_events_in_timeline": 1,
+   "allow_import": 1,
+   "allow_rename": 1,
+   "autoname": "naming_series:",
+   "creation": "2022-02-08 13:14:41.083327",
+   "doctype": "DocType",
+   "document_type": "Document",
+   "email_append_to": 1,
+   "engine": "InnoDB",
+   "field_order": [
+    "naming_series",
+    "lead_section",
+    "first_name",
+    "last_name",
+    "lead_name",
+    "email_id",
+    "country",
+    "state",
+    "city",
+    "title",
+    "column_break_name",
+    "country_code",
+    "mobile_no",
+    "destination_country",
+    "birthday",
+    "area_of_interest",
+    "highest_education",
+    "testscore",
+    "company",
+    "col_break123",
+    "gender",
+    "lead_owner",
+    "lead_source",
+    "agent",
+    "status",
+    "want_to_create_user_profile",
+    "customer",
+    "comment",
+    "image",
+    "activities_tab",
+    "open_activities_html",
+    "all_activities_section",
+    "all_activities_html",
+    "notes_tab",
+    "notes_html",
+    "notes",
+    "salutation",
+    "middle_name",
+    "company_name",
+    "job_title",
+    "phone",
+    "no_of_employees",
+    "industry",
+    "market_segment",
+    "annual_revenue",
+    "territory",
+    "fax",
+    "website",
+    "whatsapp_no",
+    "utm_source"
+   ],
+   "fields": [
+    {
+     "fieldname": "naming_series",
+     "fieldtype": "Select",
+     "label": "Series",
+     "no_copy": 1,
+     "oldfieldname": "naming_series",
+     "oldfieldtype": "Select",
+     "options": "CRM-LEAD-.YYYY.-",
+     "set_only_once": 1
+    },
+    {
+     "depends_on": "eval:!doc.__islocal",
+     "fieldname": "lead_name",
+     "fieldtype": "Data",
+     "in_global_search": 1,
+     "label": "Full Name",
+     "oldfieldname": "lead_name",
+     "oldfieldtype": "Data",
+     "read_only": 1,
+     "search_index": 1
+    },
+    {
+     "fieldname": "email_id",
+     "fieldtype": "Data",
+     "label": "Email",
+     "oldfieldname": "email_id",
+     "oldfieldtype": "Data",
+     "options": "Email",
+     "reqd": 1,
+     "search_index": 1
+    },
+    {
+     "fieldname": "col_break123",
+     "fieldtype": "Column Break",
+     "width": "50%"
+    },
+    {
+     "default": "__user",
+     "fieldname": "lead_owner",
+     "fieldtype": "Link",
+     "label": "Lead Owner",
+     "oldfieldname": "lead_owner",
+     "oldfieldtype": "Link",
+     "options": "User",
+     "search_index": 1
+    },
+    {
+     "default": "Lead",
+     "fieldname": "status",
+     "fieldtype": "Select",
+     "in_list_view": 1,
+     "in_standard_filter": 1,
+     "label": "Status",
+     "no_copy": 1,
+     "oldfieldname": "status",
+     "oldfieldtype": "Select",
+     "options": "Lead\nOpen\nReplied\nOpportunity\nQuotation\nLost Quotation\nInterested\nConverted\nDo Not Contact",
+     "reqd": 1,
+     "search_index": 1
+    },
+    {
+     "fieldname": "gender",
+     "fieldtype": "Select",
+     "label": "Gender",
+     "options": "\nMale\nFemale\nOther",
+     "reqd": 1
+    },
+    {
+     "fieldname": "image",
+     "fieldtype": "Attach Image",
+     "hidden": 1,
+     "label": "Image",
+     "print_hide": 1
+    },
+    {
+     "fieldname": "mobile_no",
+     "fieldtype": "Data",
+     "label": "Mobile",
+     "oldfieldname": "mobile_no",
+     "oldfieldtype": "Data",
+     "options": "Phone",
+     "reqd": 1
+    },
+    {
+     "fieldname": "title",
+     "fieldtype": "Data",
+     "hidden": 1,
+     "label": "Title",
+     "print_hide": 1,
+     "read_only": 1
+    },
+    {
+     "fieldname": "first_name",
+     "fieldtype": "Data",
+     "label": "First Name",
+     "mandatory_depends_on": "eval: !(doc.company_name)"
+    },
+    {
+     "fieldname": "last_name",
+     "fieldtype": "Data",
+     "label": "Last Name"
+    },
+    {
+     "fieldname": "open_activities_html",
+     "fieldtype": "HTML",
+     "label": "Open Activities HTML"
+    },
+    {
+     "fieldname": "all_activities_section",
+     "fieldtype": "Section Break",
+     "label": "All Activities"
+    },
+    {
+     "fieldname": "all_activities_html",
+     "fieldtype": "HTML",
+     "label": "All Activities HTML"
+    },
+    {
+     "fieldname": "city",
+     "fieldtype": "Data",
+     "label": "City"
+    },
+    {
+     "fieldname": "state",
+     "fieldtype": "Data",
+     "label": "State/Province"
+    },
+    {
+     "fieldname": "country",
+     "fieldtype": "Link",
+     "label": "Country",
+     "options": "Country"
+    },
+    {
+     "fieldname": "lead_section",
+     "fieldtype": "Section Break",
+     "label": "Lead Information"
+    },
+    {
+     "fieldname": "column_break_name",
+     "fieldtype": "Column Break"
+    },
+    {
+     "fieldname": "country_code",
+     "fieldtype": "Data",
+     "label": "Country Code",
+     "reqd": 1
+    },
+    {
+     "fieldname": "destination_country",
+     "fieldtype": "Link",
+     "label": "Destination Country (Want to study in)",
+     "options": "Country"
+    },
+    {
+     "fieldname": "birthday",
+     "fieldtype": "Date",
+     "label": "Birthday"
+    },
+    {
+     "fieldname": "area_of_interest",
+     "fieldtype": "Data",
+     "label": "Area of Interest",
+     "reqd": 1
+    },
+    {
+     "fieldname": "highest_education",
+     "fieldtype": "Data",
+     "label": "Highest Education"
+    },
+    {
+     "fieldname": "testscore",
+     "fieldtype": "Data",
+     "label": "Testscore"
+    },
+    {
+     "fieldname": "comment",
+     "fieldtype": "Small Text",
+     "label": "Comment"
+    },
+    {
+     "fieldname": "lead_source",
+     "fieldtype": "Select",
+     "label": "Lead Source",
+     "options": "\nWebsite\nReferral\nSocial Media\nAdvertisement\nAgent\nOther",
+     "reqd": 1
+    },
+    {
+     "fieldname": "want_to_create_user_profile",
+     "fieldtype": "Select",
+     "label": "Want to create user profile?",
+     "options": "\nYes\nNo",
+     "reqd": 1
+    },
+    {
+     "depends_on": "eval:doc.source == 'Existing Customer'",
+     "fieldname": "customer",
+     "fieldtype": "Link",
+     "label": "From Customer",
+     "no_copy": 1,
+     "oldfieldname": "customer",
+     "oldfieldtype": "Link",
+     "options": "Customer"
+    },
+    {
+     "fieldname": "company",
+     "fieldtype": "Link",
+     "label": "Company",
+     "oldfieldname": "company",
+     "oldfieldtype": "Link",
+     "options": "Company",
+     "remember_last_selected_value": 1
+    },
+    {
+     "depends_on": "eval:!doc.__islocal",
+     "fieldname": "activities_tab",
+     "fieldtype": "Tab Break",
+     "label": "Activities"
+    },
+    {
+     "depends_on": "eval:!doc.__islocal",
+     "fieldname": "notes_tab",
+     "fieldtype": "Tab Break",
+     "label": "Notes"
+    },
+    {
+     "fieldname": "notes_html",
+     "fieldtype": "HTML",
+     "label": "Notes HTML"
+    },
+    {
+     "fieldname": "notes",
+     "fieldtype": "Table",
+     "hidden": 1,
+     "label": "Notes",
+     "no_copy": 1,
+     "options": "CRM Note"
+    },
+    {
+     "fieldname": "salutation",
+     "fieldtype": "Link",
+     "hidden": 1,
+     "label": "Salutation",
+     "options": "Salutation",
+     "print_hide": 1
+    },
+    {
+     "fieldname": "middle_name",
+     "fieldtype": "Data",
+     "hidden": 1,
+     "label": "Middle Name",
+     "print_hide": 1
+    },
+    {
+     "fieldname": "company_name",
+     "fieldtype": "Data",
+     "hidden": 1,
+     "in_list_view": 1,
+     "in_standard_filter": 1,
+     "label": "Organization Name",
+     "mandatory_depends_on": "eval: !(doc.first_name)",
+     "oldfieldname": "company_name",
+     "oldfieldtype": "Data",
+     "print_hide": 1
+    },
+    {
+     "fieldname": "job_title",
+     "fieldtype": "Data",
+     "hidden": 1,
+     "label": "Job Title",
+     "print_hide": 1
+    },
+    {
+     "fieldname": "phone",
+     "fieldtype": "Data",
+     "hidden": 1,
+     "label": "Phone",
+     "oldfieldname": "contact_no",
+     "oldfieldtype": "Data",
+     "options": "Phone",
+     "print_hide": 1
+    },
+    {
+     "fieldname": "no_of_employees",
+     "fieldtype": "Select",
+     "hidden": 1,
+     "label": "No of Employees",
+     "options": "1-10\n11-50\n51-200\n201-500\n501-1000\n1000+",
+     "print_hide": 1
+    },
+    {
+     "fieldname": "industry",
+     "fieldtype": "Link",
+     "hidden": 1,
+     "label": "Industry",
+     "oldfieldname": "industry",
+     "oldfieldtype": "Link",
+     "options": "Industry Type",
+     "print_hide": 1
+    },
+    {
+     "fieldname": "market_segment",
+     "fieldtype": "Link",
+     "hidden": 1,
+     "label": "Market Segment",
+     "oldfieldname": "market_segment",
+     "oldfieldtype": "Select",
+     "options": "Market Segment",
+     "print_hide": 1
+    },
+    {
+     "fieldname": "annual_revenue",
+     "fieldtype": "Currency",
+     "hidden": 1,
+     "label": "Annual Revenue",
+     "print_hide": 1
+    },
+    {
+     "fieldname": "territory",
+     "fieldtype": "Link",
+     "hidden": 1,
+     "label": "Territory",
+     "oldfieldname": "territory",
+     "oldfieldtype": "Link",
+     "options": "Territory",
+     "print_hide": 1
+    },
+    {
+     "fieldname": "fax",
+     "fieldtype": "Data",
+     "hidden": 1,
+     "label": "Fax",
+     "oldfieldname": "fax",
+     "oldfieldtype": "Data",
+     "print_hide": 1
+    },
+    {
+     "fieldname": "website",
+     "fieldtype": "Data",
+     "hidden": 1,
+     "label": "Website",
+     "oldfieldname": "website",
+     "oldfieldtype": "Data",
+     "print_hide": 1
+    },
+    {
+     "fieldname": "whatsapp_no",
+     "fieldtype": "Data",
+     "hidden": 1,
+     "label": "WhatsApp",
+     "options": "Phone",
+     "print_hide": 1
+    },
+    {
+     "fieldname": "utm_source",
+     "fieldtype": "Link",
+     "hidden": 1,
+     "label": "Source",
+     "oldfieldname": "source",
+     "oldfieldtype": "Select",
+     "options": "UTM Source",
+     "print_hide": 1
+    },
+    {
+     "depends_on": "eval:doc.lead_source == 'Agent'",
+     "fieldname": "agent",
+     "fieldtype": "Link",
+     "label": "Agent ",
+     "options": "Agent",
+     "reqd": 1
+    }
+   ],
+   "grid_page_length": 50,
+   "icon": "fa fa-user",
+   "idx": 5,
+   "image_field": "image",
+   "links": [],
+   "modified": "2025-11-26 18:34:47.137903",
+   "modified_by": "Administrator",
+   "module": "CRM",
+   "name": "Lead",
+   "naming_rule": "By \"Naming Series\" field",
+   "owner": "Administrator",
+   "permissions": [
+    {
+     "permlevel": 1,
+     "read": 1,
+     "report": 1,
+     "role": "Desk User"
+    },
+    {
+     "create": 1,
+     "email": 1,
+     "print": 1,
+     "read": 1,
+     "report": 1,
+     "role": "Sales User",
+     "share": 1,
+     "write": 1
+    },
+    {
+     "create": 1,
+     "delete": 1,
+     "email": 1,
+     "export": 1,
+     "import": 1,
+     "print": 1,
+     "read": 1,
+     "report": 1,
+     "role": "Sales Manager",
+     "share": 1,
+     "write": 1
+    },
+    {
+     "create": 1,
+     "email": 1,
+     "print": 1,
+     "read": 1,
+     "report": 1,
+     "role": "System Manager",
+     "share": 1,
+     "write": 1
+    },
+    {
+     "create": 1,
+     "delete": 1,
+     "email": 1,
+     "export": 1,
+     "import": 1,
+     "print": 1,
+     "read": 1,
+     "report": 1,
+     "role": "CRM Admin",
+     "share": 1,
+     "write": 1
+    },
+    {
+     "create": 1,
+     "email": 1,
+     "print": 1,
+     "read": 1,
+     "role": "Agent",
+     "write": 1
+    },
+    {
+     "permlevel": 1,
+     "read": 1,
+     "report": 1,
+     "role": "Sales Manager"
+    },
+    {
+     "permlevel": 1,
+     "read": 1,
+     "report": 1,
+     "role": "Sales User"
+    }
+   ],
+   "row_format": "Dynamic",
+   "search_fields": "lead_name,lead_owner,status",
+   "sender_field": "email_id",
+   "sender_name_field": "lead_name",
+   "show_name_in_global_search": 1,
+   "sort_field": "creation",
+   "sort_order": "DESC",
+   "states": [],
+   "subject_field": "title",
+   "title_field": "title"
   }
- ],
- "grid_page_length": 50,
- "icon": "fa fa-user",
- "idx": 5,
- "image_field": "image",
- "links": [],
-<<<<<<< HEAD
- "modified": "2025-11-24 20:00:16.771312",
-=======
- "modified": "2025-11-26 18:34:47.137903",
->>>>>>> 7bb4a0a26ff1bc430b1b557a68e08fcd6bbaecbe
- "modified_by": "Administrator",
- "module": "CRM",
- "name": "Lead",
- "naming_rule": "By \"Naming Series\" field",
- "owner": "Administrator",
- "permissions": [
-  {
-   "permlevel": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Desk User"
-  },
-  {
-   "create": 1,
-   "email": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Sales User",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "import": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Sales Manager",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
-   "email": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "import": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "CRM Admin",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
-   "email": 1,
-   "print": 1,
-   "read": 1,
-   "role": "Agent",
-   "write": 1
-  },
-  {
-   "permlevel": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Sales Manager"
-  },
-  {
-   "permlevel": 1,
-   "read": 1,
-   "report": 1,
-   "role": "Sales User"
-  }
- ],
- "row_format": "Dynamic",
- "search_fields": "lead_name,lead_owner,status",
- "sender_field": "email_id",
- "sender_name_field": "lead_name",
- "show_name_in_global_search": 1,
- "sort_field": "creation",
- "sort_order": "DESC",
- "states": [],
- "subject_field": "title",
- "title_field": "title"
-}
