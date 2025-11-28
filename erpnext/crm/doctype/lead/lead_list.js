@@ -3,7 +3,36 @@ frappe.listview_settings["Lead"] = {
 		var indicator = [__(doc.status), frappe.utils.guess_colour(doc.status), "status,=," + doc.status];
 		return indicator;
 	},
+	// Ensure no default filters are applied - show all leads by default
+	filters: [],
 	onload: function (listview) {
+		// Clear any saved user filters to show all leads by default
+		// Clear user settings for filters to prevent saved filters from being applied
+		if (listview.user_settings && listview.user_settings.List && listview.user_settings.List.filters) {
+			listview.user_settings.List.filters = [];
+			frappe.model.user_settings.save(listview.doctype, listview.user_settings);
+		}
+		
+		// Ensure filters array is empty
+		listview.filters = [];
+		
+		// Clear filter area after it's initialized
+		setTimeout(() => {
+			if (listview.filter_area) {
+				// Clear all filters from filter area
+				listview.filter_area.clear(false).then(() => {
+					// Ensure filters remain empty
+					listview.filters = [];
+					// Refresh to show all leads
+					listview.refresh();
+				});
+			} else {
+				// If filter_area not ready, refresh anyway to ensure no filters
+				listview.filters = [];
+				listview.refresh();
+			}
+		}, 200);
+		
 		if (frappe.boot.user.can_create.includes("Prospect")) {
 			listview.page.add_action_item(__("Create Prospect"), function () {
 				frappe.model.with_doctype("Prospect", function () {

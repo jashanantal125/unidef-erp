@@ -34,7 +34,7 @@ class Lead(SellingController, CRMNote):
 		birthday: DF.Date | None
 		city: DF.Data | None
 		comment: DF.SmallText | None
-		company: DF.Link | None
+		company: DF.ReadOnly | None
 		company_name: DF.Data | None
 		country: DF.Link | None
 		country_code: DF.Data

@@ -1,0 +1,29 @@
+{
+ "allow_roles": [
+  {
+   "role": "All"
+  }
+ ],
+ "creation": "2025-11-24 19:48:55.116553",
+ "docstatus": 0,
+ "doctype": "Module Onboarding",
+ "documentation_url": "http://google.com",
+ "idx": 0,
+ "is_complete": 0,
+ "modified": "2025-11-24 19:48:55.116553",
+ "modified_by": "Administrator",
+ "module": "CRM",
+ "name": "Onbording",
+ "owner": "Administrator",
+ "steps": [
+  {
+   "step": "1"
+  },
+  {
+   "step": "2"
+  }
+ ],
+ "subtitle": "seconf",
+ "success_message": "Hi",
+ "title": "second"
+}

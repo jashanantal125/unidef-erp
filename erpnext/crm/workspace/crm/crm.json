@@ -2,11 +2,11 @@
  "app": "erpnext",
  "charts": [
   {
-   "chart_name": "Territory Wise Sales",
-   "label": "Territory Wise Sales"
+   "chart_name": "Incoming Leads",
+   "label": "Incoming Leads"
   }
  ],
- "content": "[{\"id\":\"Cj2TyhgiWy\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Territory Wise Sales\",\"col\":12}},{\"id\":\"LAKRmpYMRA\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"XGIwEUStw_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"69RN0XsiJK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leads\",\"col\":3}},{\"id\":\"wdROEmB_XG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"6UH-6i2zWH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Applications\",\"col\":3}},{\"id\":\"-I9HhcgUKE\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ttpROKW9vk\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"_hJ-2MvKd2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Universities\",\"col\":3}},{\"id\":\"qamF8iFp7U\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Courses\",\"col\":3}},{\"id\":\"TYCmTEdjaO\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Agents\",\"col\":3}},{\"id\":\"urkak7VYeG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Students\",\"col\":3}}]",
+ "content": "[{\"id\":\"LAKRmpYMRA\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"Enz_JsosuF\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"New Lead\",\"col\":4}},{\"id\":\"cn_vJ2CLMY\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Total Leads\",\"col\":4}},{\"id\":\"OFnsCR3UfG\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Converted\",\"col\":4}},{\"id\":\"XGIwEUStw_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"EC3ngwwqjf\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Incoming Leads\",\"col\":12}},{\"id\":\"nLjnEbvJAw\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Latest\",\"col\":4}},{\"id\":\"-I9HhcgUKE\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ttpROKW9vk\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"_hJ-2MvKd2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Universities\",\"col\":3}},{\"id\":\"qamF8iFp7U\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Courses\",\"col\":3}},{\"id\":\"TYCmTEdjaO\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Agents\",\"col\":3}},{\"id\":\"urkak7VYeG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Students\",\"col\":3}}]",
  "creation": "2020-01-23 14:48:30.183272",
  "custom_blocks": [],
  "docstatus": 0,
@@ -15,7 +15,7 @@
  "hide_custom": 0,
  "icon": "crm",
  "idx": 0,
- "indicator_color": "#FF7800",
+ "indicator_color": "orange",
  "is_hidden": 0,
  "label": "CRM",
  "links": [
@@ -150,15 +150,34 @@
    "type": "Link"
   }
  ],
- "modified": "2025-11-18 13:55:40.988675",
+ "modified": "2025-11-24 20:06:12.803552",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "CRM",
- "number_cards": [],
+ "number_cards": [
+  {
+   "label": "Converted",
+   "number_card_name": "Converted"
+  },
+  {
+   "label": "New Lead",
+   "number_card_name": "New Leads"
+  },
+  {
+   "label": "Total Leads",
+   "number_card_name": "Total leads"
+  }
+ ],
  "owner": "Administrator",
  "parent_page": "",
  "public": 1,
- "quick_lists": [],
+ "quick_lists": [
+  {
+   "document_type": "Lead",
+   "label": "Latest",
+   "quick_list_filter": "[[\"Lead\",\"status\",\"=\",\"Lead\",false]]"
+  }
+ ],
  "restrict_to_domain": "",
  "roles": [],
  "sequence_id": 17.0,
@@ -168,23 +187,6 @@
    "doc_view": "List",
    "label": "Universities",
    "link_to": "University",
-   "stats_filter": "[]",
-   "type": "DocType"
-  },
-  {
-   "color": "#FF7800",
-   "doc_view": "",
-   "format": "{} Open",
-   "label": "Leads",
-   "link_to": "Lead",
-   "stats_filter": "[[\"Lead\",\"status\",\"=\",\"Open\",false]]",
-   "type": "DocType"
-  },
-  {
-   "color": "#FF7800",
-   "doc_view": "List",
-   "label": "Applications",
-   "link_to": "Application",
    "stats_filter": "[]",
    "type": "DocType"
   },
@@ -211,11 +213,6 @@
    "link_to": "Student",
    "stats_filter": "[]",
    "type": "DocType"
-  },
-  {
-   "label": "Dashboard",
-   "link_to": "CRM",
-   "type": "Dashboard"
   }
  ],
  "title": "CRM",

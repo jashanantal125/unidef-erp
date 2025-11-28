@@ -421,6 +421,15 @@ header.navbar svg use,
 	font-size: 18px !important;
 }
 
+/* Number Card Widget Title - White Text */
+.widget .widget-head .widget-label .widget-title,
+.number-widget-box .widget-head .widget-label .widget-title,
+[data-page-route="CRM"] .widget .widget-head .widget-label .widget-title,
+[data-page-route="crm"] .widget .widget-head .widget-label .widget-title {
+	color: #ffffff !important;
+	color: var(--unideft-white) !important;
+}
+
 /* Buttons in Workspace */
 [data-page-route="CRM"] .btn-primary,
 [data-page-route="crm"] .btn-primary {

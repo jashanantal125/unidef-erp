@@ -50,8 +50,42 @@ erpnext.LeadController = class LeadController extends frappe.ui.form.Controller 
 			frappe.contacts.clear_address_and_contact(this.frm);
 		}
 
+		// Hide Connections tab for non-Administrator users
+		this.hide_connections_tab();
+
 		this.show_notes();
 		this.show_activities();
+	}
+
+	hide_connections_tab() {
+		// Check if user has Administrator role
+		const user_roles = frappe.get_roles();
+		const is_administrator = user_roles.includes("Administrator");
+
+		// Hide Connections tab if user is not Administrator
+		if (!is_administrator) {
+			// Find and hide the Connections tab using multiple selectors
+			const connections_tab = this.frm.layout.tabs.find(tab => tab.df.fieldname === "connections_tab");
+			if (connections_tab) {
+				connections_tab.toggle(false);
+			}
+			
+			// Also hide using DOM selectors as fallback
+			setTimeout(() => {
+				this.frm.wrapper.find('.nav-link[data-name="connections_tab"]').parent().hide();
+				this.frm.wrapper.find('.tab-content[data-name="connections_tab"]').hide();
+			}, 100);
+		} else {
+			// Show Connections tab for Administrator
+			const connections_tab = this.frm.layout.tabs.find(tab => tab.df.fieldname === "connections_tab");
+			if (connections_tab) {
+				connections_tab.toggle(true);
+			}
+			
+			setTimeout(() => {
+				this.frm.wrapper.find('.nav-link[data-name="connections_tab"]').parent().show();
+			}, 100);
+		}
 	}
 
 	add_lead_to_prospect(frm) {

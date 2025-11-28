@@ -6,7 +6,6 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "naming_series",
   "profile_details_tab",
   "first_name",
   "last_name",
@@ -26,6 +25,7 @@
   "preferred_study_level",
   "assigned_to",
   "lead_link",
+  "naming_series",
   "documents_tab",
   "education",
   "work_experience",
@@ -39,16 +39,14 @@
   "shortlisted_program_tab",
   "shortlisted_programs",
   "applications_tab",
-  "applications"
+  "applications",
+  "title"
  ],
  "fields": [
   {
    "fieldname": "naming_series",
    "fieldtype": "Select",
-   "label": "Series",
-   "no_copy": 1,
-   "options": "STU-.YYYY.-",
-   "set_only_once": 1
+   "label": "Naming Series"
   },
   {
    "fieldname": "title",
@@ -246,7 +244,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-17 10:15:08.944429",
+ "modified": "2025-11-24 18:05:55.909282",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Student",
@@ -279,7 +277,6 @@
   },
   {
    "create": 1,
-   "delete": 0,
    "email": 1,
    "export": 1,
    "print": 1,
@@ -291,39 +288,24 @@
   },
   {
    "create": 1,
-   "delete": 0,
    "email": 1,
-   "export": 0,
    "print": 1,
    "read": 1,
-   "report": 0,
    "role": "B2B Agent",
-   "share": 0,
    "write": 1
   },
   {
    "create": 1,
-   "delete": 0,
    "email": 1,
-   "export": 0,
    "print": 1,
    "read": 1,
-   "report": 0,
    "role": "B2C Agent",
-   "share": 0,
    "write": 1
   },
   {
-   "create": 0,
-   "delete": 0,
-   "email": 0,
-   "export": 0,
    "print": 1,
    "read": 1,
-   "report": 0,
-   "role": "Institution",
-   "share": 0,
-   "write": 0
+   "role": "Institution"
   }
  ],
  "row_format": "Dynamic",

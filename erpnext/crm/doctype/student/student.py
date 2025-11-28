@@ -14,8 +14,10 @@ class Student(Document):
 
 	if TYPE_CHECKING:
 		from erpnext.crm.doctype.shortlisted_program.shortlisted_program import ShortlistedProgram
+		from erpnext.crm.doctype.student_application.student_application import StudentApplication
 		from frappe.types import DF
 
+		applications: DF.Table[StudentApplication]
 		area_of_interest: DF.Data
 		assigned_to: DF.Link | None
 		birthday: DF.Date | None
@@ -34,6 +36,7 @@ class Student(Document):
 		lead_link: DF.Link | None
 		loa: DF.Attach | None
 		mobile: DF.Data
+		naming_series: DF.Literal[None]
 		other: DF.Attach | None
 		passport_travel: DF.Attach | None
 		preferred_study_level: DF.Data | None
@@ -41,6 +44,7 @@ class Student(Document):
 		shortlisted_programs: DF.Table[ShortlistedProgram]
 		state: DF.Data | None
 		testscore: DF.Data | None
+		title: DF.Data | None
 		tuition_fee_receipt: DF.Attach | None
 		visa: DF.Attach | None
 		work_experience: DF.Attach | None

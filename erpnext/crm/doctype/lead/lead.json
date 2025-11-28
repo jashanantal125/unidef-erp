@@ -64,6 +64,7 @@
   {
    "fieldname": "naming_series",
    "fieldtype": "Select",
+   "hidden": 1,
    "label": "Series",
    "no_copy": 1,
    "oldfieldname": "naming_series",
@@ -108,7 +109,6 @@
    "search_index": 1
   },
   {
-   "default": "Lead",
    "fieldname": "status",
    "fieldtype": "Select",
    "in_list_view": 1,
@@ -266,15 +266,6 @@
    "options": "Customer"
   },
   {
-   "fieldname": "company",
-   "fieldtype": "Link",
-   "label": "Company",
-   "oldfieldname": "company",
-   "oldfieldtype": "Link",
-   "options": "Company",
-   "remember_last_selected_value": 1
-  },
-  {
    "depends_on": "eval:!doc.__islocal",
    "fieldname": "activities_tab",
    "fieldtype": "Tab Break",
@@ -423,6 +414,15 @@
    "oldfieldtype": "Select",
    "options": "UTM Source",
    "print_hide": 1
+  },
+  {
+   "default": "Unideft",
+   "fieldname": "company",
+   "fieldtype": "Read Only",
+   "hidden": 1,
+   "label": "Company",
+   "mandatory_depends_on": "frappe.defaults.get_user_default(\"Company\")",
+   "options": "unideft"
   }
  ],
  "grid_page_length": 50,
@@ -430,7 +430,7 @@
  "idx": 5,
  "image_field": "image",
  "links": [],
- "modified": "2025-11-23 11:16:10.577281",
+ "modified": "2025-11-24 20:00:16.771312",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Lead",

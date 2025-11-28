@@ -11,6 +11,9 @@
   },
   {
    "card": "Open Opportunity"
+  },
+  {
+   "card": "Total leads"
   }
  ],
  "charts": [
@@ -43,16 +46,16 @@
    "width": "Half"
   }
  ],
- "creation": "2020-07-20 20:17:15.985657",
+ "creation": "2025-11-22 18:02:26.489820",
  "dashboard_name": "CRM",
  "docstatus": 0,
  "doctype": "Dashboard",
  "idx": 0,
  "is_default": 0,
  "is_standard": 1,
- "modified": "2020-07-21 18:56:47.230053",
+ "modified": "2025-11-24 18:51:30.427696",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "CRM",
- "owner": "Administrator"
+ "owner": "pradeep.antal@gmail.com"
 }
