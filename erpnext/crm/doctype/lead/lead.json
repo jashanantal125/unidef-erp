@@ -33,6 +33,7 @@
   "gender",
   "lead_owner",
   "lead_source",
+  "agent",
   "status",
   "want_to_create_user_profile",
   "customer",
@@ -245,7 +246,7 @@
    "fieldname": "lead_source",
    "fieldtype": "Select",
    "label": "Lead Source",
-   "options": "\nWebsite\nReferral\nSocial Media\nAdvertisement\nOther",
+   "options": "\nWebsite\nReferral\nSocial Media\nAdvertisement\nAgent\nOther",
    "reqd": 1
   },
   {
@@ -416,6 +417,7 @@
    "print_hide": 1
   },
   {
+<<<<<<< HEAD
    "default": "Unideft",
    "fieldname": "company",
    "fieldtype": "Read Only",
@@ -423,6 +425,14 @@
    "label": "Company",
    "mandatory_depends_on": "frappe.defaults.get_user_default(\"Company\")",
    "options": "unideft"
+=======
+   "depends_on": "eval:doc.lead_source == 'Agent'",
+   "fieldname": "agent",
+   "fieldtype": "Link",
+   "label": "Agent ",
+   "options": "Agent",
+   "reqd": 1
+>>>>>>> 7bb4a0a26ff1bc430b1b557a68e08fcd6bbaecbe
   }
  ],
  "grid_page_length": 50,
@@ -430,7 +440,11 @@
  "idx": 5,
  "image_field": "image",
  "links": [],
+<<<<<<< HEAD
  "modified": "2025-11-24 20:00:16.771312",
+=======
+ "modified": "2025-11-26 18:34:47.137903",
+>>>>>>> 7bb4a0a26ff1bc430b1b557a68e08fcd6bbaecbe
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Lead",
@@ -487,6 +501,14 @@
    "report": 1,
    "role": "CRM Admin",
    "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Agent",
    "write": 1
   },
   {

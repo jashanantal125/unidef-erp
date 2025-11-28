@@ -27,15 +27,8 @@
   "lead_link",
   "naming_series",
   "documents_tab",
-  "education",
-  "work_experience",
-  "english_test",
-  "passport_travel",
-  "other",
-  "visa",
-  "refusal_letter",
-  "tuition_fee_receipt",
-  "loa",
+  "section_break_wmtu",
+  "table_rnxy",
   "shortlisted_program_tab",
   "shortlisted_programs",
   "applications_tab",
@@ -89,7 +82,8 @@
   {
    "fieldname": "state",
    "fieldtype": "Data",
-   "label": "State"
+   "label": "State",
+   "reqd": 1
   },
   {
    "fieldname": "city",
@@ -174,51 +168,6 @@
    "label": "Documents"
   },
   {
-   "fieldname": "education",
-   "fieldtype": "Attach",
-   "label": "Education"
-  },
-  {
-   "fieldname": "work_experience",
-   "fieldtype": "Attach",
-   "label": "Work Experience"
-  },
-  {
-   "fieldname": "english_test",
-   "fieldtype": "Attach",
-   "label": "English Test"
-  },
-  {
-   "fieldname": "passport_travel",
-   "fieldtype": "Attach",
-   "label": "Passport & Travel"
-  },
-  {
-   "fieldname": "other",
-   "fieldtype": "Attach",
-   "label": "Other"
-  },
-  {
-   "fieldname": "visa",
-   "fieldtype": "Attach",
-   "label": "Visa"
-  },
-  {
-   "fieldname": "refusal_letter",
-   "fieldtype": "Attach",
-   "label": "Refusal Letter"
-  },
-  {
-   "fieldname": "tuition_fee_receipt",
-   "fieldtype": "Attach",
-   "label": "Tuition Fee Receipt"
-  },
-  {
-   "fieldname": "loa",
-   "fieldtype": "Attach",
-   "label": "LOA"
-  },
-  {
    "fieldname": "shortlisted_program_tab",
    "fieldtype": "Tab Break",
    "label": "Shortlisted Program"
@@ -239,12 +188,25 @@
    "fieldtype": "Table",
    "label": "Applications",
    "options": "Student Application"
+  },
+  {
+   "fieldname": "section_break_wmtu",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "table_rnxy",
+   "fieldtype": "Table",
+   "options": "student documents"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
+<<<<<<< HEAD
  "modified": "2025-11-24 18:05:55.909282",
+=======
+ "modified": "2025-11-27 14:29:41.442166",
+>>>>>>> 7bb4a0a26ff1bc430b1b557a68e08fcd6bbaecbe
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Student",
@@ -303,8 +265,21 @@
    "write": 1
   },
   {
+<<<<<<< HEAD
    "print": 1,
    "read": 1,
+=======
+   "create": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Agent",
+   "write": 1
+  },
+  {
+   "print": 1,
+   "read": 1,
+>>>>>>> 7bb4a0a26ff1bc430b1b557a68e08fcd6bbaecbe
    "role": "Institution"
   }
  ],

@@ -6,11 +6,11 @@
  "creation": "2025-01-15 00:00:00.000000",
  "doctype": "DocType",
  "engine": "InnoDB",
- "field_order": [
+  "field_order": [
   "naming_series",
   "agent_section",
-  "agent_type",
   "company_name",
+  "user",
   "no_of_employees",
   "country",
   "state",
@@ -40,19 +40,18 @@
    "label": "Agent Information"
   },
   {
-   "fieldname": "agent_type",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Agent Type",
-   "options": "\nB2B\nB2C",
-   "reqd": 1
-  },
-  {
    "fieldname": "company_name",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Company Name",
    "reqd": 1
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "User",
+   "options": "User",
+   "unique": 1
   },
   {
    "fieldname": "no_of_employees",
