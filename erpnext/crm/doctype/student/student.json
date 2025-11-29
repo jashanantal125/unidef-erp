@@ -34,6 +34,8 @@
   "shortlisted_programs",
   "applications_tab",
   "applications",
+  "counsellings_tab",
+  "counsellings",
   "title"
  ],
  "fields": [
@@ -190,6 +192,17 @@
    "fieldtype": "Table",
    "label": "Applications",
    "options": "Student Application"
+  },
+  {
+   "fieldname": "counsellings_tab",
+   "fieldtype": "Tab Break",
+   "label": "Counsellings"
+  },
+  {
+   "fieldname": "counsellings",
+   "fieldtype": "Table",
+   "label": "Counsellings",
+   "options": "Student Counselling"
   },
   {
    "fieldname": "section_break_wmtu",

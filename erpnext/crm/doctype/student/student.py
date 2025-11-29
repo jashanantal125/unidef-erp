@@ -31,10 +31,12 @@ class Student(Document):
 	if TYPE_CHECKING:
 		from erpnext.crm.doctype.shortlisted_program.shortlisted_program import ShortlistedProgram
 		from erpnext.crm.doctype.student_application.student_application import StudentApplication
+		from erpnext.crm.doctype.student_counselling.student_counselling import StudentCounselling
 		from erpnext.crm.doctype.student_documents.student_documents import studentdocuments
 		from frappe.types import DF
 
 		applications: DF.Table[StudentApplication]
+		counsellings: DF.Table[StudentCounselling]
 		area_of_interest: DF.Data
 		assigned_to: DF.Link | None
 		birthday: DF.Date | None
@@ -85,6 +87,106 @@ class Student(Document):
 			else:
 				# Clear assignments if field is cleared
 				clear_assignments(self.doctype, self.name)
+		
+		# Ensure all counselling rows have student_name set
+		# For new students, this will be set after save, but we prepare it here
+		if self.counsellings:
+			for counselling_row in self.counsellings:
+				# If student is new (no name yet), we'll set it after save
+				# But if name exists, ensure it's set
+				if self.name and not counselling_row.student_name:
+					counselling_row.student_name = self.name
+	
+	def on_update(self):
+		"""Sync counsellings from child table to main Counsellings doctype"""
+		if not self.name:
+			# Student not saved yet, skip sync
+			return
+		
+		# First, ensure all counselling rows have student_name set
+		if self.counsellings:
+			for counselling_row in self.counsellings:
+				if not counselling_row.student_name or counselling_row.student_name != self.name:
+					counselling_row.student_name = self.name
+		
+		# Now sync to main Counsellings doctype
+		if self.counsellings:
+			for counselling_row in self.counsellings:
+				try:
+					# Skip if required fields are missing
+					if not counselling_row.schedule_at:
+						continue
+					
+					# Ensure student_name is set
+					if not counselling_row.student_name:
+						counselling_row.student_name = self.name
+					
+					# Check if a Counsellings record already exists for this child table row
+					# Match by student_name and schedule_at (using datetime comparison)
+					existing_counselling = None
+					if counselling_row.name:
+						# If child table row has a name, try to find by matching schedule_at
+						all_counsellings = frappe.get_all(
+							"Counsellings",
+							filters={"student_name": self.name},
+							fields=["name", "schedule_at"]
+						)
+						for c in all_counsellings:
+							if c.schedule_at and counselling_row.schedule_at:
+								# Compare datetimes
+								if str(c.schedule_at) == str(counselling_row.schedule_at):
+									existing_counselling = c.name
+									break
+					
+					if existing_counselling:
+						# Update existing record
+						counselling_doc = frappe.get_doc("Counsellings", existing_counselling)
+					else:
+						# Create new record
+						counselling_doc = frappe.get_doc({
+							"doctype": "Counsellings",
+							"student_name": self.name
+						})
+					
+					# Update all fields from child table
+					counselling_doc.schedule_at = counselling_row.schedule_at
+					counselling_doc.meeting_type = counselling_row.meeting_type
+					counselling_doc.meeting_link = counselling_row.meeting_link or None
+					counselling_doc.assign_to = counselling_row.assign_to
+					counselling_doc.destination_manager = counselling_row.destination_manager or None
+					counselling_doc.destination_country = counselling_row.destination_country
+					counselling_doc.remarks = counselling_row.remarks
+					
+					counselling_doc.save(ignore_permissions=True)
+					frappe.db.commit()
+				except Exception as e:
+					frappe.log_error(f"Error syncing counselling: {str(e)}", "Counselling Sync Error")
+					frappe.log_error(frappe.get_traceback(), "Counselling Sync Error Traceback")
+		
+		# Also delete Counsellings records that were removed from child table
+		# Get all current counselling schedule_at values (as strings for comparison)
+		current_schedule_times = []
+		if self.counsellings:
+			for row in self.counsellings:
+				if row.schedule_at:
+					# Convert to string for comparison
+					current_schedule_times.append(str(row.schedule_at))
+		
+		# Find and delete orphaned Counsellings records
+		all_counsellings = frappe.get_all(
+			"Counsellings",
+			filters={"student_name": self.name},
+			fields=["name", "schedule_at"]
+		)
+		
+		for counselling in all_counsellings:
+			counselling_schedule = str(counselling.schedule_at) if counselling.schedule_at else None
+			if counselling_schedule and counselling_schedule not in current_schedule_times:
+				try:
+					frappe.delete_doc("Counsellings", counselling.name, ignore_permissions=True, force=True)
+					frappe.db.commit()
+				except Exception as e:
+					frappe.log_error(f"Error deleting counselling: {str(e)}", "Counselling Delete Error")
 
 	pass
 
