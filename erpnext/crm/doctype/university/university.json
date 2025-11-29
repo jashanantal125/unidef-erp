@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "autoincrement",
  "creation": "2025-11-15 13:56:36.900212",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -9,7 +10,7 @@
   "uniname",
   "country",
   "state",
-  "city",
+  "uni_city",
   "address",
   "website",
   "email",
@@ -47,12 +48,6 @@
    "fieldname": "state",
    "fieldtype": "Data",
    "label": "State/Province"
-  },
-  {
-   "fieldname": "city",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "City"
   },
   {
    "fieldname": "address",
@@ -113,15 +108,21 @@
    "fieldname": "commission_amount",
    "fieldtype": "Currency",
    "label": "Commission Amount"
+  },
+  {
+   "fieldname": "uni_city",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "City"
   }
  ],
  "grid_page_length": 50,
- "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-27 13:09:50.807863",
+ "modified": "2025-11-29 12:39:48.279914",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "University",
+ "naming_rule": "Autoincrement",
  "owner": "Administrator",
  "permissions": [
   {

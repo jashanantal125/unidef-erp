@@ -24,7 +24,7 @@ develop_version = "15.x.x-develop"
 
 app_include_js = [
 	"erpnext.bundle.js",
-	"/assets/erpnext/js/crm_logo_header.js",
+	# "/assets/erpnext/js/crm_logo_header.js",  # Disabled - Unideft logo removed from CRM workspace
 ]
 app_include_css = [
 	"erpnext.bundle.css",

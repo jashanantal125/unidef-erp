@@ -16,15 +16,16 @@ class University(Document):
 		from frappe.types import DF
 
 		address: DF.SmallText | None
-		city: DF.Data | None
 		commission_amount: DF.Currency
 		country: DF.Link
 		courses: DF.Table[UniversityCourse]
 		email: DF.Data | None
 		established_year: DF.Int
+		name: DF.Int | None
 		phone: DF.Data | None
 		ranking: DF.Int
 		state: DF.Data | None
+		uni_city: DF.Data | None
 		uniname: DF.Data
 		university_type: DF.Literal["", "Public", "Private", "Community College", "Technical Institute"]
 		website: DF.Data | None
