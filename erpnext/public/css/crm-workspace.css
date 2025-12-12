@@ -9,6 +9,9 @@ body {
 	--unideft-black: #282828;
 	--unideft-white: #FFFFFF;
 	--unideft-grey: #F3F5F7;
+	/* Dark background for shortcuts and number cards - can be changed dynamically */
+	--unideft-card-dark-bg: #1a1a1a;
+	--unideft-card-dark-bg-hover: #2a2a2a;
 	/* Override navbar background variables */
 	--navbar-bg: #FF7800 !important;
 	--neutral: #FF7800 !important;
@@ -22,35 +25,15 @@ body {
 header.navbar,
 header.navbar.navbar-expand,
 .navbar.navbar-expand,
-<<<<<<< HEAD
-body .navbar,
-.navbar,
-.navbar[style*="background"],
-.navbar[style*="var(--navbar-bg)"] {
-=======
 .navbar,
 body .navbar,
 body .sticky-top,
 body .sticky-top header.navbar {
->>>>>>> f3181734d36b2cecf745d09d0106eaebf91f4afc
 	background: #FF7800 !important;
 	background-color: #FF7800 !important;
 	border-bottom: 1px solid rgba(40, 40, 40, 0.1) !important;
 }
 
-<<<<<<< HEAD
-/* Override any inline styles or CSS variables */
-.navbar,
-header.navbar,
-.sticky-top .navbar {
-	background: #FF7800 !important;
-	background-color: #FF7800 !important;
-}
-
-/* Target the sticky-top wrapper itself */
-.sticky-top {
-	background: #FF7800 !important;
-=======
 /* Override CSS variable at element level */
 .sticky-top header.navbar,
 header.navbar {
@@ -58,7 +41,6 @@ header.navbar {
 	--neutral: #FF7800 !important;
 	background: var(--navbar-bg) !important;
 	background-color: var(--navbar-bg) !important;
->>>>>>> f3181734d36b2cecf745d09d0106eaebf91f4afc
 }
 
 /* Even more specific for desk navbar */
@@ -240,15 +222,15 @@ header.navbar svg use,
 	border-bottom: 3px solid var(--unideft-orange) !important;
 }
 
-/* SHORTCUT CARDS - BIGGER & BOLD WITH UNIDEFT BRANDING */
+/* SHORTCUT CARDS - DARK BACKGROUND */
 [data-page-route="CRM"] .shortcut-widget-box,
 [data-page-route="crm"] .shortcut-widget-box {
-	background: var(--unideft-white) !important;
-	border: 3px solid var(--unideft-grey) !important;
+	background: var(--unideft-card-dark-bg) !important;
+	border: 3px solid var(--unideft-card-dark-bg) !important;
 	border-radius: 16px !important;
 	padding: 35px 30px !important;
 	transition: all 0.3s ease !important;
-	box-shadow: 0 4px 12px rgba(40, 40, 40, 0.08) !important;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
 	cursor: pointer !important;
 	min-height: 180px !important;
 	display: flex !important;
@@ -263,12 +245,12 @@ header.navbar svg use,
 [data-page-route="CRM"] .shortcut-widget-box:hover,
 [data-page-route="crm"] .shortcut-widget-box:hover {
 	border-color: var(--unideft-orange) !important;
-	box-shadow: 0 8px 24px rgba(255, 120, 0, 0.3) !important;
+	box-shadow: 0 8px 24px rgba(255, 120, 0, 0.5) !important;
 	transform: translateY(-4px) scale(1.02) !important;
-	background: linear-gradient(135deg, var(--unideft-white) 0%, #FFF8F0 100%) !important;
+	background: var(--unideft-card-dark-bg-hover) !important;
 }
 
-/* Shortcut Icons - BIGGER & ORANGE */
+/* Shortcut Icons - BIGGER & ORANGE/WHITE for Dark Background */
 [data-page-route="CRM"] .shortcut-widget-box .widget-icon,
 [data-page-route="CRM"] .shortcut-widget-box svg,
 [data-page-route="crm"] .shortcut-widget-box .widget-icon,
@@ -280,22 +262,60 @@ header.navbar svg use,
 	margin-bottom: 15px !important;
 }
 
+/* Global Shortcut Icons for Dark Background */
+.shortcut-widget-box .widget-icon,
+.shortcut-widget-box svg {
+	color: var(--unideft-orange) !important;
+	fill: var(--unideft-orange) !important;
+}
+
 [data-page-route="CRM"] .shortcut-widget-box .widget-icon svg,
 [data-page-route="crm"] .shortcut-widget-box .widget-icon svg {
 	width: 56px !important;
 	height: 56px !important;
 }
 
-/* Shortcut Labels - BIGGER & BOLD */
+/* Shortcut Labels - WHITE TEXT for Dark Background */
 [data-page-route="CRM"] .shortcut-widget-box .widget-label,
 [data-page-route="CRM"] .shortcut-widget-box .widget-title,
 [data-page-route="crm"] .shortcut-widget-box .widget-label,
-[data-page-route="crm"] .shortcut-widget-box .widget-title {
-	color: var(--unideft-black) !important;
+[data-page-route="crm"] .shortcut-widget-box .widget-title,
+[data-page-route="CRM"] .shortcut-widget-box .widget-label *,
+[data-page-route="CRM"] .shortcut-widget-box .widget-title *,
+[data-page-route="crm"] .shortcut-widget-box .widget-label *,
+[data-page-route="crm"] .shortcut-widget-box .widget-title * {
+	color: #FFFFFF !important;
 	font-weight: 700 !important;
 	font-size: 20px !important;
 	margin-top: 10px !important;
 	line-height: 1.4 !important;
+	-webkit-font-smoothing: antialiased !important;
+	-moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Global Workspace Shortcut Text - WHITE for Dark Background */
+.shortcut-widget-box .widget-label,
+.shortcut-widget-box .widget-title,
+.shortcut-widget-box .widget-label *,
+.shortcut-widget-box .widget-title *,
+.shortcut-widget-box a,
+.shortcut-widget-box span {
+	color: #FFFFFF !important;
+	font-weight: 600 !important;
+	-webkit-font-smoothing: antialiased !important;
+	-moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Global Shortcut Cards - DARK BACKGROUND for All Workspaces */
+.shortcut-widget-box {
+	background: var(--unideft-card-dark-bg) !important;
+	border-color: var(--unideft-card-dark-bg) !important;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+.shortcut-widget-box:hover {
+	background: var(--unideft-card-dark-bg-hover) !important;
+	border-color: var(--unideft-orange) !important;
 }
 
 /* Shortcut Count/Badge - ORANGE */
@@ -397,14 +417,14 @@ header.navbar svg use,
 	border-top: 4px solid var(--unideft-orange) !important;
 }
 
-/* Number Cards */
+/* Number Cards - DARK BACKGROUND */
 [data-page-route="CRM"] .number-widget-box,
 [data-page-route="crm"] .number-widget-box {
-	background: var(--unideft-white) !important;
+	background: var(--unideft-card-dark-bg) !important;
 	border-left: 6px solid var(--unideft-orange) !important;
 	border-radius: 12px !important;
 	padding: 25px !important;
-	box-shadow: 0 4px 12px rgba(40, 40, 40, 0.08) !important;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
 }
 
 [data-page-route="CRM"] .number-widget-box .number,
@@ -416,9 +436,20 @@ header.navbar svg use,
 
 [data-page-route="CRM"] .number-widget-box .label,
 [data-page-route="crm"] .number-widget-box .label {
-	color: var(--unideft-black) !important;
+	color: #FFFFFF !important;
 	font-weight: 600 !important;
 	font-size: 18px !important;
+}
+
+/* Global Number Cards - DARK BACKGROUND */
+.number-widget-box {
+	background: var(--unideft-card-dark-bg) !important;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+.number-widget-box .label,
+.number-widget-box .widget-title {
+	color: #FFFFFF !important;
 }
 
 /* Number Card Widget Title - White Text */
@@ -474,4 +505,23 @@ header.navbar svg use,
 	[data-page-route="crm"] .workspace-title {
 		font-size: 26px !important;
 	}
+}
+
+/* Hide Connections Tab in Lead DocType */
+.form-tabs .nav-item[data-name="connections_tab"],
+.form-tabs .nav-link[data-name="connections_tab"],
+.tab-content[data-name="connections_tab"],
+.nav-item a[data-name="connections_tab"],
+.nav-link[data-name="connections_tab"] {
+	display: none !important;
+	visibility: hidden !important;
+}
+
+/* Hide Connections tab specifically for Lead form */
+[data-doctype="Lead"] .form-tabs .nav-item[data-name="connections_tab"],
+[data-doctype="Lead"] .form-tabs .nav-link[data-name="connections_tab"],
+[data-doctype="Lead"] .tab-content[data-name="connections_tab"],
+[data-doctype="Lead"] .nav-item a[data-name="connections_tab"] {
+	display: none !important;
+	visibility: hidden !important;
 }

@@ -21,12 +21,39 @@ erpnext.LeadController = class LeadController extends frappe.ui.form.Controller 
 		this.frm.set_query("lead_owner", function (doc, cdt, cdn) {
 			return { query: "frappe.core.doctype.user.user.user_query" };
 		});
+		
+		// Set lead_owner to current user if role is agents
+		if (this.frm.is_new() && (frappe.user.has_role("agents") || frappe.user.has_role("Agent"))) {
+			this.frm.set_value("lead_owner", frappe.session.user);
+			// Make fields read-only for agents
+			this.frm.set_df_property("lead_owner", "read_only", 1);
+			this.frm.set_df_property("owner", "read_only", 1);
+		}
+		
+		// Make owner field read-only for agents on existing records too
+		if (!this.frm.is_new() && (frappe.user.has_role("agents") || frappe.user.has_role("Agent"))) {
+			this.frm.set_df_property("owner", "read_only", 1);
+		}
+		
+		// Hide Connections tab on load
+		this.hide_connections_tab();
 	}
 
 	refresh() {
 		var me = this;
 		let doc = this.frm.doc;
 		erpnext.toggle_naming_series();
+		
+		// Make lead_owner and owner read-only for agents
+		if (frappe.user.has_role("agents") || frappe.user.has_role("Agent")) {
+			this.frm.set_df_property("lead_owner", "read_only", 1);
+			// Make owner field read-only for agents
+			this.frm.set_df_property("owner", "read_only", 1);
+			// Ensure lead_owner is set to current user for new records
+			if (this.frm.is_new() && !doc.lead_owner) {
+				this.frm.set_value("lead_owner", frappe.session.user);
+			}
+		}
 
 		if (!this.frm.is_new() && doc.__onload && !doc.__onload.is_customer) {
 			this.frm.add_custom_button(__("Customer"), this.make_customer.bind(this), __("Create"));
@@ -58,33 +85,68 @@ erpnext.LeadController = class LeadController extends frappe.ui.form.Controller 
 	}
 
 	hide_connections_tab() {
-		// Check if user has Administrator role
-		const user_roles = frappe.get_roles();
-		const is_administrator = user_roles.includes("Administrator");
-
-		// Hide Connections tab if user is not Administrator
-		if (!is_administrator) {
-			// Find and hide the Connections tab using multiple selectors
-			const connections_tab = this.frm.layout.tabs.find(tab => tab.df.fieldname === "connections_tab");
+		// Hide Connections tab for all users using multiple methods
+		
+		// Method 1: Using layout tabs API
+		if (this.frm.layout && this.frm.layout.tabs) {
+			const connections_tab = this.frm.layout.tabs.find(tab => tab.df && tab.df.fieldname === "connections_tab");
 			if (connections_tab) {
 				connections_tab.toggle(false);
 			}
-			
-			// Also hide using DOM selectors as fallback
-			setTimeout(() => {
+		}
+		
+		// Method 2: Using DOM selectors with multiple attempts
+		const hideConnections = () => {
+			if (this.frm.wrapper) {
+				// Hide by data-name attribute
 				this.frm.wrapper.find('.nav-link[data-name="connections_tab"]').parent().hide();
 				this.frm.wrapper.find('.tab-content[data-name="connections_tab"]').hide();
-			}, 100);
-		} else {
-			// Show Connections tab for Administrator
-			const connections_tab = this.frm.layout.tabs.find(tab => tab.df.fieldname === "connections_tab");
-			if (connections_tab) {
-				connections_tab.toggle(true);
+				
+				// Hide by text content
+				this.frm.wrapper.find('.form-tabs .nav-item a:contains("Connections")').parent().hide();
+				this.frm.wrapper.find('.nav-item a:contains("Connections")').parent().hide();
+				
+				// Hide by class
+				this.frm.wrapper.find('.nav-item[data-name="connections_tab"]').hide();
+				
+				// Hide using CSS
+				this.frm.wrapper.find('[data-name="connections_tab"]').hide();
+				
+				// Additional selectors
+				$('.nav-link[data-name="connections_tab"]').parent().hide();
+				$('.tab-content[data-name="connections_tab"]').hide();
+				$('.form-tabs .nav-item a:contains("Connections")').parent().hide();
 			}
+		};
+		
+		// Call immediately
+		hideConnections();
+		
+		// Call after short delay
+		setTimeout(hideConnections, 100);
+		
+		// Call after medium delay
+		setTimeout(hideConnections, 300);
+		
+		// Call after longer delay for late-loading tabs
+		setTimeout(hideConnections, 500);
+		
+		// Call after form is fully rendered
+		setTimeout(hideConnections, 1000);
+		
+		// Use MutationObserver to catch dynamically added tabs
+		if (this.frm.wrapper && this.frm.wrapper[0]) {
+			const observer = new MutationObserver(() => {
+				hideConnections();
+			});
 			
-			setTimeout(() => {
-				this.frm.wrapper.find('.nav-link[data-name="connections_tab"]').parent().show();
-			}, 100);
+			observer.observe(this.frm.wrapper[0], {
+				childList: true,
+				subtree: true
+			});
+			
+			// Store observer for cleanup if needed
+			this._connections_observer = observer;
 		}
 	}
 

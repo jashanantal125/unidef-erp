@@ -7,24 +7,25 @@
  "doctype": "DocType",
  "engine": "InnoDB",
   "field_order": [
-  "naming_series",
-  "agent_section",
-  "company_name",
-  "user",
-  "no_of_employees",
-  "country",
-  "state",
-  "city",
-  "address",
-  "contact_person",
-  "designation",
-  "email",
-  "country_code",
-  "mobile",
-  "first_name",
-  "last_name",
-  "comments"
- ],
+   "naming_series",
+   "agent_section",
+   "company_name",
+   "user",
+   "sales_team",
+   "no_of_employees",
+   "country",
+   "state",
+   "city",
+   "address",
+   "contact_person",
+   "designation",
+   "email",
+   "country_code",
+   "mobile",
+   "first_name",
+   "last_name",
+   "comments"
+  ],
  "fields": [
   {
    "fieldname": "naming_series",
@@ -52,6 +53,13 @@
    "label": "User",
    "options": "User",
    "unique": 1
+  },
+  {
+   "fieldname": "sales_team",
+   "fieldtype": "Link",
+   "label": "Sales Team",
+   "options": "Team",
+   "description": "Sales team that manages this agent's leads"
   },
   {
    "fieldname": "no_of_employees",

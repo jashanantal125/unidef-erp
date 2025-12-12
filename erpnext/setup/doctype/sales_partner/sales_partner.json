@@ -8,30 +8,38 @@
  "doctype": "DocType",
  "document_type": "Setup",
  "engine": "InnoDB",
- "field_order": [
-  "partner_name",
-  "partner_type",
-  "territory",
-  "column_break0",
-  "commission_rate",
+  "field_order": [
+   "partner_name",
+   "partner_type",
+   "territory",
+   "column_break0",
+   "commission_rate",
+   "designation",
+   "email",
+   "user",
+   "sales_team",
   "address_contacts",
   "address_desc",
   "address_html",
+  "country",
   "column_break1",
   "contact_desc",
   "contact_html",
   "partner_target_details_section_break",
   "targets",
   "website",
+  "column_break_ttzt",
   "show_in_website",
   "column_break_16",
   "referral_code",
   "section_break_17",
+  "column_break_twwt",
   "route",
   "column_break_20",
   "logo",
   "partner_website",
   "section_break_22",
+  "column_break_vipn",
   "introduction",
   "description"
  ],
@@ -134,16 +142,19 @@
    "default": "0",
    "fieldname": "show_in_website",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Show In Website"
   },
   {
    "fieldname": "column_break_16",
-   "fieldtype": "Column Break"
+   "fieldtype": "Column Break",
+   "hidden": 1
   },
   {
    "description": "To Track inbound purchase",
    "fieldname": "referral_code",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Referral Code",
    "length": 8,
    "unique": 1
@@ -156,21 +167,25 @@
   {
    "fieldname": "route",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Route",
    "unique": 1
   },
   {
    "fieldname": "column_break_20",
-   "fieldtype": "Column Break"
+   "fieldtype": "Column Break",
+   "hidden": 1
   },
   {
    "fieldname": "logo",
    "fieldtype": "Attach",
+   "hidden": 1,
    "label": "Logo"
   },
   {
    "fieldname": "partner_website",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Partner website"
   },
   {
@@ -187,15 +202,63 @@
    "fieldname": "description",
    "fieldtype": "Text Editor",
    "label": "Description"
+  },
+  {
+   "fieldname": "designation",
+   "fieldtype": "Select",
+   "label": "Designation",
+   "options": "Owner\nPartner\nManager\nOther"
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "Country"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "label": "User",
+   "options": "User",
+   "read_only": 1,
+   "description": "Linked user account (auto-created when Sales Partner is saved)"
+  },
+  {
+   "fieldname": "sales_team",
+   "fieldtype": "Link",
+   "label": "Sales Team",
+   "options": "Team",
+   "description": "Team that handles leads from this Sales Partner"
+  },
+  {
+   "fieldname": "column_break_ttzt",
+   "fieldtype": "Column Break",
+   "hidden": 1
+  },
+  {
+   "fieldname": "column_break_twwt",
+   "fieldtype": "Column Break",
+   "hidden": 1
+  },
+  {
+   "fieldname": "column_break_vipn",
+   "fieldtype": "Column Break",
+   "hidden": 1
   }
  ],
  "icon": "fa fa-user",
  "idx": 1,
  "links": [],
- "modified": "2024-03-27 13:10:37.455664",
+ "modified": "2025-12-01 19:09:27.879031",
  "modified_by": "Administrator",
  "module": "Setup",
  "name": "Sales Partner",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -223,6 +286,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "show_name_in_global_search": 1,
  "sort_field": "creation",
  "sort_order": "ASC",

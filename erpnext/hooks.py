@@ -124,7 +124,7 @@ website_generators = ["BOM", "Sales Partner"]
 
 website_context = {
 	"favicon": "/assets/erpnext/images/erpnext-favicon.svg",
-	"splash_image": "/assets/erpnext/images/erpnext-logo.svg",
+	"splash_image": "/assets/erpnext/images/unideft-logo.svg",
 }
 
 # nosemgrep

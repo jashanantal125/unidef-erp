@@ -3,6 +3,7 @@
 
 
 import frappe
+from frappe import _
 from frappe.contacts.address_and_contact import load_address_and_contact
 from frappe.utils import cstr, filter_strip_join
 from frappe.website.website_generator import WebsiteGenerator
@@ -15,12 +16,14 @@ class SalesPartner(WebsiteGenerator):
 	from typing import TYPE_CHECKING
 
 	if TYPE_CHECKING:
+		from erpnext.setup.doctype.target_detail.target_detail import TargetDetail
 		from frappe.types import DF
 
-		from erpnext.setup.doctype.target_detail.target_detail import TargetDetail
-
 		commission_rate: DF.Float
+		country: DF.Link | None
 		description: DF.TextEditor | None
+		designation: DF.Literal["Owner", "Partner", "Manager", "Other"]
+		email: DF.Data | None
 		introduction: DF.Text | None
 		logo: DF.Attach | None
 		partner_name: DF.Data
@@ -52,6 +55,49 @@ class SalesPartner(WebsiteGenerator):
 		super().validate()
 		if self.partner_website and not self.partner_website.startswith("http"):
 			self.partner_website = "http://" + self.partner_website
+		
+		# If user is manually set, verify it exists
+		if self.user and not frappe.db.exists("User", self.user):
+			frappe.throw(_("User {0} does not exist").format(self.user))
+
+	def after_insert(self):
+		"""Create a User for this Sales Partner with role/role profile agents and link it back."""
+
+		# Need an email to create a user
+		if not self.email:
+			return
+
+		# Check if user already exists
+		existing_user = frappe.db.get_value("User", {"email": self.email}, "name")
+		
+		if existing_user:
+			# Link to existing user
+			self.user = existing_user
+			self.db_set("user", existing_user)
+		else:
+			# Create new user
+			user = frappe.new_doc("User")
+			user.email = self.email
+			user.first_name = self.partner_name
+			user.enabled = 1
+			# Give desk access by default; adjust if you prefer website-only
+			user.user_type = "System User"
+
+			# Prefer using a Role Profile named "agents" if it exists
+			if frappe.db.exists("Role Profile", "agents"):
+				user.role_profile_name = "agents"
+
+			# Also ensure the "agents" role is assigned if it exists
+			if frappe.db.exists("Role", "agents"):
+				user.append("roles", {"role": "agents"})
+
+			# Bypass permission checks for system automation
+			user.flags.ignore_permissions = True
+			user.insert()
+			
+			# Link the created user back to Sales Partner
+			self.user = user.name
+			self.db_set("user", user.name)
 
 	def get_context(self, context):
 		address_names = frappe.db.get_all(

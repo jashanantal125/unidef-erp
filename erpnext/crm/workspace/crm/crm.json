@@ -1,242 +1,197 @@
 {
-   "app": "erpnext",
-   "charts": [
-    {
-     "chart_name": "Applications",
-     "label": "Applications"
-    }
-   ],
-   "content": "[{\"id\":\"LAKRmpYMRA\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"qfHyxMyhD4\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Leads\",\"col\":4}},{\"id\":\"U34RnC7WRd\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"STUDENTS\",\"col\":4}},{\"id\":\"qeZS8AafoB\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"AGENTS\",\"col\":4}},{\"id\":\"XGIwEUStw_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"mm6W2nt_if\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Applications\",\"col\":12}},{\"id\":\"69RN0XsiJK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leads\",\"col\":3}},{\"id\":\"wdROEmB_XG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"6UH-6i2zWH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Applications\",\"col\":3}},{\"id\":\"-I9HhcgUKE\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ttpROKW9vk\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"_hJ-2MvKd2\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Universities\",\"col\":3}},{\"id\":\"qamF8iFp7U\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Courses\",\"col\":3}},{\"id\":\"TYCmTEdjaO\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Agents\",\"col\":3}},{\"id\":\"urkak7VYeG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Students\",\"col\":3}}]",
-   "creation": "2020-01-23 14:48:30.183272",
-   "custom_blocks": [],
-   "docstatus": 0,
-   "doctype": "Workspace",
-   "for_user": "",
-   "hide_custom": 0,
-   "icon": "crm",
-   "idx": 0,
-   "is_hidden": 0,
-   "label": "CRM",
-   "links": [
-    {
-     "dependencies": "Lead",
-     "hidden": 0,
-     "is_query_report": 1,
-     "label": "Lead Details",
-     "link_count": 0,
-     "link_to": "Lead Details",
-     "link_type": "Report",
-     "onboard": 1,
-     "type": "Link"
-    },
-    {
-     "hidden": 0,
-     "is_query_report": 1,
-     "label": "Sales Pipeline Analytics",
-     "link_count": 0,
-     "link_to": "Sales Pipeline Analytics",
-     "link_type": "Report",
-     "onboard": 0,
-     "type": "Link"
-    },
-    {
-     "hidden": 0,
-     "is_query_report": 1,
-     "label": "Opportunity Summary by Sales Stage",
-     "link_count": 0,
-     "link_to": "Opportunity Summary by Sales Stage",
-     "link_type": "Report",
-     "onboard": 0,
-     "type": "Link"
-    },
-    {
-     "dependencies": "",
-     "hidden": 0,
-     "is_query_report": 0,
-     "label": "Sales Funnel",
-     "link_count": 0,
-     "link_to": "sales-funnel",
-     "link_type": "Page",
-     "onboard": 1,
-     "type": "Link"
-    },
-    {
-     "dependencies": "Lead",
-     "hidden": 0,
-     "is_query_report": 1,
-     "label": "Prospects Engaged But Not Converted",
-     "link_count": 0,
-     "link_to": "Prospects Engaged But Not Converted",
-     "link_type": "Report",
-     "onboard": 1,
-     "type": "Link"
-    },
-    {
-     "dependencies": "Opportunity",
-     "hidden": 0,
-     "is_query_report": 1,
-     "label": "First Response Time for Opportunity",
-     "link_count": 0,
-     "link_to": "First Response Time for Opportunity",
-     "link_type": "Report",
-     "onboard": 0,
-     "type": "Link"
-    },
-    {
-     "dependencies": "Sales Order",
-     "hidden": 0,
-     "is_query_report": 1,
-     "label": "Inactive Customers",
-     "link_count": 0,
-     "link_to": "Inactive Customers",
-     "link_type": "Report",
-     "onboard": 0,
-     "type": "Link"
-    },
-    {
-     "dependencies": "Lead",
-     "hidden": 0,
-     "is_query_report": 1,
-     "label": "Campaign Efficiency",
-     "link_count": 0,
-     "link_to": "Campaign Efficiency",
-     "link_type": "Report",
-     "onboard": 0,
-     "type": "Link"
-    },
-    {
-     "dependencies": "Lead",
-     "hidden": 0,
-     "is_query_report": 1,
-     "label": "Lead Owner Efficiency",
-     "link_count": 0,
-     "link_to": "Lead Owner Efficiency",
-     "link_type": "Report",
-     "onboard": 0,
-     "type": "Link"
-    },
-    {
-     "dependencies": "",
-     "hidden": 0,
-     "is_query_report": 0,
-     "label": "Maintenance Schedule",
-     "link_count": 0,
-     "link_to": "Maintenance Schedule",
-     "link_type": "DocType",
-     "onboard": 1,
-     "type": "Link"
-    },
-    {
-     "dependencies": "",
-     "hidden": 0,
-     "is_query_report": 0,
-     "label": "Maintenance Visit",
-     "link_count": 0,
-     "link_to": "Maintenance Visit",
-     "link_type": "DocType",
-     "onboard": 0,
-     "type": "Link"
-    },
-    {
-     "dependencies": "",
-     "hidden": 0,
-     "is_query_report": 0,
-     "label": "Warranty Claim",
-     "link_count": 0,
-     "link_to": "Warranty Claim",
-     "link_type": "DocType",
-     "onboard": 0,
-     "type": "Link"
-    }
-   ],
-   "modified": "2025-11-25 19:51:06.350404",
-   "modified_by": "Administrator",
-   "module": "CRM",
-   "name": "CRM",
-   "number_cards": [
-    {
-     "label": "Leads",
-     "number_card_name": "New Lead (Last 1 Month)"
-    },
-    {
-     "label": "AGENTS",
-     "number_card_name": "AGENT"
-    },
-    {
-     "label": "STUDENTS",
-     "number_card_name": "STUDENTS"
-    }
-   ],
-   "owner": "Administrator",
-   "parent_page": "",
-   "public": 1,
-   "quick_lists": [],
-   "restrict_to_domain": "",
-   "roles": [],
-   "sequence_id": 17.0,
-   "shortcuts": [
-    {
-     "color": "Grey",
-     "doc_view": "List",
-     "icon": "fa fa-university",
-     "label": "Universities",
-     "link_to": "University",
-     "stats_filter": "[]",
-     "type": "DocType"
-    },
-    {
-     "color": "Grey",
-     "doc_view": "List",
-     "icon": "fa fa-file-text",
-     "label": "Applications",
-     "link_to": "Application",
-     "stats_filter": "[]",
-     "type": "DocType"
-    },
-    {
-     "color": "Blue",
-     "doc_view": "List",
-     "format": "{} Open",
-     "icon": "fa fa-user",
-     "label": "Leads",
-     "link_to": "Lead",
-     "stats_filter": "[[\"Lead\",\"status\",\"=\",\"Open\",false]]",
-     "type": "DocType"
-    },
-    {
-     "color": "Grey",
-     "doc_view": "List",
-     "icon": "fa fa-book",
-     "label": "Courses",
-     "link_to": "Course",
-     "stats_filter": "[]",
-     "type": "DocType"
-    },
-    {
-     "color": "Grey",
-     "doc_view": "List",
-     "icon": "fa fa-users",
-     "label": "Agents",
-     "link_to": "Agent",
-     "stats_filter": "[]",
-     "type": "DocType"
-    },
-    {
-     "color": "Grey",
-     "doc_view": "List",
-     "icon": "fa fa-user-graduate",
-     "label": "Students",
-     "link_to": "Student",
-     "stats_filter": "[]",
-     "type": "DocType"
-    },
-    {
-     "icon": "fa fa-dashboard",
-     "label": "Dashboard",
-     "link_to": "CRM",
-     "type": "Dashboard"
-    }
-   ],
-   "title": "CRM",
-   "type": "Workspace"
+ "app": "erpnext",
+ "charts": [],
+ "content": "[{\"id\":\"LAKRmpYMRA\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"XGIwEUStw_\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Your Shortcuts</b></span>\",\"col\":12}},{\"id\":\"69RN0XsiJK\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leads\",\"col\":3}},{\"id\":\"wdROEmB_XG\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"6UH-6i2zWH\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Applications\",\"col\":3}},{\"id\":\"-I9HhcgUKE\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"ttpROKW9vk\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\"><b>Reports &amp; Masters</b></span>\",\"col\":12}},{\"id\":\"qamF8iFp7U\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Courses\",\"col\":3}}]",
+ "creation": "2020-01-23 14:48:30.183272",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "crm",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "CRM",
+ "links": [
+  {
+   "dependencies": "Lead",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Lead Details",
+   "link_count": 0,
+   "link_to": "Lead Details",
+   "link_type": "Report",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Sales Pipeline Analytics",
+   "link_count": 0,
+   "link_to": "Sales Pipeline Analytics",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Opportunity Summary by Sales Stage",
+   "link_count": 0,
+   "link_to": "Opportunity Summary by Sales Stage",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sales Funnel",
+   "link_count": 0,
+   "link_to": "sales-funnel",
+   "link_type": "Page",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Lead",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Prospects Engaged But Not Converted",
+   "link_count": 0,
+   "link_to": "Prospects Engaged But Not Converted",
+   "link_type": "Report",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Opportunity",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "First Response Time for Opportunity",
+   "link_count": 0,
+   "link_to": "First Response Time for Opportunity",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Sales Order",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Inactive Customers",
+   "link_count": 0,
+   "link_to": "Inactive Customers",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Lead",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Campaign Efficiency",
+   "link_count": 0,
+   "link_to": "Campaign Efficiency",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Lead",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Lead Owner Efficiency",
+   "link_count": 0,
+   "link_to": "Lead Owner Efficiency",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Maintenance Schedule",
+   "link_count": 0,
+   "link_to": "Maintenance Schedule",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Maintenance Visit",
+   "link_count": 0,
+   "link_to": "Maintenance Visit",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "",
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Warranty Claim",
+   "link_count": 0,
+   "link_to": "Warranty Claim",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
   }
+ ],
+ "modified": "2025-12-11 12:47:19.415596",
+ "modified_by": "Administrator",
+ "module": "CRM",
+ "name": "CRM",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "restrict_to_domain": "",
+ "roles": [],
+ "sequence_id": 17.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "icon": "fa fa-file-text",
+   "label": "Applications",
+   "link_to": "Application",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "format": "{} Open",
+   "icon": "fa fa-user",
+   "label": "Leads",
+   "link_to": "Lead",
+   "stats_filter": "[[\"Lead\",\"status\",\"=\",\"Open\",false]]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "icon": "fa fa-book",
+   "label": "Courses",
+   "link_to": "Course",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "icon": "fa fa-dashboard",
+   "label": "Dashboard",
+   "link_to": "CRM",
+   "type": "Dashboard"
+  }
+ ],
+ "title": "CRM",
+ "type": "Workspace"
+}

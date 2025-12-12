@@ -1,7 +1,7 @@
 # Copyright (c) 2025, Unideft and contributors
 # For license information, please see license.txt
 
-import frappe
+# import frappe
 from frappe.model.document import Document
 
 
@@ -12,58 +12,23 @@ class University(Document):
 	from typing import TYPE_CHECKING
 
 	if TYPE_CHECKING:
-		from erpnext.crm.doctype.university_course.university_course import UniversityCourse
+		from erpnext.crm.doctype.application_course.application_course import ApplicationCourse
 		from frappe.types import DF
 
 		address: DF.SmallText | None
-		commission_amount: DF.Currency
-		country: DF.Link
-		courses: DF.Table[UniversityCourse]
+		city: DF.Data | None
+		commision: DF.Currency
+		country: DF.Data
 		email: DF.Data | None
-		established_year: DF.Int
-		name: DF.Int | None
+		established_year: DF.Data | None
+		naming_series: DF.Literal["UNI-.YYYY.-"]
 		phone: DF.Data | None
-		ranking: DF.Int
-		state: DF.Data | None
-		uni_city: DF.Data | None
-		uniname: DF.Data
-		university_type: DF.Literal["", "Public", "Private", "Community College", "Technical Institute"]
+		stateprovience: DF.Data | None
+		table_rkkw: DF.Table[ApplicationCourse]
+		university_name: DF.Data
+		university_type: DF.Data | None
 		website: DF.Data | None
+		world_ranking: DF.Data | None
 	# end: auto-generated types
 
-	def onload(self):
-		"""Auto-populate courses child table with courses for this university"""
-		if self.name:
-			# Get all courses for this university
-			courses = frappe.get_all(
-				"Course",
-				filters={"university": self.name},
-				fields=["name"],
-				order_by="course_name"
-			)
-			
-			# Get existing course links in child table
-			existing_courses = {row.course for row in self.courses if row.course}
-			
-			# Add missing courses to child table
-			for course in courses:
-				if course.name not in existing_courses:
-					self.append("courses", {"course": course.name})
-			
-			# Remove courses that no longer exist or belong to different university
-			course_names = {course.name for course in courses}
-			self.courses = [row for row in self.courses if row.course in course_names or not row.course]
-
 	pass
-
-
-@frappe.whitelist()
-def sync_courses(university):
-	"""Get all courses for a university"""
-	courses = frappe.get_all(
-		"Course",
-		filters={"university": university},
-		fields=["name", "course_name"],
-		order_by="course_name"
-	)
-	return courses

@@ -1,53 +1,91 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "autoincrement",
- "creation": "2025-11-15 13:56:36.900212",
+ "autoname": "naming_series:",
+ "creation": "2025-11-29 22:50:30.649761",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "university_details",
-  "uniname",
-  "country",
-  "state",
-  "uni_city",
-  "address",
+  "university_name",
+  "stateprovience",
   "website",
-  "email",
   "phone",
+  "world_ranking",
+  "commision",
+  "column_break_ktjy",
+  "country",
+  "city",
+  "email",
   "university_type",
-  "ranking",
   "established_year",
-  "courses_section",
-  "courses",
-  "commission_section",
-  "commission_amount"
+  "address",
+  "naming_series",
+  "tab_2_tab",
+  "table_rkkw"
  ],
  "fields": [
   {
-   "fieldname": "university_details",
-   "fieldtype": "Section Break",
-   "label": "University Details"
-  },
-  {
-   "fieldname": "uniname",
+   "fieldname": "university_name",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "University Name",
    "reqd": 1
   },
   {
+   "fieldname": "stateprovience",
+   "fieldtype": "Data",
+   "label": "State/Provience"
+  },
+  {
+   "fieldname": "website",
+   "fieldtype": "Data",
+   "label": "website"
+  },
+  {
+   "fieldname": "phone",
+   "fieldtype": "Data",
+   "label": "Phone"
+  },
+  {
+   "fieldname": "world_ranking",
+   "fieldtype": "Data",
+   "label": "World Ranking"
+  },
+  {
+   "fieldname": "commision",
+   "fieldtype": "Currency",
+   "label": "Commision"
+  },
+  {
+   "fieldname": "column_break_ktjy",
+   "fieldtype": "Column Break"
+  },
+  {
    "fieldname": "country",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Country",
-   "options": "Country",
    "reqd": 1
   },
   {
-   "fieldname": "state",
+   "fieldname": "city",
    "fieldtype": "Data",
-   "label": "State/Province"
+   "label": "City"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "fieldname": "university_type",
+   "fieldtype": "Data",
+   "label": "University Type"
+  },
+  {
+   "fieldname": "established_year",
+   "fieldtype": "Data",
+   "label": "Established Year"
   },
   {
    "fieldname": "address",
@@ -55,74 +93,30 @@
    "label": "Address"
   },
   {
-   "fieldname": "website",
-   "fieldtype": "Data",
-   "label": "Website",
-   "options": "URL"
-  },
-  {
-   "fieldname": "email",
-   "fieldtype": "Data",
-   "label": "Email",
-   "options": "Email"
-  },
-  {
-   "fieldname": "phone",
-   "fieldtype": "Data",
-   "label": "Phone",
-   "options": "Phone"
-  },
-  {
-   "fieldname": "university_type",
+   "fieldname": "naming_series",
    "fieldtype": "Select",
-   "label": "University Type",
-   "options": "\nPublic\nPrivate\nCommunity College\nTechnical Institute"
+   "label": "naming_series",
+   "options": "UNI-.YYYY.-"
   },
   {
-   "fieldname": "ranking",
-   "fieldtype": "Int",
-   "label": "World Ranking"
+   "fieldname": "tab_2_tab",
+   "fieldtype": "Tab Break",
+   "label": "Courses/Program"
   },
   {
-   "fieldname": "established_year",
-   "fieldtype": "Int",
-   "label": "Established Year"
-  },
-  {
-   "fieldname": "courses_section",
-   "fieldtype": "Section Break",
-   "label": "Courses & Programs"
-  },
-  {
-   "fieldname": "courses",
+   "fieldname": "table_rkkw",
    "fieldtype": "Table",
-   "label": "Courses",
-   "options": "University Course"
-  },
-  {
-   "fieldname": "commission_section",
-   "fieldtype": "Section Break",
-   "label": "Commission"
-  },
-  {
-   "fieldname": "commission_amount",
-   "fieldtype": "Currency",
-   "label": "Commission Amount"
-  },
-  {
-   "fieldname": "uni_city",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "City"
+   "options": "Application Course"
   }
  ],
  "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-29 12:39:48.279914",
+ "modified": "2025-11-29 23:39:17.029120",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "University",
- "naming_rule": "Autoincrement",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -136,47 +130,12 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
-  },
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "CRM Admin",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "print": 1,
-   "read": 1,
-   "role": "CRM Sales Staff"
-  },
-  {
-   "print": 1,
-   "read": 1,
-   "role": "B2B Agent"
-  },
-  {
-   "print": 1,
-   "read": 1,
-   "role": "B2C Agent"
-  },
-  {
-   "create": 1,
-   "print": 1,
-   "read": 1,
-   "role": "Institution",
-   "write": 1
   }
  ],
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
- "show_title_field_in_link": 1,
  "sort_field": "creation",
  "sort_order": "DESC",
  "states": [],
- "title_field": "uniname"
+ "title_field": "university_name"
 }

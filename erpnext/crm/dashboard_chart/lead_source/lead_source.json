@@ -1,7 +1,7 @@
 {
  "chart_name": "Lead Source",
  "chart_type": "Group By",
- "color": "",
+ "color": "#FF7800",
  "creation": "2025-11-15 13:17:16.449354",
  "custom_options": "{\"truncateLegends\": 1, \"maxSlices\": 8}",
  "docstatus": 0,

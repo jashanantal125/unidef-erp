@@ -13,14 +13,14 @@
  "is_hidden": 0,
  "label": "Vendors",
  "links": [],
- "modified": "2025-11-28 22:10:23.155013",
+ "modified": "2025-11-30 02:47:10.594749",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Vendors",
  "number_cards": [
   {
    "label": "Vendors",
-   "number_card_name": "total vendors"
+   "number_card_name": "vendors"
   }
  ],
  "owner": "Administrator",
@@ -34,7 +34,11 @@
   }
  ],
  "restrict_to_domain": "",
- "roles": [],
+ "roles": [
+  {
+   "role": "Employee"
+  }
+ ],
  "sequence_id": 20.0,
  "shortcuts": [
   {
