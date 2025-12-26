@@ -32,8 +32,6 @@
   "table_rnxy",
   "shortlisted_program_tab",
   "shortlisted_programs",
-  "applications_tab",
-  "applications",
   "counsellings_tab",
   "counsellings",
   "title"
@@ -180,18 +178,7 @@
    "fieldname": "shortlisted_programs",
    "fieldtype": "Table",
    "label": "Shortlisted Programs",
-   "options": "Shortlisted Program"
-  },
-  {
-   "fieldname": "applications_tab",
-   "fieldtype": "Tab Break",
-   "label": "Create Application"
-  },
-  {
-   "fieldname": "applications",
-   "fieldtype": "Table",
-   "label": "Applications",
-   "options": "Student Application"
+   "options": "University Course"
   },
   {
    "fieldname": "counsellings_tab",
@@ -221,7 +208,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-28 21:48:55.099274",
+ "modified": "2025-12-26 18:50:59.264104",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Student",

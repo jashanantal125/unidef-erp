@@ -29,19 +29,17 @@ class Student(Document):
 	from typing import TYPE_CHECKING
 
 	if TYPE_CHECKING:
-		from erpnext.crm.doctype.shortlisted_program.shortlisted_program import ShortlistedProgram
-		from erpnext.crm.doctype.student_application.student_application import StudentApplication
 		from erpnext.crm.doctype.student_counselling.student_counselling import StudentCounselling
 		from erpnext.crm.doctype.student_documents.student_documents import studentdocuments
+		from erpnext.crm.doctype.university_course.university_course import UniversityCourse
 		from frappe.types import DF
 
-		applications: DF.Table[StudentApplication]
-		counsellings: DF.Table[StudentCounselling]
 		area_of_interest: DF.Data
 		assigned_to: DF.Link | None
 		birthday: DF.Date | None
 		city: DF.Data | None
 		comment: DF.SmallText | None
+		counsellings: DF.Table[StudentCounselling]
 		country: DF.Link | None
 		country_code: DF.Data
 		destination_country: DF.Link | None
@@ -54,7 +52,7 @@ class Student(Document):
 		mobile: DF.Data
 		naming_series: DF.Literal["STU-.YYYY.-"]
 		preferred_study_level: DF.Data | None
-		shortlisted_programs: DF.Table[ShortlistedProgram]
+		shortlisted_programs: DF.Table[UniversityCourse]
 		state: DF.Data
 		table_rnxy: DF.Table[studentdocuments]
 		testscore: DF.Data | None

@@ -30,7 +30,7 @@ class Application(Document):
 		from frappe.types import DF
 
 		agent: DF.Link | None
-		application_type: DF.Literal["", "B2B", "B2C"]
+		application_type: DF.Literal["B2B"]
 		campus: DF.Data | None
 		destination_country: DF.Link
 		intake: DF.Literal["", "Fall", "Spring", "Summer", "Winter"]

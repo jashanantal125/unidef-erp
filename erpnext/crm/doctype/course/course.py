@@ -25,6 +25,7 @@ class Course(Document):
 		intake_months: DF.Data | None
 		naming_series: DF.Literal["COURSE-.YYYY.-"]
 		tuition_fee: DF.Currency
+		university: DF.Link | None
 	# end: auto-generated types
 
 	pass

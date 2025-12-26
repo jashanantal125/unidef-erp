@@ -47,16 +47,19 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Application Type",
-   "options": "\nB2B\nB2C",
+   "options": "B2B",
+   "read_only": 1,
    "reqd": 1
   },
   {
+   "default": "__user",
    "depends_on": "eval:doc.application_type == 'B2B' || doc.application_type == 'B2C'",
    "fieldname": "agent",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Agent",
-   "options": "Agent"
+   "options": "User",
+   "read_only": 1
   },
   {
    "fieldname": "status",
@@ -114,7 +117,7 @@
  "icon": "fa fa-file-text",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-29 23:37:49.755980",
+ "modified": "2025-12-26 19:00:12.508394",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Application",
