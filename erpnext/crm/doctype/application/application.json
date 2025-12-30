@@ -10,15 +10,72 @@
   "naming_series",
   "application_section",
   "student",
-  "application_type",
   "agent",
-  "status",
   "destination_country",
-  "preferred_university",
   "campus",
-  "preferred_courses",
   "intake",
-  "year"
+  "higher_education",
+  "column_break_jdtj",
+  "application_type",
+  "status",
+  "year",
+  "preferred_university",
+  "any_visa_refused",
+  "martial_status",
+  "section_break_dkel",
+  "preferred_courses",
+  "information_tab",
+  "data_swym",
+  "password",
+  "recovery_email_id",
+  "documents_10th_to_12th",
+  "column_break_hxww",
+  "data_isfw",
+  "digi_locker_id_optional",
+  "digi_locker_password",
+  "documents_passport_application_form_sop",
+  "tab_3_tab",
+  "university_name",
+  "course_name",
+  "university_intake",
+  "column_break_brtx",
+  "documents",
+  "defer_offer",
+  "financials_tab",
+  "total_funds_required",
+  "sponsored_by",
+  "funds_type",
+  "bank_name",
+  "nationalised_bank",
+  "fd_holding_duration",
+  "large_balance_holding_duration_1_lakh",
+  "source_of_funds_required",
+  "loan_amount",
+  "security_type",
+  "column_break_fvxc",
+  "financial_documents",
+  "fd_uploaded",
+  "loan_docs_uploaded",
+  "statement_uploaded",
+  "fd_verified",
+  "statement_verified",
+  "loan_docs_verified",
+  "checklist_section",
+  "dob_matched",
+  "name_matched_column",
+  "name_matched",
+  "column_break_gbmy",
+  "itr_verified",
+  "tab_5_tab",
+  "all_documents",
+  "gte_approved_tab",
+  "tution_fee",
+  "oshc",
+  "oshc_arranged_by",
+  "column_break_teil",
+  "table_eliz",
+  "oshc_uploaded",
+  "tuition_fee_uploaded"
  ],
  "fields": [
   {
@@ -96,7 +153,7 @@
    "fieldname": "preferred_courses",
    "fieldtype": "Table",
    "label": "Preferred Course",
-   "options": "Application Course",
+   "options": "student documents",
    "reqd": 1
   },
   {
@@ -111,13 +168,336 @@
    "fieldtype": "Int",
    "label": "Year",
    "reqd": 1
+  },
+  {
+   "fieldname": "column_break_jdtj",
+   "fieldtype": "Column Break",
+   "options": "High\nSecondary\nGraduation\nPost Graduation"
+  },
+  {
+   "fieldname": "section_break_dkel",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "No",
+   "fieldname": "any_visa_refused",
+   "fieldtype": "Select",
+   "label": "Any visa Refused",
+   "options": "No\nYes"
+  },
+  {
+   "fieldname": "higher_education",
+   "fieldtype": "Select",
+   "label": "Higher Education"
+  },
+  {
+   "fieldname": "martial_status",
+   "fieldtype": "Select",
+   "label": "Martial Status",
+   "options": "Married\nSingle"
+  },
+  {
+   "fieldname": "information_tab",
+   "fieldtype": "Tab Break",
+   "label": "Processing"
+  },
+  {
+   "fieldname": "data_swym",
+   "fieldtype": "Data",
+   "label": "Email ID"
+  },
+  {
+   "fieldname": "tab_3_tab",
+   "fieldtype": "Tab Break",
+   "label": "Offer Letter"
+  },
+  {
+   "fieldname": "password",
+   "fieldtype": "Password",
+   "label": "Password"
+  },
+  {
+   "fieldname": "recovery_email_id",
+   "fieldtype": "Data",
+   "label": "Recovery Email ID"
+  },
+  {
+   "fieldname": "documents_10th_to_12th",
+   "fieldtype": "Table",
+   "label": "Documents (10th to 12th)",
+   "options": "student documents"
+  },
+  {
+   "fieldname": "column_break_hxww",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "data_isfw",
+   "fieldtype": "Data",
+   "label": "School Domain Email ID (optional)"
+  },
+  {
+   "fieldname": "digi_locker_id_optional",
+   "fieldtype": "Data",
+   "label": "Digi locker ID (optional)"
+  },
+  {
+   "fieldname": "digi_locker_password",
+   "fieldtype": "Password",
+   "label": "Digi locker Password"
+  },
+  {
+   "fieldname": "documents_passport_application_form_sop",
+   "fieldtype": "Table",
+   "label": "Documents ",
+   "options": "student documents"
+  },
+  {
+   "fieldname": "university_name",
+   "fieldtype": "Data",
+   "label": "University Name"
+  },
+  {
+   "fieldname": "course_name",
+   "fieldtype": "Data",
+   "label": "Course Name"
+  },
+  {
+   "fieldname": "university_intake",
+   "fieldtype": "Date",
+   "label": "University Intake"
+  },
+  {
+   "fieldname": "column_break_brtx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "documents",
+   "fieldtype": "Table",
+   "label": "Documents",
+   "options": "student documents"
+  },
+  {
+   "fieldname": "defer_offer",
+   "fieldtype": "Select",
+   "label": "Defer Offer"
+  },
+  {
+   "fieldname": "financials_tab",
+   "fieldtype": "Tab Break",
+   "label": "Financials"
+  },
+  {
+   "fieldname": "total_funds_required",
+   "fieldtype": "Select",
+   "label": "Total Funds Required",
+   "options": "Full Year\nHalf-Year (6 Months)"
+  },
+  {
+   "fieldname": "column_break_fvxc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sponsored_by",
+   "fieldtype": "Select",
+   "label": "Sponsored By",
+   "options": "Father\nMother\nSelf\nGovernment\nRelative"
+  },
+  {
+   "fieldname": "funds_type",
+   "fieldtype": "Select",
+   "label": "Funds Type",
+   "options": "Savings Account\nFixed Deposit\nBank Statement\nEducation Loan\nGPF / Post Office\nMixed (Multiple Sources)"
+  },
+  {
+   "depends_on": "eval:doc.funds_type == 'Fixed Deposit' || doc.funds_type == 'Bank Statement' || doc.funds_type == 'Education Loan'",
+   "fieldname": "bank_name",
+   "fieldtype": "Data",
+   "label": "Bank Name"
+  },
+  {
+   "fieldname": "financial_documents",
+   "fieldtype": "Table",
+   "label": "Financial Documents",
+   "options": "student documents"
+  },
+  {
+   "fieldname": "checklist_section",
+   "fieldtype": "Section Break",
+   "label": "Checklist"
+  },
+  {
+   "default": "0",
+   "fieldname": "dob_matched",
+   "fieldtype": "Check",
+   "label": "DOB Matched"
+  },
+  {
+   "fieldname": "name_matched_column",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_gbmy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "itr_verified",
+   "fieldtype": "Check",
+   "label": "ITR Verified"
+  },
+  {
+   "default": "0",
+   "fieldname": "name_matched",
+   "fieldtype": "Check",
+   "label": "Name Matched"
+  },
+  {
+   "depends_on": "eval:doc.funds_type == 'Fixed Deposit' || doc.funds_type == 'Bank Statement'",
+   "fieldname": "nationalised_bank",
+   "fieldtype": "Select",
+   "label": "Bank Type",
+   "options": "Nationalised\nPrivate\nCooperative\nOther"
+  },
+  {
+   "depends_on": "eval:doc.funds_type == 'Fixed Deposit'",
+   "fieldname": "fd_holding_duration",
+   "fieldtype": "Duration",
+   "hide_seconds": 1,
+   "label": "FD Holding Duration"
+  },
+  {
+   "depends_on": "eval:doc.funds_type == 'Fixed Deposit' || doc.funds_type == 'Bank Statement'",
+   "fieldname": "source_of_funds_required",
+   "fieldtype": "Select",
+   "label": "Source of Funds Required (Yes/No)",
+   "options": "Yes\nNo"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.funds_type == 'Fixed Deposit'",
+   "fieldname": "fd_verified",
+   "fieldtype": "Check",
+   "label": "FD Verified"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.funds_type == 'Fixed Deposit'",
+   "fieldname": "fd_uploaded",
+   "fieldtype": "Check",
+   "label": "FD Uploaded"
+  },
+  {
+   "depends_on": "eval:doc.funds_type == 'Bank Statement'",
+   "fieldname": "large_balance_holding_duration_1_lakh",
+   "fieldtype": "Duration",
+   "hide_seconds": 1,
+   "label": "Large Balance Holding Duration (1 Lakh)"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.funds_type == 'Bank Statement'",
+   "fieldname": "statement_uploaded",
+   "fieldtype": "Check",
+   "label": "Statement Uploaded"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.funds_type == 'Bank Statement'",
+   "fieldname": "statement_verified",
+   "fieldtype": "Check",
+   "label": "Statement Verified"
+  },
+  {
+   "depends_on": "eval:doc.funds_type == 'Education Loan'",
+   "fieldname": "loan_amount",
+   "fieldtype": "Currency",
+   "label": "Loan Amount"
+  },
+  {
+   "depends_on": "eval:doc.funds_type == 'Education Loan'",
+   "fieldname": "security_type",
+   "fieldtype": "Select",
+   "label": "Security Type (Proof Required)",
+   "options": "Property\nOther\nUnsecured"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.funds_type == 'Education Loan'",
+   "fieldname": "loan_docs_uploaded",
+   "fieldtype": "Check",
+   "label": "Loan Docs Uploaded"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.funds_type == 'Education Loan'",
+   "fieldname": "loan_docs_verified",
+   "fieldtype": "Check",
+   "label": "Loan Docs Verified"
+  },
+  {
+   "fieldname": "tab_5_tab",
+   "fieldtype": "Tab Break",
+   "label": "GTE Processing"
+  },
+  {
+   "fieldname": "all_documents",
+   "fieldtype": "Table",
+   "label": "All Documents",
+   "options": "student documents"
+  },
+  {
+   "fieldname": "gte_approved_tab",
+   "fieldtype": "Tab Break",
+   "label": "GTE Approved"
+  },
+  {
+   "fieldname": "tution_fee",
+   "fieldtype": "Select",
+   "label": "Tuition Fee",
+   "options": "Paid\nNot Paid\nProcessing"
+  },
+  {
+   "fieldname": "column_break_teil",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "oshc",
+   "fieldtype": "Select",
+   "label": "OSHC",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "table_eliz",
+   "fieldtype": "Table",
+   "options": "student documents"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.oshc == 'Yes'",
+   "fieldname": "oshc_uploaded",
+   "fieldtype": "Check",
+   "label": "OSHC Uploaded"
+  },
+  {
+   "depends_on": "eval:doc.oshc == 'Yes'",
+   "fieldname": "oshc_arranged_by",
+   "fieldtype": "Data",
+   "label": "OSHC Arranged by"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.tution_fee == 'Paid'",
+   "fieldname": "tuition_fee_uploaded",
+   "fieldtype": "Check",
+   "label": "Tuition Fee Uploaded"
   }
  ],
  "grid_page_length": 50,
  "icon": "fa fa-file-text",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-12-26 19:00:12.508394",
+ "modified": "2025-12-29 19:46:38.827497",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Application",
