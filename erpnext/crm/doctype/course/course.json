@@ -1,6 +1,5 @@
 {
  "actions": [],
- "allow_import": 1,
  "allow_rename": 1,
  "autoname": "naming_series:",
  "creation": "2025-01-15 00:00:00",
@@ -12,6 +11,7 @@
   "degree_level",
   "duration_unit",
   "currency",
+  "university",
   "column_break_ncgr",
   "course_code",
   "duration",
@@ -99,13 +99,19 @@
    "fieldtype": "Select",
    "label": "Series",
    "options": "COURSE-.YYYY.-"
+  },
+  {
+   "fieldname": "university",
+   "fieldtype": "Link",
+   "label": "University",
+   "options": "University"
   }
  ],
  "grid_page_length": 50,
  "icon": "fa fa-graduation-cap",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-29 23:35:13.214720",
+ "modified": "2025-12-26 18:45:40.053341",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Course",
@@ -122,40 +128,6 @@
    "report": 1,
    "role": "System Manager",
    "share": 1,
-   "write": 1
-  },
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "CRM Admin",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "print": 1,
-   "read": 1,
-   "role": "CRM Sales Staff"
-  },
-  {
-   "print": 1,
-   "read": 1,
-   "role": "B2B Agent"
-  },
-  {
-   "print": 1,
-   "read": 1,
-   "role": "B2C Agent"
-  },
-  {
-   "create": 1,
-   "print": 1,
-   "read": 1,
-   "role": "Institution",
    "write": 1
   }
  ],
