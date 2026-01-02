@@ -35,6 +35,8 @@ class Application(Document):
 		application_type: DF.Literal["B2B"]
 		bank_name: DF.Data | None
 		campus: DF.Data | None
+		coe_documents: DF.Table[studentdocuments]
+		coe_uploaded: DF.Check
 		course_name: DF.Data | None
 		data_isfw: DF.Data | None
 		data_swym: DF.Data | None
@@ -53,6 +55,7 @@ class Application(Document):
 		funds_type: DF.Literal["Savings Account", "Fixed Deposit", "Bank Statement", "Education Loan", "GPF / Post Office", "Mixed (Multiple Sources)"]
 		higher_education: DF.Literal[None]
 		intake: DF.Literal["", "Fall", "Spring", "Summer", "Winter"]
+		intake_date: DF.Date | None
 		itr_verified: DF.Check
 		large_balance_holding_duration_1_lakh: DF.Duration | None
 		loan_amount: DF.Currency
@@ -62,6 +65,7 @@ class Application(Document):
 		name_matched: DF.Check
 		naming_series: DF.Literal["APP-.YYYY.-"]
 		nationalised_bank: DF.Literal["Nationalised", "Private", "Cooperative", "Other"]
+		offer_accepted: DF.Literal["Yes", "No"]
 		oshc: DF.Literal["Yes", "No"]
 		oshc_arranged_by: DF.Data | None
 		oshc_uploaded: DF.Check
