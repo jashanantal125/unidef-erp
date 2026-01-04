@@ -8,7 +8,6 @@
  "engine": "InnoDB",
  "field_order": [
   "details_tab",
-  "naming_series",
   "application_section",
   "student",
   "contact_number",
@@ -21,10 +20,11 @@
   "higher_education",
   "preferred_university",
   "intake",
-  "column_break_kvrr",
+  "column_break_ilyf",
+  "naming_series",
   "dob",
-  "current_age",
   "martial_status",
+  "current_age",
   "any_visa_refused",
   "study_gap",
   "spouse_details_section",
@@ -38,11 +38,12 @@
   "section_break_dkel",
   "preferred_courses",
   "information_tab",
+  "processing_section",
   "data_swym",
   "recovery_email_id",
+  "password",
   "documents_10th_to_12th",
   "column_break_hxww",
-  "password",
   "data_isfw",
   "digi_locker_id_optional",
   "digi_locker_password",
@@ -74,6 +75,7 @@
   "spouse_salary_slips_verified_6_months",
   "spouse_salary_statements_verified_3_months",
   "offer_tab",
+  "offer_section",
   "university_name",
   "course_name",
   "university_intake",
@@ -81,6 +83,7 @@
   "documents",
   "defer_offer",
   "financials_tab",
+  "finance_section",
   "total_funds_required",
   "sponsored_by",
   "funds_type",
@@ -119,8 +122,8 @@
   "offer_accepted",
   "coe_tab",
   "intake_date",
-  "column_break_xlzi",
   "coe_documents",
+  "column_break_xlzi",
   "coe_uploaded",
   "956a_form_uploaded",
   "original_funds_uploaded",
@@ -154,7 +157,9 @@
   "others",
   "college_change_status",
   "column_break_icwd",
-  "college_change_documents"
+  "college_change_documents",
+  "closed_tab",
+  "application_closed"
  ],
  "fields": [
   {
@@ -166,6 +171,7 @@
    "set_only_once": 1
   },
   {
+   "columns": 3,
    "fieldname": "application_section",
    "fieldtype": "Section Break",
    "label": "Application Information"
@@ -203,7 +209,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
-   "options": "Pending\nApplication Fee Paid\nStarted & Submitted\nReview & Course Finalizations\nSubmitted\nLOA/OL\nTuition Fee Paid\nVisa Applied\nVisa Approved\nCancel Withdrawn\nRefund Required\nEnrolled and Closed\nOffer Letter Expired\nRefund and Closed\nRejection from Institution",
+   "options": "Pending\nProcessing\nOffer Letter Received\nFinancial\nApplication Fee Paid\nStarted & Submitted\nReview & Course Finalizations\nSubmitted\nLOA/OL\nTuition Fee Paid\nVisa Applied\nVisa Approved\nCancel Withdrawn\nRefund Required\nEnrolled and Closed\nOffer Letter Expired\nRefund and Closed\nRejection from Institution",
    "reqd": 1
   },
   {
@@ -219,21 +225,19 @@
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Preferred University",
-   "options": "University",
-   "reqd": 1
+   "options": "University"
   },
   {
    "fieldname": "preferred_courses",
    "fieldtype": "Table",
    "label": "Preferred Course",
-   "options": "Application Course",
-   "reqd": 1
+   "options": "Application Course"
   },
   {
    "fieldname": "intake",
    "fieldtype": "Select",
    "label": "Intake",
-   "options": "\nFall\nSpring\nSummer\nWinter",
+   "options": "\nJanuary\nFebruary\nMarch\nApril\nMay\nJune\nJuly\nAugust\nSeptember\nOctober\nNovember\nDecember",
    "reqd": 1
   },
   {
@@ -256,13 +260,13 @@
    "fieldname": "higher_education",
    "fieldtype": "Select",
    "label": "Qualification",
-   "options": "12th pass\nBachelors\nDiploma\nMasters\nCertification\nOthers"
+   "options": "\n12th pass\nBachelors\nDiploma\nMasters\nCertification\nOthers"
   },
   {
    "fieldname": "martial_status",
    "fieldtype": "Select",
    "label": "Martial Status",
-   "options": "Married\nSingle"
+   "options": "\nMarried\nSingle"
   },
   {
    "depends_on": "eval:in_list(frappe.user_roles, 'Administrator') || !in_list(frappe.user_roles, 'agents')",
@@ -321,13 +325,15 @@
   },
   {
    "fieldname": "university_name",
-   "fieldtype": "Data",
-   "label": "University Name"
+   "fieldtype": "Link",
+   "label": "University Name",
+   "options": "University"
   },
   {
    "fieldname": "course_name",
-   "fieldtype": "Data",
-   "label": "Course Name"
+   "fieldtype": "Link",
+   "label": "Course Name",
+   "options": "Course"
   },
   {
    "fieldname": "university_intake",
@@ -347,7 +353,8 @@
   {
    "fieldname": "defer_offer",
    "fieldtype": "Select",
-   "label": "Defer Offer"
+   "label": "Defer Offer",
+   "options": "No\nYes"
   },
   {
    "depends_on": "eval:in_list(frappe.user_roles, 'Administrator') || !in_list(frappe.user_roles, 'agents')",
@@ -811,10 +818,6 @@
    "label": "Student Email"
   },
   {
-   "fieldname": "column_break_kvrr",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "dob",
    "fieldtype": "Date",
    "label": "DOB",
@@ -829,7 +832,7 @@
    "fieldname": "study_gap",
    "fieldtype": "Select",
    "label": "Study Gap",
-   "options": "Yes\nNo"
+   "options": "\nYes\nNo"
   },
   {
    "depends_on": "eval:doc.martial_status == 'Married'",
@@ -883,13 +886,13 @@
    "fieldname": "work_experience",
    "fieldtype": "Select",
    "label": "Work Experience",
-   "options": "Yes\nNo"
+   "options": "\nYes\nNo"
   },
   {
    "default": "Company:\nPosition:\nDuration:\nEmployer Domain ID:",
    "depends_on": "eval:doc.work_experience == 'Yes'",
    "fieldname": "work_experience_details",
-   "fieldtype": "Long Text",
+   "fieldtype": "Small Text",
    "label": "Work Experience details "
   },
   {
@@ -1044,13 +1047,41 @@
    "fieldname": "gte_tab",
    "fieldtype": "Tab Break",
    "label": "GTE Processing"
+  },
+  {
+   "fieldname": "offer_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "processing_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "finance_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_ilyf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.visa_status == 'Visa Refused' || doc.visa_status == 'Visa Approved'\neval:in_list(frappe.user_roles, 'Administrator') || !in_list(frappe.user_roles, 'agents')",
+   "fieldname": "closed_tab",
+   "fieldtype": "Tab Break",
+   "label": "Closed"
+  },
+  {
+   "fieldname": "application_closed",
+   "fieldtype": "Select",
+   "label": "Application Closed",
+   "options": "Yes\nNo"
   }
  ],
  "grid_page_length": 50,
  "icon": "fa fa-file-text",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-01-02 20:34:21.740169",
+ "modified": "2026-01-04 14:12:29.907245",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Application",

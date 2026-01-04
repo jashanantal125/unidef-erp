@@ -3,29 +3,31 @@
  "allow_import": 1,
  "allow_rename": 1,
  "autoname": "naming_series:",
- "creation": "2025-01-15 00:00:00.000000",
+ "creation": "2025-01-15 00:00:00",
  "doctype": "DocType",
  "engine": "InnoDB",
-  "field_order": [
-   "naming_series",
-   "agent_section",
-   "company_name",
-   "user",
-   "sales_team",
-   "no_of_employees",
-   "country",
-   "state",
-   "city",
-   "address",
-   "contact_person",
-   "designation",
-   "email",
-   "country_code",
-   "mobile",
-   "first_name",
-   "last_name",
-   "comments"
-  ],
+ "field_order": [
+  "naming_series",
+  "agent_section",
+  "company_name",
+  "user",
+  "sales_team",
+  "no_of_employees",
+  "country",
+  "state",
+  "city",
+  "address",
+  "status",
+  "column_break_kqbu",
+  "contact_person",
+  "designation",
+  "email",
+  "country_code",
+  "mobile",
+  "first_name",
+  "last_name",
+  "comments"
+ ],
  "fields": [
   {
    "fieldname": "naming_series",
@@ -55,11 +57,11 @@
    "unique": 1
   },
   {
+   "description": "Sales team that manages this agent's leads",
    "fieldname": "sales_team",
    "fieldtype": "Link",
    "label": "Sales Team",
-   "options": "Team",
-   "description": "Sales team that manages this agent's leads"
+   "options": "Team"
   },
   {
    "fieldname": "no_of_employees",
@@ -145,13 +147,23 @@
    "fieldname": "comments",
    "fieldtype": "Small Text",
    "label": "Comments"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Email Sent\nWelcome Call Done\nSigned Up\nCRM Assigned\nOnboarding Completed!"
+  },
+  {
+   "fieldname": "column_break_kqbu",
+   "fieldtype": "Column Break"
   }
  ],
  "grid_page_length": 50,
  "icon": "fa fa-users",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-01-15 00:00:00.000000",
+ "modified": "2026-01-04 14:53:28.974215",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Agent",
@@ -190,4 +202,3 @@
  "states": [],
  "title_field": "company_name"
 }
-
