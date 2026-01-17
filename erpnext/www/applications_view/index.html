@@ -1,0 +1,72 @@
+{% extends "templates/web.html" %}
+{% set show_sidebar = False %}
+
+{% block title %}{{ _("Applications View") }}{% endblock %}
+
+{% block head_include %}
+<link rel="stylesheet" href="/assets/erpnext/css/applications_view.css">
+<link rel="stylesheet" href="/assets/erpnext/css/custom_sidebar.css">
+{% endblock %}
+
+{% block script %}
+<script src="/assets/erpnext/js/applications_view.js?v={{ frappe.utils.now() }}"></script>
+{% endblock %}
+
+{% block page_content %}
+<div class="page-content-wrapper">
+	<div class="applications-container">
+		<div class="page-header">
+			<div class="header-left">
+				<h1 class="page-title">
+					Applications
+				</h1>
+			</div>
+			<div class="page-actions">
+				<a href="/app/application" class="btn btn-secondary">
+					<i class="fa fa-list"></i> Back to List View
+				</a>
+				<button class="btn btn-primary" onclick="refreshApplications()">
+					<i class="fa fa-refresh"></i> Refesh
+				</button>
+			</div>
+		</div>
+
+		<!-- Search Section -->
+		<div class="search-section">
+			<div class="search-container">
+				<div class="search-icon-wrapper">
+					<i class="fa fa-search"></i>
+				</div>
+				<input type="text" id="search-input" class="search-input" placeholder="Search by student name..." onkeyup="applyFilters()">
+				<button class="search-clear-btn" id="search-clear-btn" onclick="clearSearch()" style="display: none;">
+					<i class="fa fa-times"></i>
+				</button>
+			</div>
+		</div>
+
+		<div class="loading-state" id="loading-state">
+			<div class="spinner"></div>
+			<p>Loading applications...</p>
+		</div>
+
+		<div class="error-state" id="error-state" style="display: none;">
+			<div class="error-icon">
+				<i class="fa fa-exclamation-triangle"></i>
+			</div>
+			<p id="error-message"></p>
+			<button class="btn btn-primary" onclick="loadApplications()">Try Again</button>
+		</div>
+
+		<div class="applications-grid" id="applications-grid">
+			<!-- Applications will be loaded here -->
+		</div>
+
+		<div class="empty-state" id="empty-state" style="display: none;">
+			<div class="empty-icon">
+				<i class="fa fa-inbox"></i>
+			</div>
+			<p>No applications found</p>
+		</div>
+	</div>
+</div>
+{% endblock %}
