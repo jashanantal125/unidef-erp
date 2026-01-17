@@ -6,7 +6,8 @@
  "engine": "InnoDB",
  "field_order": [
   "please_download_the_given_document_for_commission",
-  "doc"
+  "doc",
+  "commision"
  ],
  "fields": [
   {
@@ -15,17 +16,21 @@
    "label": "Please download the given document for Commission"
   },
   {
-   "default": "doc",
    "fieldname": "doc",
-   "fieldtype": "Read Only",
-   "label": "doc ",
-   "options": "doc"
+   "fieldtype": "Attach Image",
+   "label": "attach_image"
+  },
+  {
+   "default": "doc",
+   "fieldname": "commision",
+   "fieldtype": "Attach Image",
+   "label": "Commision"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-01-17 17:15:00.582562",
+ "modified": "2026-01-17 18:00:16.967271",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "commissions doc",

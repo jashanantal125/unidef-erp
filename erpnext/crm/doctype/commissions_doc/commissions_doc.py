@@ -14,7 +14,8 @@ class commissionsdoc(Document):
 	if TYPE_CHECKING:
 		from frappe.types import DF
 
-		doc: DF.ReadOnly | None
+		commision: DF.AttachImage | None
+		doc: DF.AttachImage | None
 	# end: auto-generated types
 
 	pass
