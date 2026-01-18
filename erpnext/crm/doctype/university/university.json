@@ -12,16 +12,22 @@
   "phone",
   "world_ranking",
   "commision",
+  "type",
+  "shore_type",
+  "is_direct",
+  "vendor_name",
+  "vendor_id",
+  "old_id",
   "column_break_ktjy",
   "country",
   "city",
+  "logo",
   "email",
-  "university_type",
   "established_year",
+  "campus_name",
+  "is_private",
   "address",
-  "naming_series",
-  "tab_2_tab",
-  "table_rkkw"
+  "naming_series"
  ],
  "fields": [
   {
@@ -78,11 +84,6 @@
    "label": "Email"
   },
   {
-   "fieldname": "university_type",
-   "fieldtype": "Data",
-   "label": "University Type"
-  },
-  {
    "fieldname": "established_year",
    "fieldtype": "Data",
    "label": "Established Year"
@@ -99,20 +100,59 @@
    "options": "UNI-.YYYY.-"
   },
   {
-   "fieldname": "tab_2_tab",
-   "fieldtype": "Tab Break",
-   "label": "Courses/Program"
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "university\ncollege\nschool"
   },
   {
-   "fieldname": "table_rkkw",
-   "fieldtype": "Table",
-   "options": "Application Course"
+   "fieldname": "logo",
+   "fieldtype": "Attach Image",
+   "label": "Logo"
+  },
+  {
+   "fieldname": "shore_type",
+   "fieldtype": "Select",
+   "label": "Shore Type",
+   "options": "both\noffshore\nonshore"
+  },
+  {
+   "fieldname": "campus_name",
+   "fieldtype": "Data",
+   "label": "Campus Name"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_private",
+   "fieldtype": "Check",
+   "label": "Is Private"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_direct",
+   "fieldtype": "Check",
+   "label": "is Direct"
+  },
+  {
+   "fieldname": "vendor_name",
+   "fieldtype": "Data",
+   "label": "Vendor Name"
+  },
+  {
+   "fieldname": "vendor_id",
+   "fieldtype": "Data",
+   "label": "Vendor ID"
+  },
+  {
+   "fieldname": "old_id",
+   "fieldtype": "Data",
+   "label": "oldid"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-29 23:39:17.029120",
+ "modified": "2026-01-05 18:47:05.821119",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "University",

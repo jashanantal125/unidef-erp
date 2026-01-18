@@ -15,7 +15,6 @@ class Agent(Document):
 		from frappe.types import DF
 
 		address: DF.SmallText
-		agent_type: DF.Literal["", "B2B", "B2C"]
 		city: DF.Data
 		comments: DF.SmallText | None
 		company_name: DF.Data
@@ -29,7 +28,10 @@ class Agent(Document):
 		mobile: DF.Data
 		naming_series: DF.Literal["AGT-.YYYY.-"]
 		no_of_employees: DF.Int
+		sales_team: DF.Link | None
 		state: DF.Data
+		status: DF.Literal["Email Sent", "Welcome Call Done", "Signed Up", "CRM Assigned", "Onboarding Completed!"]
+		user: DF.Link | None
 	# end: auto-generated types
 
 	def after_insert(self):

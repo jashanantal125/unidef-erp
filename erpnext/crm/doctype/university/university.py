@@ -12,21 +12,27 @@ class University(Document):
 	from typing import TYPE_CHECKING
 
 	if TYPE_CHECKING:
-		from erpnext.crm.doctype.application_course.application_course import ApplicationCourse
 		from frappe.types import DF
 
 		address: DF.SmallText | None
+		campus_name: DF.Data | None
 		city: DF.Data | None
 		commision: DF.Currency
 		country: DF.Data
 		email: DF.Data | None
 		established_year: DF.Data | None
+		is_direct: DF.Check
+		is_private: DF.Check
+		logo: DF.AttachImage | None
 		naming_series: DF.Literal["UNI-.YYYY.-"]
+		old_id: DF.Data | None
 		phone: DF.Data | None
+		shore_type: DF.Literal["both", "offshore", "onshore"]
 		stateprovience: DF.Data | None
-		table_rkkw: DF.Table[ApplicationCourse]
+		type: DF.Literal["university", "college", "school"]
 		university_name: DF.Data
-		university_type: DF.Data | None
+		vendor_id: DF.Data | None
+		vendor_name: DF.Data | None
 		website: DF.Data | None
 		world_ranking: DF.Data | None
 	# end: auto-generated types
