@@ -20,6 +20,7 @@
   "higher_education",
   "preferred_university",
   "intake",
+  "area_of_interest",
   "column_break_ilyf",
   "naming_series",
   "dob",
@@ -1074,13 +1075,19 @@
    "fieldtype": "Select",
    "label": "Application Closed",
    "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "area_of_interest",
+   "fieldtype": "Select",
+   "label": "Area of Interest",
+   "options": "Study\nIELTS/PTE\nTourist\nWork"
   }
  ],
  "grid_page_length": 50,
  "icon": "fa fa-file-text",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-01-04 15:38:14.897335",
+ "modified": "2026-01-18 12:17:23.465183",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Application",
