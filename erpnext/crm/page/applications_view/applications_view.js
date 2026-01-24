@@ -524,6 +524,9 @@ function createApplicationCard(app) {
 			<button class="tab-btn active" data-tab="timeline" onclick="switchTab(this, 'timeline', '${app.name}')">
 				<i class="fa fa-clock-o"></i> Timeline
 			</button>
+			<button class="tab-btn" data-tab="details" onclick="switchTab(this, 'details', '${app.name}')">
+				<i class="fa fa-user"></i> Details
+			</button>
 			<button class="tab-btn" data-tab="staff" onclick="switchTab(this, 'staff', '${app.name}')">
 				<i class="fa fa-users"></i> Assigned Staff
 			</button>
@@ -640,6 +643,27 @@ function createTimelineContent(app) {
     return timelineHTML;
 }
 
+function calculateAge(dobString) {
+	if (!dobString) return '';
+
+	try {
+		const dob = new Date(dobString);
+		const today = new Date();
+
+		let age = today.getFullYear() - dob.getFullYear();
+		const monthDiff = today.getMonth() - dob.getMonth();
+
+		// Adjust age if birthday hasn't occurred this year
+		if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+			age--;
+		}
+
+		return age > 0 ? age.toString() : '';
+	} catch (e) {
+		return '';
+	}
+}
+
 function getStatusCode(status) {
     // Generate short codes for statuses
     const codeMap = {
@@ -660,6 +684,96 @@ function getStatusCode(status) {
     };
 
     return codeMap[status] || status.substring(0, 3).toUpperCase();
+}
+
+function createDetailsContent(app) {
+	// Get student name from linked Student doctype or fallback to app.student
+	const studentName = app.student_data
+		? `${app.student_data.first_name || ''} ${app.student_data.last_name || ''}`.trim()
+		: app.student || 'N/A';
+
+	// Calculate age from DOB if current_age is not available
+	let ageDisplay = app.current_age || '';
+	if (!ageDisplay && app.dob) {
+		ageDisplay = calculateAge(app.dob);
+	}
+
+	// Format dates
+	const dobDisplay = app.dob ? frappe.datetime.str_to_user(app.dob) : '--';
+
+	// Handle study gap with proof requirement
+	let studyGapDisplay = app.study_gap || '--';
+	if (app.study_gap === 'Yes') {
+		studyGapDisplay += ' (Study gap proof required)';
+	}
+
+	// Handle visa refusal status
+	let visaRefusedDisplay = app.any_visa_refused || '--';
+	if (app.any_visa_refused === 'Yes') {
+		visaRefusedDisplay += ' - Cannot process this application';
+	}
+
+	return `
+		<div class="details-content">
+			<div class="assessment-section">
+				<h3 class="section-title">
+					<i class="fa fa-clipboard-check"></i> Assessment
+				</h3>
+				<div class="assessment-fields">
+					<div class="field-row">
+						<div class="field-item">
+							<label class="field-label">I. Student Name</label>
+							<div class="field-value">${escapeHtml(studentName)}</div>
+						</div>
+						<div class="field-item">
+							<label class="field-label">II. Student Contact No.</label>
+							<div class="field-value">${escapeHtml(app.contact_number || '--')}</div>
+						</div>
+					</div>
+
+					<div class="field-row">
+						<div class="field-item">
+							<label class="field-label">III. Marital Status</label>
+							<div class="field-value">${escapeHtml(app.martial_status || '--')}</div>
+						</div>
+						<div class="field-item">
+							<label class="field-label">IV. D.O.B</label>
+							<div class="field-value">${dobDisplay}</div>
+						</div>
+					</div>
+
+					<div class="field-row">
+						<div class="field-item">
+							<label class="field-label">V. Age (as of now)</label>
+							<div class="field-value">${ageDisplay || '--'}</div>
+						</div>
+						<div class="field-item">
+							<label class="field-label">VI. Student email id</label>
+							<div class="field-value">${escapeHtml(app.student_email || '--')}</div>
+						</div>
+					</div>
+
+					<div class="field-row">
+						<div class="field-item">
+							<label class="field-label">VII. Qualification</label>
+							<div class="field-value">${escapeHtml(app.higher_education || '--')}</div>
+						</div>
+						<div class="field-item">
+							<label class="field-label">VIII. Study gap</label>
+							<div class="field-value">${studyGapDisplay}</div>
+						</div>
+					</div>
+
+					<div class="field-row">
+						<div class="field-item full-width">
+							<label class="field-label">IX. Refused from Aus/NZ</label>
+							<div class="field-value">${visaRefusedDisplay}</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	`;
 }
 
 function createStaffContent(app) {
@@ -1211,6 +1325,9 @@ function updateTabContent(contentArea, tabName, appData) {
     switch (tabName) {
         case 'timeline':
             content = createTimelineContent(appData);
+            break;
+        case 'details':
+            content = createDetailsContent(appData);
             break;
         case 'staff':
             content = createStaffContent(appData);
