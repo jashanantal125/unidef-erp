@@ -8,18 +8,54 @@ from frappe.model.document import Document
 class Application(Document):
 	@staticmethod
 	def get_list_query(query):
-		"""Filter applications for Agent role - only show applications where agent matches logged-in user's agent"""
-		if "Agent" in frappe.get_roles():
-			# Get the agent record linked to the current user
-			agent_name = frappe.db.get_value("Agent", {"user": frappe.session.user}, "name")
-			if agent_name:
-				Application = frappe.qb.DocType("Application")
-				query = query.where(Application.agent == agent_name)
+		"""Filter applications based on user role hierarchy"""
+		user_roles = frappe.get_roles()
+		ApplicationDoc = frappe.qb.DocType("Application")
+		
+		# System Manager, Administrator, and CRM Admin see all applications
+		if "System Manager" in user_roles or "Administrator" in user_roles or "CRM Admin" in user_roles:
+			return query
+		
+		# Team Lead sees applications assigned to their team(s)
+		if "Team Lead" in user_roles:
+			teams = frappe.get_all("Team", filters={"team_leader": frappe.session.user}, pluck="name")
+			if teams:
+				query = query.where(ApplicationDoc.assigned_team.isin(teams))
 			else:
-				# If user has no agent record, show nothing
-				Application = frappe.qb.DocType("Application")
-				query = query.where(Application.agent == "")
+				# Team Lead with no team sees nothing
+				query = query.where(ApplicationDoc.assigned_team == "__no_match__")
+			return query
+		
+		# Team Executive sees only applications assigned to them
+		if "Team Executive" in user_roles:
+			query = query.where(ApplicationDoc.assigned_executive == frappe.session.user)
+			return query
+		
+		# Agent sees only their own applications (where agent field matches logged-in user)
+		if "Agent" in user_roles or "B2B Agent" in user_roles or "B2C Agent" in user_roles:
+			query = query.where(ApplicationDoc.agent == frappe.session.user)
+			return query
+		
+		# Default: show nothing for unknown roles
+		query = query.where(ApplicationDoc.name == "__no_match__")
 		return query
+	
+	def before_save(self):
+		"""Auto-assign team based on destination country"""
+		self.auto_assign_team()
+	
+	def auto_assign_team(self):
+		"""Find the team that handles this destination country and assign it"""
+		if self.destination_country and not self.assigned_team:
+			# Find team whose territories include this country
+			team_result = frappe.db.sql("""
+				SELECT parent FROM `tabTeam Territory`
+				WHERE country = %s
+				LIMIT 1
+			""", (self.destination_country,), as_dict=True)
+			
+			if team_result:
+				self.assigned_team = team_result[0].parent
 	# begin: auto-generated types
 	# This code is auto-generated. Do not modify anything in this block.
 

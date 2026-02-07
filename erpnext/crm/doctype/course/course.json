@@ -111,7 +111,7 @@
  "icon": "fa fa-graduation-cap",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-12-26 18:45:40.053341",
+ "modified": "2026-01-18 19:14:49.502865",
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Course",
@@ -127,6 +127,27 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Team Lead"
+  },
+  {
+   "read": 1,
+   "role": "Team Executive"
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Agent",
+   "select": 1,
    "share": 1,
    "write": 1
   }
