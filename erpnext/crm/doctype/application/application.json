@@ -32,16 +32,17 @@
         "study_gap",
         "study_gap_proof",
         "study_gap_ok",
-        "spouse_details_section",
-        "spouse_name",
-        "column_break_zwta",
-        "spouse_dob",
-        "column_break_cnrx",
-        "spouse_qualification",
-        "column_break_zdbg",
-        "spouse_study_gap",
         "section_break_dkel",
         "preferred_courses",
+        "section_case_4_spouse",
+        "case_4_spouse_qualification",
+        "case_4_marriage_duration",
+        "case_4_proceed_below_graduate",
+        "case_4_proceed_below_1_year",
+        "case_4_proceed_above_1_year",
+        "case_4_note_wait",
+        "case_4_note_convince",
+        "case_4_close_reason",
         "information_tab",
         "section_a_email",
         "is_package_case",
@@ -56,6 +57,14 @@
         "documents_verified",
         "documents_verified_pdf",
         "documents_not_accepted_alert",
+        "graduation_verification_documents",
+        "school_digi_locker_id",
+        "school_digi_locker_password",
+        "school_docs_verified",
+        "school_docs_pdf",
+        "school_docs_status",
+        "spouse_details_sb",
+        "spouse_details_list",
         "column_break_section_b",
         "section_c_english_test",
         "english_test_details",
@@ -63,7 +72,7 @@
         "digi_locker_id_optional",
         "digi_locker_password",
         "section_d_study_gap_proof",
-        "study_gap_proof_details",
+        "study_gap_proof_list",
         "section_d_passport",
         "passport_uploaded",
         "passport_documents",
@@ -76,20 +85,6 @@
         "column_break_miqz",
         "documents_passport_application_form_sop",
         "sop_upload",
-        "spouse_processing_details_section",
-        "documents_10th_to_12thgraduation_copy",
-        "column_break_ikaf",
-        "spouse_gap_type",
-        "spouse_work_experience",
-        "spouse_work_experience_details",
-        "column_break_rdby",
-        "spouse_result_verification_link_if_applicable_copy",
-        "spouse_university_domain_email_id_optional_copy",
-        "spouse_salary_mode",
-        "spouse_documents",
-        "spouse_work_experience_verified",
-        "spouse_itr_verified_as_per_work_exp",
-        "spouse_salary_slips_verified_6_months",
         "spouse_salary_statements_verified_3_months",
         "submitted_tab",
         "submitted_date",
@@ -110,6 +105,12 @@
         "oshc_offer",
         "living_expenses",
         "travel_expenses",
+        "living_expenses_spouse",
+        "travel_expenses_spouse",
+        "process_with_kids",
+        "no_of_kids",
+        "living_expenses_kid_unit",
+        "travel_expenses_kid_unit",
         "column_break_offer_2",
         "funds_required_type",
         "funds_required_amount",
@@ -132,10 +133,17 @@
         "defer_oshc",
         "defer_living_expenses",
         "defer_travel_expenses",
+        "defer_living_expenses_spouse",
+        "defer_travel_expenses_spouse",
+        "defer_process_with_kids",
+        "defer_no_of_kids",
+        "defer_living_expenses_kid_unit",
+        "defer_travel_expenses_kid_unit",
         "column_break_defer_2",
         "defer_funds_required_type",
         "defer_funds_required_amount",
         "defer_conditions_on_offer_letter",
+        "asd",
         "section_break_defer_docs",
         "defer_offer_letter_upload",
         "defer_other_documents",
@@ -154,24 +162,17 @@
         "english_requirement_section",
         "english_requirement_details",
         "english_requirement_documents",
+        "c_sponsors_section",
+        "table_ihmq",
         "gap_justification_section",
         "gap_justification_details",
         "gap_justification_documents",
         "verification_section",
         "verification_type",
         "section_d_academics",
-        "notarize_docs_required",
-        "notarized_academic_docs_upload",
-        "parents_name_matched_academics",
-        "parents_name_academics_status",
-        "parents_name_academics_affidavit_upload",
-        "parents_name_matched_passport",
-        "parents_name_passport_status",
-        "parents_name_passport_affidavit_upload",
-        "gap_docs_notarized_upload",
-        "passport_stamp_or_immigration_history",
-        "passport_stamp_check_details",
-        "full_notarized_passport_upload",
+        "student_academic_verification",
+        "spouse_academics_sb",
+        "spouse_academic_verification",
         "funds_upload_section",
         "sponsor_1_docs_pdf_upload",
         "sponsor_2_docs_pdf_upload",
@@ -294,6 +295,7 @@
         "visa_tab",
         "visa_section",
         "visa_copy_upload",
+        "spouse_visa_upload",
         "student_enrolled",
         "student_enrolled_yes_status",
         "student_enrolled_no_status",
@@ -484,13 +486,76 @@
             "fieldname": "higher_education",
             "fieldtype": "Select",
             "label": "Qualification",
-            "options": "\n12th pass\nBachelors\nDiploma\nMasters\nCertification\nOthers"
+            "options": "\n12th pass\nBachelors\nDiploma\nMasters\nCertification\nOthers\nGraduation"
         },
         {
             "fieldname": "martial_status",
             "fieldtype": "Select",
             "label": "Martial Status",
             "options": "\nMarried\nSingle"
+        },
+        {
+            "depends_on": "eval:doc.higher_education == 'Graduation' && doc.martial_status == 'Married'",
+            "fieldname": "section_case_4_spouse",
+            "fieldtype": "Section Break",
+            "label": "Case 4: Spouse Details"
+        },
+        {
+            "depends_on": "eval:doc.higher_education == 'Graduation' && doc.martial_status == 'Married'",
+            "fieldname": "case_4_spouse_qualification",
+            "fieldtype": "Select",
+            "label": "Spouse qualification",
+            "options": "\nGraduate or above Graduation\nBelow Graduate"
+        },
+        {
+            "depends_on": "eval:doc.case_4_spouse_qualification == 'Graduate or above Graduation' && doc.higher_education == 'Graduation' && doc.martial_status == 'Married'",
+            "fieldname": "case_4_marriage_duration",
+            "fieldtype": "Select",
+            "label": "Marriage Duration",
+            "options": "\n1 year or above\nBelow 1 year"
+        },
+        {
+            "depends_on": "eval:doc.case_4_spouse_qualification == 'Below Graduate' && doc.higher_education == 'Graduation' && doc.martial_status == 'Married'",
+            "fieldname": "case_4_proceed_below_graduate",
+            "fieldtype": "Select",
+            "label": "Student wants to proceed (Below Graduate)",
+            "options": "\non single basis\nDon’t want to procced"
+        },
+        {
+            "depends_on": "eval:doc.case_4_marriage_duration == 'Below 1 year' && doc.case_4_spouse_qualification == 'Graduate or above Graduation' && doc.higher_education == 'Graduation' && doc.martial_status == 'Married'",
+            "fieldname": "case_4_proceed_below_1_year",
+            "fieldtype": "Select",
+            "label": "Student wants to proceed (Below 1 year)",
+            "options": "\non single basis\nwait to complete one year"
+        },
+        {
+            "depends_on": "eval:doc.case_4_marriage_duration == '1 year or above' && doc.case_4_spouse_qualification == 'Graduate or above Graduation' && doc.higher_education == 'Graduation' && doc.martial_status == 'Married'",
+            "fieldname": "case_4_proceed_above_1_year",
+            "fieldtype": "Select",
+            "label": "Student wants to proceed (1 year or above)",
+            "options": "\nOn single basis\nwith Spouse"
+        },
+        {
+            "default": "Set reminder to complete 1 year",
+            "depends_on": "eval:doc.case_4_proceed_below_1_year == 'wait to complete one year' && doc.higher_education == 'Graduation' && doc.martial_status == 'Married'",
+            "fieldname": "case_4_note_wait",
+            "fieldtype": "Data",
+            "label": "Instruction",
+            "read_only": 1
+        },
+        {
+            "default": "Convince to process on single basis otherwise Close case",
+            "depends_on": "eval:doc.case_4_proceed_below_graduate == 'Don’t want to procced' && doc.higher_education == 'Graduation' && doc.martial_status == 'Married'",
+            "fieldname": "case_4_note_convince",
+            "fieldtype": "Data",
+            "label": "Instruction",
+            "read_only": 1
+        },
+        {
+            "depends_on": "eval:doc.case_4_proceed_below_graduate == 'Don’t want to procced' && doc.higher_education == 'Graduation' && doc.martial_status == 'Married'",
+            "fieldname": "case_4_close_reason",
+            "fieldtype": "Small Text",
+            "label": "Close Case Reason"
         },
         {
             "depends_on": "eval:in_list(frappe.user_roles, 'System Manager') || in_list(frappe.user_roles, 'Team Lead') || in_list(frappe.user_roles, 'Team Executive')",
@@ -542,39 +607,45 @@
         },
         {
             "default": "0",
+            "depends_on": "eval:doc.higher_education == '12th pass'",
             "fieldname": "twelfth_admit_card_uploaded",
             "fieldtype": "Check",
             "label": "12th Admit Card Uploaded"
         },
         {
+            "depends_on": "eval:doc.higher_education == '12th pass'",
             "fieldname": "documents_10th_to_12th",
             "fieldtype": "Table",
             "label": "Documents (10th to 12th)/Graduation",
             "options": "student documents"
         },
         {
+            "depends_on": "eval:doc.higher_education == '12th pass'",
             "fieldname": "data_isfw",
             "fieldtype": "Text",
             "label": "School Domain Email ID"
         },
         {
+            "depends_on": "eval:doc.higher_education == '12th pass'",
             "fieldname": "digi_locker_id_optional",
             "fieldtype": "Text",
             "label": "Digi Locker ID"
         },
         {
+            "depends_on": "eval:doc.higher_education == '12th pass'",
             "fieldname": "digi_locker_password",
             "fieldtype": "Password",
             "label": "Digi Locker Password"
         },
         {
             "default": "0",
+            "depends_on": "eval:doc.higher_education == '12th pass'",
             "fieldname": "documents_verified",
             "fieldtype": "Check",
             "label": "Documents Verified"
         },
         {
-            "depends_on": "eval:doc.documents_verified == 1",
+            "depends_on": "eval:doc.documents_verified == 1 && doc.higher_education == '12th pass'",
             "fieldname": "documents_verified_pdf",
             "fieldtype": "Table",
             "label": "Upload in Single PDF",
@@ -583,11 +654,64 @@
         {
             "bold": 1,
             "default": "\u26a0\ufe0f NOT ACCEPTED - Documents need to be verified",
-            "depends_on": "eval:doc.documents_verified == 0",
+            "depends_on": "eval:doc.documents_verified == 0 && doc.higher_education == '12th pass'",
             "fieldname": "documents_not_accepted_alert",
             "fieldtype": "Text",
             "label": "Status",
             "read_only": 1
+        },
+        {
+            "depends_on": "eval:doc.higher_education == 'Graduation'",
+            "fieldname": "graduation_verification_documents",
+            "fieldtype": "Table",
+            "label": "B. Graduation Verification",
+            "options": "Graduation Verification"
+        },
+        {
+            "depends_on": "eval:doc.higher_education == 'Graduation'",
+            "fieldname": "school_digi_locker_id",
+            "fieldtype": "Data",
+            "label": "10th and 12th Digi Locker ID"
+        },
+        {
+            "depends_on": "eval:doc.higher_education == 'Graduation'",
+            "fieldname": "school_digi_locker_password",
+            "fieldtype": "Password",
+            "label": "Digi Locker Password"
+        },
+        {
+            "depends_on": "eval:doc.higher_education == 'Graduation'",
+            "fieldname": "school_docs_verified",
+            "fieldtype": "Select",
+            "label": "10th/12th Documents Verified",
+            "options": "\nYes\nNo"
+        },
+        {
+            "depends_on": "eval:doc.school_docs_verified == 'Yes'",
+            "fieldname": "school_docs_pdf",
+            "fieldtype": "Attach",
+            "label": "Upload 10th/12th PDF"
+        },
+        {
+            "default": "Not Accepted",
+            "depends_on": "eval:doc.school_docs_verified == 'No'",
+            "fieldname": "school_docs_status",
+            "fieldtype": "Data",
+            "label": "Status",
+            "read_only": 1
+        },
+        {
+            "depends_on": "eval:doc.martial_status == 'Married' && doc.case_4_proceed_above_1_year == 'with Spouse'",
+            "fieldname": "spouse_details_sb",
+            "fieldtype": "Section Break",
+            "label": "Spouse Details"
+        },
+        {
+            "depends_on": "eval:doc.martial_status == 'Married' && doc.case_4_proceed_above_1_year == 'with Spouse'",
+            "fieldname": "spouse_details_list",
+            "fieldtype": "Table",
+            "label": "E. Spouse details",
+            "options": "Spouse Details"
         },
         {
             "fieldname": "section_c_english_test",
@@ -1311,6 +1435,12 @@
             "label": "Visa Copy Upload"
         },
         {
+            "depends_on": "eval:doc.martial_status == 'Married' && doc.case_4_proceed_above_1_year == 'with Spouse'",
+            "fieldname": "spouse_visa_upload",
+            "fieldtype": "Attach",
+            "label": "With spouse \u2013 visa upload"
+        },
+        {
             "default": "0",
             "fieldname": "student_enrolled",
             "fieldtype": "Check",
@@ -1578,142 +1708,6 @@
             "read_only": 1
         },
         {
-            "depends_on": "eval:doc.martial_status == 'Married'",
-            "fieldname": "spouse_details_section",
-            "fieldtype": "Section Break",
-            "label": "Spouse Details"
-        },
-        {
-            "fieldname": "spouse_name",
-            "fieldtype": "Text",
-            "label": "Spouse Name"
-        },
-        {
-            "fieldname": "column_break_zwta",
-            "fieldtype": "Column Break"
-        },
-        {
-            "fieldname": "spouse_dob",
-            "fieldtype": "Date",
-            "label": "Spouse DOB"
-        },
-        {
-            "fieldname": "column_break_cnrx",
-            "fieldtype": "Column Break"
-        },
-        {
-            "depends_on": "eval:doc.martial_status == 'Married'",
-            "fieldname": "spouse_qualification",
-            "fieldtype": "Select",
-            "label": "Spouse Qualification",
-            "options": "10th Pass\n12th Pass\nBachelors\nMasters\nDiploma\ncertificate\nOthers"
-        },
-        {
-            "fieldname": "column_break_zdbg",
-            "fieldtype": "Column Break"
-        },
-        {
-            "default": "0",
-            "depends_on": "eval:doc.spouse_qualification == 'Bachelors' || doc.spouse_qualification == 'Masters'",
-            "fieldname": "spouse_study_gap",
-            "fieldtype": "Check",
-            "label": "Spouse Study Gap"
-        },
-        {
-            "fieldname": "column_break_miqz",
-            "fieldtype": "Column Break"
-        },
-        {
-            "depends_on": "eval:doc.spouse_qualification == 'Bachelors' || doc.spouse_qualification == 'Masters'",
-            "fieldname": "spouse_processing_details_section",
-            "fieldtype": "Section Break",
-            "label": "Spouse Processing Details"
-        },
-        {
-            "fieldname": "documents_10th_to_12thgraduation_copy",
-            "fieldtype": "Table",
-            "label": "Documents (10th to 12th)/Graduation Copy",
-            "options": "student documents"
-        },
-        {
-            "fieldname": "column_break_ikaf",
-            "fieldtype": "Column Break"
-        },
-        {
-            "depends_on": "eval:doc.spouse_study_gap == 1",
-            "fieldname": "spouse_gap_type",
-            "fieldtype": "Text",
-            "label": "Spouse Gap Type"
-        },
-        {
-            "default": "0",
-            "fieldname": "spouse_work_experience",
-            "fieldtype": "Check",
-            "label": "Spouse Work Experience"
-        },
-        {
-            "default": "Company:\nPosition:\nDuration:\nEmployer Domain ID:",
-            "depends_on": "eval:doc.spouse_work_experience == 1",
-            "fieldname": "spouse_work_experience_details",
-            "fieldtype": "Long Text",
-            "label": "Spouse Work Experience details"
-        },
-        {
-            "fieldname": "column_break_rdby",
-            "fieldtype": "Column Break"
-        },
-        {
-            "fieldname": "spouse_result_verification_link_if_applicable_copy",
-            "fieldtype": "Text",
-            "label": "Result verification link (if applicable)"
-        },
-        {
-            "fieldname": "spouse_university_domain_email_id_optional_copy",
-            "fieldtype": "Text",
-            "label": "University domain email id (optional)"
-        },
-        {
-            "depends_on": "eval:doc.spouse_work_experience == 1",
-            "fieldname": "spouse_salary_mode",
-            "fieldtype": "Select",
-            "label": "Salary Mode",
-            "options": "Cash\nBank Account"
-        },
-        {
-            "fieldname": "spouse_documents",
-            "fieldtype": "Table",
-            "label": "Spouse Documents",
-            "options": "student documents"
-        },
-        {
-            "default": "0",
-            "depends_on": "eval:doc.spouse_work_experience == 1",
-            "fieldname": "spouse_work_experience_verified",
-            "fieldtype": "Check",
-            "label": "Work Experience Verified"
-        },
-        {
-            "default": "0",
-            "depends_on": "eval:doc.spouse_work_experience == 1",
-            "fieldname": "spouse_itr_verified_as_per_work_exp",
-            "fieldtype": "Check",
-            "label": "ITR Verified (as per Work Exp) "
-        },
-        {
-            "default": "0",
-            "depends_on": "eval:doc.spouse_salary_mode == 'Cash'",
-            "fieldname": "spouse_salary_slips_verified_6_months",
-            "fieldtype": "Check",
-            "label": "Salary Slips Verified (6 Months) Copy"
-        },
-        {
-            "default": "0",
-            "depends_on": "eval:doc.spouse_salary_mode == 'Bank Account'",
-            "fieldname": "spouse_salary_statements_verified_3_months",
-            "fieldtype": "Check",
-            "label": "Salary Statements Verified (3 Months)"
-        },
-        {
             "depends_on": "eval:in_list(frappe.user_roles, 'System Manager') || in_list(frappe.user_roles, 'Team Lead') || in_list(frappe.user_roles, 'Team Executive')",
             "fieldname": "offer_tab",
             "fieldtype": "Tab Break",
@@ -1934,6 +1928,53 @@
             "options": "offer_currency"
         },
         {
+            "default": "10394",
+            "depends_on": "eval:doc.martial_status == 'Married' && doc.case_4_proceed_above_1_year == 'with Spouse'",
+            "fieldname": "living_expenses_spouse",
+            "fieldtype": "Currency",
+            "label": "Living Expense Spouse",
+            "options": "offer_currency"
+        },
+        {
+            "default": "2200",
+            "depends_on": "eval:doc.martial_status == 'Married' && doc.case_4_proceed_above_1_year == 'with Spouse'",
+            "fieldname": "travel_expenses_spouse",
+            "fieldtype": "Currency",
+            "label": "Travel Expense Spouse",
+            "options": "offer_currency"
+        },
+        {
+            "default": "0",
+            "fieldname": "process_with_kids",
+            "fieldtype": "Check",
+            "label": "Process with Kids"
+        },
+        {
+            "default": "0",
+            "depends_on": "eval:doc.process_with_kids == 1",
+            "fieldname": "no_of_kids",
+            "fieldtype": "Int",
+            "label": "Number of Kids"
+        },
+        {
+            "default": "449",
+            "depends_on": "eval:doc.process_with_kids == 1",
+            "fieldname": "living_expenses_kid_unit",
+            "fieldtype": "Currency",
+            "label": "Living Expense Kid (Per Kid)",
+            "options": "offer_currency",
+            "read_only": 1
+        },
+        {
+            "default": "2200",
+            "depends_on": "eval:doc.process_with_kids == 1",
+            "fieldname": "travel_expenses_kid_unit",
+            "fieldtype": "Currency",
+            "label": "Travel Expense Kid (Per Kid)",
+            "options": "offer_currency",
+            "read_only": 1
+        },
+        {
             "fieldname": "column_break_offer_2",
             "fieldtype": "Column Break"
         },
@@ -1941,7 +1982,7 @@
             "fieldname": "funds_required_type",
             "fieldtype": "Select",
             "label": "Funds Required",
-            "options": "\nWith Full Year Fee\nWithout Full Year Fee"
+            "options": "\nWith Full Year fee (single basis)\nWithout Full Year fee (single basis)\nWith Full Year fee (With spouse)\nWithout Full Year fee (With spouse)\nWith Full Year fee (With spouse and Kid)\nWithout Full Year fee (With spouse and Kid)\nWith Full Year fee (With Kid)\nWithout Full Year fee (With Kid)"
         },
         {
             "description": "Automatically calculated based on Funds Required selection",
@@ -2079,6 +2120,54 @@
             "options": "defer_offer_currency"
         },
         {
+            "default": "10394",
+            "depends_on": "eval:doc.defer_offer_required == 1 && doc.martial_status == 'Married' && doc.case_4_proceed_above_1_year == 'with Spouse'",
+            "fieldname": "defer_living_expenses_spouse",
+            "fieldtype": "Currency",
+            "label": "Living Expense Spouse",
+            "options": "defer_offer_currency"
+        },
+        {
+            "default": "2200",
+            "depends_on": "eval:doc.defer_offer_required == 1 && doc.martial_status == 'Married' && doc.case_4_proceed_above_1_year == 'with Spouse'",
+            "fieldname": "defer_travel_expenses_spouse",
+            "fieldtype": "Currency",
+            "label": "Travel Expense Spouse",
+            "options": "defer_offer_currency"
+        },
+        {
+            "default": "0",
+            "depends_on": "eval:doc.defer_offer_required == 1",
+            "fieldname": "defer_process_with_kids",
+            "fieldtype": "Check",
+            "label": "Process with Kids"
+        },
+        {
+            "default": "0",
+            "depends_on": "eval:doc.defer_offer_required == 1 && doc.defer_process_with_kids == 1",
+            "fieldname": "defer_no_of_kids",
+            "fieldtype": "Int",
+            "label": "Number of Kids"
+        },
+        {
+            "default": "449",
+            "depends_on": "eval:doc.defer_offer_required == 1 && doc.defer_process_with_kids == 1",
+            "fieldname": "defer_living_expenses_kid_unit",
+            "fieldtype": "Currency",
+            "label": "Living Expense Kid (Per Kid)",
+            "options": "defer_offer_currency",
+            "read_only": 1
+        },
+        {
+            "default": "2200",
+            "depends_on": "eval:doc.defer_offer_required == 1 && doc.defer_process_with_kids == 1",
+            "fieldname": "defer_travel_expenses_kid_unit",
+            "fieldtype": "Currency",
+            "label": "Travel Expense Kid (Per Kid)",
+            "options": "defer_offer_currency",
+            "read_only": 1
+        },
+        {
             "depends_on": "eval:doc.defer_offer_required == 1",
             "fieldname": "column_break_defer_2",
             "fieldtype": "Column Break"
@@ -2088,7 +2177,7 @@
             "fieldname": "defer_funds_required_type",
             "fieldtype": "Select",
             "label": "Funds Required",
-            "options": "\nWith Full Year Fee\nWithout Full Year Fee"
+            "options": "\nWith Full Year fee (single basis)\nWithout Full Year fee (single basis)\nWith Full Year fee (With spouse)\nWithout Full Year fee (With spouse)\nWith Full Year fee (With spouse and Kid)\nWithout Full Year fee (With spouse and Kid)\nWith Full Year fee (With Kid)\nWithout Full Year fee (With Kid)"
         },
         {
             "depends_on": "eval:doc.defer_offer_required == 1",
@@ -2452,78 +2541,23 @@
             "label": "Section D - Academics"
         },
         {
-            "default": "0",
-            "fieldname": "notarize_docs_required",
-            "fieldtype": "Check",
-            "label": "Notarize Documents Required"
+            "fieldname": "student_academic_verification",
+            "fieldtype": "Table",
+            "label": "Student Academic Verification",
+            "options": "Academic Verification"
         },
         {
-            "depends_on": "eval:doc.notarize_docs_required",
-            "fieldname": "notarized_academic_docs_upload",
-            "fieldtype": "Attach",
-            "label": "Notarized All Academic Docs"
+            "depends_on": "eval:doc.martial_status == 'Married' && doc.case_4_proceed_above_1_year == 'with Spouse'",
+            "fieldname": "spouse_academics_sb",
+            "fieldtype": "Section Break",
+            "label": "Spouse Academics Verification"
         },
         {
-            "default": "0",
-            "fieldname": "parents_name_matched_academics",
-            "fieldtype": "Check",
-            "label": "Parents Name Matched with Students Academics"
-        },
-        {
-            "default": "\u2713 Ok",
-            "depends_on": "eval:doc.parents_name_matched_academics",
-            "fieldname": "parents_name_academics_status",
-            "fieldtype": "Text",
-            "label": "Status",
-            "read_only": 1
-        },
-        {
-            "depends_on": "eval:!doc.parents_name_matched_academics",
-            "fieldname": "parents_name_academics_affidavit_upload",
-            "fieldtype": "Attach",
-            "label": "Same Name Affidavit Upload"
-        },
-        {
-            "default": "0",
-            "fieldname": "parents_name_matched_passport",
-            "fieldtype": "Check",
-            "label": "Parents Name Matched with Passport"
-        },
-        {
-            "default": "\u2713 Ok",
-            "depends_on": "eval:doc.parents_name_matched_passport",
-            "fieldname": "parents_name_passport_status",
-            "fieldtype": "Text",
-            "label": "Status",
-            "read_only": 1
-        },
-        {
-            "depends_on": "eval:!doc.parents_name_matched_passport",
-            "fieldname": "parents_name_passport_affidavit_upload",
-            "fieldtype": "Attach",
-            "label": "Same Name Affidavit Upload"
-        },
-        {
-            "fieldname": "gap_docs_notarized_upload",
-            "fieldtype": "Attach",
-            "label": "Gap Documents Notarized Upload"
-        },
-        {
-            "default": "0",
-            "fieldname": "passport_stamp_or_immigration_history",
-            "fieldtype": "Check",
-            "label": "Is there Any Stump on Passport or Immigration History"
-        },
-        {
-            "depends_on": "eval:doc.passport_stamp_or_immigration_history",
-            "fieldname": "passport_stamp_check_details",
-            "fieldtype": "Text",
-            "label": "Check Details - Whether We Can Process or Not"
-        },
-        {
-            "fieldname": "full_notarized_passport_upload",
-            "fieldtype": "Attach",
-            "label": "Full Notarized Passport Upload"
+            "depends_on": "eval:doc.martial_status == 'Married' && doc.case_4_proceed_above_1_year == 'with Spouse'",
+            "fieldname": "spouse_academic_verification",
+            "fieldtype": "Table",
+            "label": "Spouse Academic Verification",
+            "options": "Academic Verification"
         },
         {
             "bold": 1,
@@ -2578,17 +2612,32 @@
             "label": "Student Affidavit Upload"
         },
         {
-            "fieldname": "study_gap_proof_details",
+            "fieldname": "study_gap_proof_list",
             "fieldtype": "Table",
-            "label": "Study Gap Proof Details",
-            "options": "student documents"
+            "label": "Study Gap Proof List",
+            "options": "Study Gap Proof"
+        },
+        {
+            "fieldname": "asd",
+            "fieldtype": "Data",
+            "label": "asd"
+        },
+        {
+            "fieldname": "c_sponsors_section",
+            "fieldtype": "Section Break",
+            "label": "C. Sponsors"
+        },
+        {
+            "fieldname": "table_ihmq",
+            "fieldtype": "Table",
+            "options": "Application Sponsor Complete"
         }
     ],
     "grid_page_length": 50,
     "icon": "fa fa-file-text",
     "index_web_pages_for_search": 1,
     "links": [],
-    "modified": "2026-02-06 22:25:20.685186",
+    "modified": "2026-02-07 11:37:49.276606",
     "modified_by": "Administrator",
     "module": "CRM",
     "name": "Application",

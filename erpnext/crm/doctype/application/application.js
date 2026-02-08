@@ -102,15 +102,15 @@ frappe.ui.form.on("Application", {
 		if (frm.doc.dob) {
 			const dob = new Date(frm.doc.dob);
 			const today = new Date();
-			
+
 			let age = today.getFullYear() - dob.getFullYear();
 			const monthDiff = today.getMonth() - dob.getMonth();
-			
+
 			// Adjust age if birthday hasn't occurred this year
 			if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
 				age--;
 			}
-			
+
 			if (age > 0) {
 				frm.set_value("current_age", age);
 			}
@@ -182,7 +182,7 @@ frappe.ui.form.on("Application", {
 			});
 		}
 	},
-	
+
 	preferred_courses(frm) {
 		populateOfferUniversityAndCourse(frm);
 	},
@@ -304,15 +304,15 @@ frappe.ui.form.on("Application", {
 		if (frm.doc.dob) {
 			const dob = new Date(frm.doc.dob);
 			const today = new Date();
-			
+
 			let age = today.getFullYear() - dob.getFullYear();
 			const monthDiff = today.getMonth() - dob.getMonth();
-			
+
 			// Adjust age if birthday hasn't occurred this year
 			if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
 				age--;
 			}
-			
+
 			if (age > 0) {
 				frm.set_value("current_age", age);
 			} else {
@@ -345,21 +345,21 @@ frappe.ui.form.on("Application", {
 			createSubmittedTabReminders(frm);
 		}
 	},
-	
+
 	after_save(frm) {
 		// Create reminders after document is saved
 		if (frm.doc.any_further_requirement_offer_letter) {
 			// Small delay to ensure document is fully saved
-			setTimeout(function() {
+			setTimeout(function () {
 				createSubmittedTabReminders(frm);
 			}, 500);
 		}
-		
+
 		// Create intake reminder if intake date is set
 		if (frm.doc.university_intake) {
 			createIntakeReminder(frm, frm.doc.university_intake, "Main Offer");
 		}
-		
+
 		// Create defer intake reminder if defer intake date is set
 		if (frm.doc.defer_offer_required && frm.doc.defer_university_intake) {
 			createIntakeReminder(frm, frm.doc.defer_university_intake, "Defer Offer");
@@ -370,49 +370,97 @@ frappe.ui.form.on("Application", {
 	funds_required_type(frm) {
 		calculateFundsRequired(frm, false);
 	},
-	
+
 	full_year_tuition_fee(frm) {
 		calculateFundsRequired(frm, false);
 	},
-	
+
 	oshc_offer(frm) {
 		calculateFundsRequired(frm, false);
 	},
-	
+
 	payable_fee(frm) {
 		calculateFundsRequired(frm, false);
 	},
-	
+
 	living_expenses(frm) {
 		calculateFundsRequired(frm, false);
 	},
-	
+
 	travel_expenses(frm) {
 		calculateFundsRequired(frm, false);
+	},
+
+	living_expenses_spouse(frm) {
+		calculateFundsRequired(frm, false);
+	},
+
+	travel_expenses_spouse(frm) {
+		calculateFundsRequired(frm, false);
+	},
+
+	no_of_kids(frm) {
+		calculateFundsRequired(frm, false);
+	},
+
+	process_with_kids(frm) {
+		if (!frm.doc.process_with_kids) {
+			frm.set_value("no_of_kids", 0);
+		}
+		calculateFundsRequired(frm, false);
+	},
+
+	case_4_proceed_above_1_year(frm) {
+		calculateFundsRequired(frm, false);
+		calculateFundsRequired(frm, true);
+	},
+
+	martial_status(frm) {
+		calculateFundsRequired(frm, false);
+		calculateFundsRequired(frm, true);
 	},
 
 	// Funds Required calculation for defer offer
 	defer_funds_required_type(frm) {
 		calculateFundsRequired(frm, true);
 	},
-	
+
 	defer_full_year_tuition_fee(frm) {
 		calculateFundsRequired(frm, true);
 	},
-	
+
 	defer_oshc(frm) {
 		calculateFundsRequired(frm, true);
 	},
-	
+
 	defer_payable_fee(frm) {
 		calculateFundsRequired(frm, true);
 	},
-	
+
 	defer_living_expenses(frm) {
 		calculateFundsRequired(frm, true);
 	},
-	
+
 	defer_travel_expenses(frm) {
+		calculateFundsRequired(frm, true);
+	},
+
+	defer_living_expenses_spouse(frm) {
+		calculateFundsRequired(frm, true);
+	},
+
+	defer_travel_expenses_spouse(frm) {
+		calculateFundsRequired(frm, true);
+	},
+
+	defer_no_of_kids(frm) {
+		calculateFundsRequired(frm, true);
+	},
+
+	defer_process_with_kids(frm) {
+		if (!frm.doc.defer_process_with_kids) {
+			frm.set_value("defer_no_of_kids", 0);
+		}
 		calculateFundsRequired(frm, true);
 	},
 
@@ -423,7 +471,7 @@ frappe.ui.form.on("Application", {
 		}
 		calculateFundsRequired(frm, false);
 	},
-	
+
 	defer_university_intake(frm) {
 		if (frm.doc.defer_university_intake && frm.doc.defer_offer_required && frm.doc.name && !frm.doc.__islocal) {
 			createIntakeReminder(frm, frm.doc.defer_university_intake, "Defer Offer");
@@ -436,12 +484,12 @@ frappe.ui.form.on("Application", {
 		if (frm.doc.defer_offer_required) {
 			// First populate from Details tab
 			populateDeferOfferUniversityAndCourse(frm);
-			
+
 			// Set default currency if not set
 			if (!frm.doc.defer_offer_currency) {
 				frm.set_value("defer_offer_currency", frm.doc.offer_currency || "AUD");
 			}
-			
+
 			// Then populate from main offer fields
 			if (frm.doc.university_name && !frm.doc.defer_university_name) {
 				frm.set_value("defer_university_name", frm.doc.university_name);
@@ -471,7 +519,7 @@ frappe.ui.form.on("Application", {
 				frm.set_value("defer_funds_required_type", frm.doc.funds_required_type);
 			}
 			// Copy conditions from offer letter to defer offer letter (Table MultiSelect)
-			if (frm.doc.conditions_on_offer_letter && frm.doc.conditions_on_offer_letter.length > 0 && 
+			if (frm.doc.conditions_on_offer_letter && frm.doc.conditions_on_offer_letter.length > 0 &&
 				(!frm.doc.defer_conditions_on_offer_letter || frm.doc.defer_conditions_on_offer_letter.length === 0)) {
 				// Extract condition values from source field
 				const conditions = frm.doc.conditions_on_offer_letter.map(row => ({
@@ -479,7 +527,7 @@ frappe.ui.form.on("Application", {
 				}));
 				frm.set_value("defer_conditions_on_offer_letter", conditions);
 			}
-			
+
 			// Update currency fields
 			updateCurrencyFields(frm, true);
 		}
@@ -494,7 +542,7 @@ frappe.ui.form.on("Application", {
 				frm.set_value("offer_currency", "AUD");
 			}
 			// Update currency fields
-			setTimeout(function() {
+			setTimeout(function () {
 				updateCurrencyFields(frm, false);
 				if (frm.doc.defer_offer_required) {
 					updateCurrencyFields(frm, true);
@@ -871,7 +919,7 @@ function clearJobFields(frm) {
 function createSubmittedTabReminders(frm) {
 	// Check if reminder already exists to avoid duplicates
 	// We'll create reminder only if conditions are met
-	
+
 	if (!frm.doc.any_further_requirement_offer_letter) {
 		// Set reminder: Follow up on Offer Letter
 		createOfferLetterReminder(frm, "Follow up on Offer Letter");
@@ -891,10 +939,10 @@ function createOfferLetterReminder(frm, description) {
 	// Set reminder for 3 days from now (you can adjust this)
 	const remindDate = new Date();
 	remindDate.setDate(remindDate.getDate() + 3);
-	
+
 	// Format: YYYY-MM-DD HH:mm:ss (Frappe datetime format)
 	const remindAt = frappe.datetime.obj_to_str(remindDate).replace('T', ' ') + ':00';
-	
+
 	// Check if reminder already exists for this description (only if document is saved)
 	if (frm.doc.name && !frm.doc.__islocal) {
 		frappe.db.get_list("Reminder", {
@@ -904,7 +952,7 @@ function createOfferLetterReminder(frm, description) {
 				description: description
 			},
 			limit: 1
-		}).then(function(existingReminders) {
+		}).then(function (existingReminders) {
 			// Only create if it doesn't exist
 			if (existingReminders.length === 0) {
 				frappe.call({
@@ -915,7 +963,7 @@ function createOfferLetterReminder(frm, description) {
 						reminder_doctype: 'Application',
 						reminder_docname: frm.doc.name
 					},
-					callback: function(response) {
+					callback: function (response) {
 						if (response.message) {
 							frappe.show_alert({
 								message: 'Reminder set: ' + description,
@@ -923,7 +971,7 @@ function createOfferLetterReminder(frm, description) {
 							}, 3);
 						}
 					},
-					error: function(err) {
+					error: function (err) {
 						console.error('Error creating reminder:', err);
 					}
 				});
@@ -942,29 +990,54 @@ function createOfferLetterReminder(frm, description) {
 // Helper function to calculate Funds Required
 function calculateFundsRequired(frm, isDefer) {
 	const prefix = isDefer ? "defer_" : "";
-	
+
 	const fundsType = frm.doc[prefix + "funds_required_type"];
 	const fullYearTuitionFee = parseFloat(frm.doc[prefix + "full_year_tuition_fee"]) || 0;
 	const oshc = parseFloat(frm.doc[prefix + "oshc_offer"] || frm.doc[prefix + "oshc"]) || 0;
 	const livingExpenses = parseFloat(frm.doc[prefix + "living_expenses"]) || 0;
 	const travelExpenses = parseFloat(frm.doc[prefix + "travel_expenses"]) || 0;
 	const payableFee = parseFloat(frm.doc[prefix + "payable_fee"]) || 0;
-	
+
+	const livingExpSpouse = parseFloat(frm.doc[prefix + "living_expenses_spouse"]) || 0;
+	const travelExpSpouse = parseFloat(frm.doc[prefix + "travel_expenses_spouse"]) || 0;
+	const noOfKids = parseInt(frm.doc[prefix + "no_of_kids"]) || 0;
+	const livingExpKidUnit = parseFloat(frm.doc[prefix + "living_expenses_kid_unit"]) || 0;
+	const travelExpKidUnit = parseFloat(frm.doc[prefix + "travel_expenses_kid_unit"]) || 0;
+
 	let fundsRequired = 0;
-	
-	if (fundsType === "With Full Year Fee") {
-		fundsRequired = fullYearTuitionFee + oshc + livingExpenses + travelExpenses;
-	} else if (fundsType === "Without Full Year Fee") {
-		fundsRequired = fullYearTuitionFee + oshc + livingExpenses + travelExpenses - payableFee;
+
+	// Start with base expenses
+	fundsRequired = fullYearTuitionFee + oshc + livingExpenses + travelExpenses;
+
+	if (fundsType) {
+		// Add Spouse expenses if selected AND applicable
+		const spouseApplicable = frm.doc.martial_status === 'Married' &&
+			frm.doc.case_4_proceed_above_1_year === 'with Spouse';
+
+		if (fundsType.includes("With spouse") && spouseApplicable) {
+			fundsRequired += livingExpSpouse + travelExpSpouse;
+		}
+
+		// Add Kid expenses if selected AND applicable
+		const kidApplicable = isDefer ? frm.doc.defer_process_with_kids : frm.doc.process_with_kids;
+
+		if (fundsType.includes("Kid") && kidApplicable) {
+			fundsRequired += (livingExpKidUnit * noOfKids) + (travelExpKidUnit * noOfKids);
+		}
+
+		// Deduct Payable Fee if "Without Full Year fee" is selected
+		if (fundsType.includes("Without Full Year fee")) {
+			fundsRequired -= payableFee;
+		}
 	}
-	
+
 	const amountField = prefix + "funds_required_amount";
 	if (fundsRequired > 0) {
 		frm.set_value(amountField, fundsRequired);
 	} else {
 		frm.set_value(amountField, 0);
 	}
-	
+
 	// Ensure the funds_required_amount field uses the correct currency
 	const currencyField = prefix + "offer_currency";
 	if (frm.fields_dict[amountField] && frm.doc[currencyField]) {
@@ -980,16 +1053,16 @@ function createIntakeReminder(frm, intakeDate, offerType) {
 	if (!intakeDate || !frm.doc.name || frm.doc.__islocal) {
 		return;
 	}
-	
+
 	// Set reminder for intake date (same day as intake)
 	const remindDate = new Date(intakeDate);
 	remindDate.setHours(9, 0, 0, 0); // Set to 9 AM on intake date
-	
+
 	// Format: YYYY-MM-DD HH:mm:ss
 	const remindAt = frappe.datetime.obj_to_str(remindDate).replace('T', ' ') + ':00';
-	
+
 	const description = "Decide deadline for deposit - " + offerType;
-	
+
 	// Check if reminder already exists
 	frappe.db.get_list("Reminder", {
 		filters: {
@@ -998,7 +1071,7 @@ function createIntakeReminder(frm, intakeDate, offerType) {
 			description: description
 		},
 		limit: 1
-	}).then(function(existingReminders) {
+	}).then(function (existingReminders) {
 		// Only create if it doesn't exist
 		if (existingReminders.length === 0) {
 			frappe.call({
@@ -1009,7 +1082,7 @@ function createIntakeReminder(frm, intakeDate, offerType) {
 					reminder_doctype: 'Application',
 					reminder_docname: frm.doc.name
 				},
-				callback: function(response) {
+				callback: function (response) {
 					if (response.message) {
 						frappe.show_alert({
 							message: 'Intake reminder set: ' + description,
@@ -1017,7 +1090,7 @@ function createIntakeReminder(frm, intakeDate, offerType) {
 						}, 3);
 					}
 				},
-				error: function(err) {
+				error: function (err) {
 					console.error('Error creating intake reminder:', err);
 				}
 			});
@@ -1030,11 +1103,11 @@ function checkAndDeactivateIntakeReminder(frm) {
 	// This should be called when tuition fee payment is recorded
 	// For now, we'll check on form refresh if there's a tuition fee payment field
 	// You may need to add a field to track tuition fee payment status
-	
+
 	if (frm.doc.name && !frm.doc.__islocal) {
 		// Check if tuition fee is paid (you'll need to add this field or logic)
 		// For now, this is a placeholder - you may need to add a field like "tuition_fee_paid" or check payment status
-		
+
 		// Find and cancel pending intake reminders
 		frappe.db.get_list("Reminder", {
 			filters: {
@@ -1043,7 +1116,7 @@ function checkAndDeactivateIntakeReminder(frm) {
 				description: ["like", "Decide deadline for deposit%"],
 				notified: 0
 			}
-		}).then(function(reminders) {
+		}).then(function (reminders) {
 			// If tuition fee is paid, cancel the reminders
 			// You'll need to implement the logic to check if tuition fee is paid
 			// For example: if (frm.doc.tuition_fee_paid === 1) { ... }
@@ -1057,7 +1130,7 @@ function populateOfferUniversityAndCourse(frm) {
 	if (frm.doc.preferred_university && !frm.doc.university_name) {
 		frm.set_value("university_name", frm.doc.preferred_university);
 	}
-	
+
 	// Auto-populate course_name from first course in preferred_courses table
 	if (frm.doc.preferred_courses && frm.doc.preferred_courses.length > 0 && !frm.doc.course_name) {
 		const firstCourse = frm.doc.preferred_courses[0];
@@ -1073,7 +1146,7 @@ function populateDeferOfferUniversityAndCourse(frm) {
 	if (frm.doc.preferred_university && !frm.doc.defer_university_name) {
 		frm.set_value("defer_university_name", frm.doc.preferred_university);
 	}
-	
+
 	// Auto-populate defer_course_name from first course in preferred_courses table
 	if (frm.doc.preferred_courses && frm.doc.preferred_courses.length > 0 && !frm.doc.defer_course_name) {
 		const firstCourse = frm.doc.preferred_courses[0];
@@ -1087,7 +1160,7 @@ function populateDeferOfferUniversityAndCourse(frm) {
 function updateCurrencyFields(frm, isDefer) {
 	const currencyField = isDefer ? "defer_offer_currency" : "offer_currency";
 	const selectedCurrency = frm.doc[currencyField] || "AUD";
-	
+
 	// List of all currency fields for main or defer offer
 	const currencyFields = isDefer ? [
 		"defer_full_year_tuition_fee",
@@ -1096,6 +1169,10 @@ function updateCurrencyFields(frm, isDefer) {
 		"defer_oshc",
 		"defer_living_expenses",
 		"defer_travel_expenses",
+		"defer_living_expenses_spouse",
+		"defer_travel_expenses_spouse",
+		"defer_living_expenses_kid_unit",
+		"defer_travel_expenses_kid_unit",
 		"defer_funds_required_amount"
 	] : [
 		"full_year_tuition_fee",
@@ -1104,15 +1181,19 @@ function updateCurrencyFields(frm, isDefer) {
 		"oshc_offer",
 		"living_expenses",
 		"travel_expenses",
+		"living_expenses_spouse",
+		"travel_expenses_spouse",
+		"living_expenses_kid_unit",
+		"travel_expenses_kid_unit",
 		"funds_required_amount"
 	];
 
 	// Update currency for each field
-	currencyFields.forEach(function(fieldname) {
+	currencyFields.forEach(function (fieldname) {
 		if (frm.fields_dict[fieldname]) {
 			// Set the currency property to reference the currency selector
 			frm.set_df_property(fieldname, "options", currencyField);
-			
+
 			// Force refresh the field to apply currency change
 			frm.refresh_field(fieldname);
 		}
@@ -1124,7 +1205,7 @@ function updateFundsRequiredLabel(frm, isDefer) {
 	const currencyField = isDefer ? "defer_offer_currency" : "offer_currency";
 	const amountField = isDefer ? "defer_funds_required_amount" : "funds_required_amount";
 	const selectedCurrency = frm.doc[currencyField] || "AUD";
-	
+
 	if (frm.fields_dict[amountField]) {
 		// Update the label to include currency code
 		frm.set_df_property(amountField, "label", "Funds Required Amount (" + selectedCurrency + ")");
@@ -1137,13 +1218,13 @@ function createGSReminder(frm, reminderDate) {
 	if (!reminderDate || !frm.doc.name || frm.doc.__islocal) {
 		return;
 	}
-	
+
 	const remindDate = new Date(reminderDate);
 	remindDate.setHours(9, 0, 0, 0);
-	
+
 	const remindAt = frappe.datetime.obj_to_str(remindDate).replace('T', ' ') + ':00';
 	const description = "When financials will be completed";
-	
+
 	frappe.db.get_list("Reminder", {
 		filters: {
 			reminder_doctype: "Application",
@@ -1151,7 +1232,7 @@ function createGSReminder(frm, reminderDate) {
 			description: description
 		},
 		limit: 1
-	}).then(function(existingReminders) {
+	}).then(function (existingReminders) {
 		if (existingReminders.length === 0) {
 			frappe.call({
 				method: 'frappe.automation.doctype.reminder.reminder.create_new_reminder',
@@ -1161,7 +1242,7 @@ function createGSReminder(frm, reminderDate) {
 					reminder_doctype: 'Application',
 					reminder_docname: frm.doc.name
 				},
-				callback: function(response) {
+				callback: function (response) {
 					if (response.message) {
 						frappe.show_alert({
 							message: 'Reminder set: ' + description,
@@ -1182,14 +1263,14 @@ frappe.ui.form.on("Application", {
 		}
 		frm.refresh();
 	},
-	
+
 	oshc_refund_received(frm) {
 		if (!frm.doc.oshc_refund_received) {
 			createRefundReminder(frm, null, "OSHC Refund Expected");
 		}
 		frm.refresh();
 	},
-	
+
 	tuition_fee_issue_resolved(frm) {
 		if (!frm.doc.tuition_fee_issue_resolved && frm.doc.tuition_fee_issue) {
 			createRefundReminder(frm, null, "Refund Issue Expected to Resolve");
@@ -1206,7 +1287,7 @@ frappe.ui.form.on("Application", {
 		}
 		frm.refresh();
 	},
-	
+
 	student_got_refusal(frm) {
 		if (frm.doc.student_got_refusal) {
 			// Update visa_status to trigger Visa Refused tab
@@ -1233,15 +1314,15 @@ frappe.ui.form.on("Application", {
 		if (frm.doc.visa_decision === 'Visa Approved') {
 			// Update visa_status field (read-only field updated via JS)
 			frm.set_value('visa_status', 'Visa Approved');
-			
+
 			// Send notification to Account Department
 			createVisaApprovedNotification(frm);
-			
+
 			createCOEReminder(frm, null, "Visa Approved - Account Department Notified");
 		} else if (frm.doc.visa_decision === 'Visa Refused') {
 			// Update visa_status field (read-only field updated via JS)
 			frm.set_value('visa_status', 'Visa Refused');
-			
+
 			createCOEReminder(frm, null, "Visa Refused - Move to Visa Refused Stage");
 		} else {
 			// Reset to File Lodged
@@ -1263,35 +1344,35 @@ frappe.ui.form.on("Application", {
 		}
 		frm.refresh();
 	},
-	
+
 	form_956a_filled(frm) {
 		if (!frm.doc.form_956a_filled) {
 			createCOEReminder(frm, null, "Complete 956A Form");
 		}
 		frm.refresh();
 	},
-	
+
 	file_lodged_status(frm) {
 		if (!frm.doc.file_lodged_status && frm.doc.file_lodged_by === 'Our Side') {
 			createCOEReminder(frm, null, "Submit Visa File Lodgement");
 		}
 		frm.refresh();
 	},
-	
+
 	agent_file_lodged_status(frm) {
 		if (!frm.doc.agent_file_lodged_status && frm.doc.file_lodged_by === 'Agent') {
 			createCOEReminder(frm, null, "Submit Visa File Lodgement - Agent");
 		}
 		frm.refresh();
 	},
-	
+
 	student_file_lodged_status(frm) {
 		if (!frm.doc.student_file_lodged_status && frm.doc.file_lodged_by === 'Student') {
 			createCOEReminder(frm, null, "Submit Visa File Lodgement - Student");
 		}
 		frm.refresh();
 	},
-	
+
 	vendor_file_lodged_status(frm) {
 		if (!frm.doc.vendor_file_lodged_status && frm.doc.file_lodged_by === 'Vendor') {
 			createCOEReminder(frm, null, "Submit Visa File Lodgement - Vendor");
@@ -1308,14 +1389,14 @@ frappe.ui.form.on("Application", {
 		}
 		frm.refresh();
 	},
-	
+
 	acceptance_student_prepare(frm) {
 		if (!frm.doc.acceptance_student_prepare && frm.doc.acceptance_before_coe_available) {
 			createAcceptanceReminder(frm, null, "Prepare Student for Acceptance Interview");
 		}
 		frm.refresh();
 	},
-	
+
 	acceptance_schedule_interview(frm) {
 		if (!frm.doc.acceptance_schedule_interview && frm.doc.acceptance_before_coe_available) {
 			createAcceptanceReminder(frm, null, "Follow Up Acceptance Interview Schedule");
@@ -1325,14 +1406,14 @@ frappe.ui.form.on("Application", {
 		}
 		frm.refresh();
 	},
-	
+
 	acceptance_any_requirement(frm) {
 		if (!frm.doc.acceptance_any_requirement) {
 			createAcceptanceReminder(frm, null, "Waiting for COE");
 		}
 		frm.refresh();
 	},
-	
+
 	acceptance_requirements_completed(frm) {
 		if (!frm.doc.acceptance_requirements_completed && frm.doc.acceptance_any_requirement) {
 			createAcceptanceReminder(frm, null, "Acceptance Requirement Completion Pending");
@@ -1352,28 +1433,28 @@ frappe.ui.form.on("Application", {
 		}
 		frm.refresh();
 	},
-	
+
 	gha_policy_received(frm) {
 		if (!frm.doc.gha_policy_received && frm.doc.oshc_arranged_by_type === 'GHA' && frm.doc.oshc_required) {
 			createGSReminder(frm, null, "OSHC Policy Received from GHA");
 		}
 		frm.refresh();
 	},
-	
+
 	agent_policy_received(frm) {
 		if (!frm.doc.agent_policy_received && frm.doc.oshc_arranged_by_type === 'Agent' && frm.doc.oshc_required) {
 			createGSReminder(frm, null, "OSHC Policy Received from Agent");
 		}
 		frm.refresh();
 	},
-	
+
 	student_policy_received(frm) {
 		if (!frm.doc.student_policy_received && frm.doc.oshc_arranged_by_type === 'Student' && frm.doc.oshc_required) {
 			createGSReminder(frm, null, "OSHC Policy Received from Student");
 		}
 		frm.refresh();
 	},
-	
+
 	acceptance_submitted(frm) {
 		if (!frm.doc.acceptance_submitted) {
 			createGSReminder(frm, null, "Acceptance Submission Pending");
@@ -1390,14 +1471,14 @@ frappe.ui.form.on("Application", {
 		}
 		frm.refresh();
 	},
-	
+
 	student_prepare(frm) {
 		if (!frm.doc.student_prepare && frm.doc.interview_stage_available) {
 			createGSReminder(frm, null, "Prepare Student for Interview");
 		}
 		frm.refresh();
 	},
-	
+
 	schedule_interview(frm) {
 		if (!frm.doc.schedule_interview && frm.doc.interview_stage_available) {
 			createGSReminder(frm, null, "Follow Up Interview Schedule");
@@ -1407,14 +1488,14 @@ frappe.ui.form.on("Application", {
 		}
 		frm.refresh();
 	},
-	
+
 	gs_any_requirement(frm) {
 		if (!frm.doc.gs_any_requirement && !frm.doc.gs_approved_check) {
 			createGSReminder(frm, null, "Waiting for GS Approved");
 		}
 		frm.refresh();
 	},
-	
+
 	requirements_completed(frm) {
 		if (!frm.doc.requirements_completed && frm.doc.gs_any_requirement && !frm.doc.gs_approved_check) {
 			createGSReminder(frm, null, "Requirement Completion Pending");
@@ -1434,35 +1515,35 @@ frappe.ui.form.on("Application", {
 		}
 		frm.refresh();
 	},
-	
+
 	bs_is_balance_cert_available(frm) {
 		if (!frm.doc.bs_is_balance_cert_available && frm.doc.funds_type === 'Bank statement') {
 			createTypesOfFundsReminder(frm, "Balance Certificate Required for Bank Statement");
 		}
 		frm.refresh();
 	},
-	
+
 	bs_cert_date_matches(frm) {
 		if (!frm.doc.bs_cert_date_matches && frm.doc.bs_is_balance_cert_available && frm.doc.funds_type === 'Bank statement') {
 			createTypesOfFundsReminder(frm, "Bank Statement and Balance Certificate Dates Mismatch");
 		}
 		frm.refresh();
 	},
-	
+
 	el_is_for_education(frm) {
 		if (!frm.doc.el_is_for_education && frm.doc.funds_type === 'Education loan') {
 			createTypesOfFundsReminder(frm, "Revised Education Loan Letter Required");
 		}
 		frm.refresh();
 	},
-	
+
 	el_holder_name_matches_student(frm) {
 		if (!frm.doc.el_holder_name_matches_student && frm.doc.funds_type === 'Education loan') {
 			createTypesOfFundsReminder(frm, "Revised Education Loan Letter Required - Holder Name Mismatch");
 		}
 		frm.refresh();
 	},
-	
+
 	el_covers_funds_requirement(frm) {
 		if (!frm.doc.el_covers_funds_requirement && frm.doc.funds_type === 'Education loan') {
 			createTypesOfFundsReminder(frm, "Revised Education Loan Letter Required - Amount Not Covering");
@@ -1476,7 +1557,7 @@ function createRefundReminder(frm, specificDate, description) {
 	if (!frm.doc.name || frm.doc.__islocal) {
 		return;
 	}
-	
+
 	let remindDate;
 	if (specificDate) {
 		remindDate = new Date(specificDate);
@@ -1486,9 +1567,9 @@ function createRefundReminder(frm, specificDate, description) {
 		remindDate.setDate(remindDate.getDate() + 3);
 		remindDate.setHours(9, 0, 0, 0);
 	}
-	
+
 	const remindAt = frappe.datetime.obj_to_str(remindDate).replace('T', ' ') + ':00';
-	
+
 	frappe.db.get_list("Reminder", {
 		filters: {
 			reminder_doctype: "Application",
@@ -1496,7 +1577,7 @@ function createRefundReminder(frm, specificDate, description) {
 			description: description
 		},
 		limit: 1
-	}).then(function(existingReminders) {
+	}).then(function (existingReminders) {
 		if (existingReminders.length === 0) {
 			frappe.call({
 				method: 'frappe.automation.doctype.reminder.reminder.create_new_reminder',
@@ -1506,7 +1587,7 @@ function createRefundReminder(frm, specificDate, description) {
 					reminder_doctype: 'Application',
 					reminder_docname: frm.doc.name
 				},
-				callback: function(response) {
+				callback: function (response) {
 					if (response.message) {
 						frappe.show_alert({
 							message: 'Reminder set: ' + description,
@@ -1524,7 +1605,7 @@ function createCollegeChangeReminder(frm, specificDate, description) {
 	if (!frm.doc.name || frm.doc.__islocal) {
 		return;
 	}
-	
+
 	let remindDate;
 	if (specificDate) {
 		remindDate = new Date(specificDate);
@@ -1534,9 +1615,9 @@ function createCollegeChangeReminder(frm, specificDate, description) {
 		remindDate.setDate(remindDate.getDate() + 1);
 		remindDate.setHours(9, 0, 0, 0);
 	}
-	
+
 	const remindAt = frappe.datetime.obj_to_str(remindDate).replace('T', ' ') + ':00';
-	
+
 	frappe.db.get_list("Reminder", {
 		filters: {
 			reminder_doctype: "Application",
@@ -1544,7 +1625,7 @@ function createCollegeChangeReminder(frm, specificDate, description) {
 			description: description
 		},
 		limit: 1
-	}).then(function(existingReminders) {
+	}).then(function (existingReminders) {
 		if (existingReminders.length === 0) {
 			frappe.call({
 				method: 'frappe.automation.doctype.reminder.reminder.create_new_reminder',
@@ -1554,7 +1635,7 @@ function createCollegeChangeReminder(frm, specificDate, description) {
 					reminder_doctype: 'Application',
 					reminder_docname: frm.doc.name
 				},
-				callback: function(response) {
+				callback: function (response) {
 					if (response.message) {
 						frappe.show_alert({
 							message: 'Reminder set: ' + description,
@@ -1572,7 +1653,7 @@ function createVisaReminder(frm, specificDate, description) {
 	if (!frm.doc.name || frm.doc.__islocal) {
 		return;
 	}
-	
+
 	let remindDate;
 	if (specificDate) {
 		remindDate = new Date(specificDate);
@@ -1582,9 +1663,9 @@ function createVisaReminder(frm, specificDate, description) {
 		remindDate.setDate(remindDate.getDate() + 1);
 		remindDate.setHours(9, 0, 0, 0);
 	}
-	
+
 	const remindAt = frappe.datetime.obj_to_str(remindDate).replace('T', ' ') + ':00';
-	
+
 	frappe.db.get_list("Reminder", {
 		filters: {
 			reminder_doctype: "Application",
@@ -1592,7 +1673,7 @@ function createVisaReminder(frm, specificDate, description) {
 			description: description
 		},
 		limit: 1
-	}).then(function(existingReminders) {
+	}).then(function (existingReminders) {
 		if (existingReminders.length === 0) {
 			frappe.call({
 				method: 'frappe.automation.doctype.reminder.reminder.create_new_reminder',
@@ -1602,7 +1683,7 @@ function createVisaReminder(frm, specificDate, description) {
 					reminder_doctype: 'Application',
 					reminder_docname: frm.doc.name
 				},
-				callback: function(response) {
+				callback: function (response) {
 					if (response.message) {
 						frappe.show_alert({
 							message: 'Reminder set: ' + description,
@@ -1620,14 +1701,14 @@ function createVisaApprovedNotification(frm) {
 	if (!frm.doc.name || frm.doc.__islocal) {
 		return;
 	}
-	
+
 	// Get all Account Department users
 	frappe.db.get_list("User", {
 		filters: {
 			"User User Role.role": "Account Department"
 		},
 		fields: ["name", "email"]
-	}).then(function(users) {
+	}).then(function (users) {
 		if (users.length > 0) {
 			// Get application details
 			const appDetails = `
@@ -1640,18 +1721,18 @@ TRN Number: ${frm.doc.trn_number || 'N/A'}
 `;
 
 			// Create notification for each Account Department user
-			users.forEach(function(user) {
+			users.forEach(function (user) {
 				frappe.call({
 					method: 'frappe.client.set_value',
 					args: {
 						doctype: 'User',
 						name: user.name,
 						fieldname: '_assign',
-						value: JSON.stringify([{'user': user.name, 'user_email': user.email}])
+						value: JSON.stringify([{ 'user': user.name, 'user_email': user.email }])
 					}
 				});
 			});
-			
+
 			frappe.show_alert({
 				message: 'Visa Approved notification sent to Account Department',
 				indicator: 'green'
@@ -1665,7 +1746,7 @@ function createCOEReminder(frm, specificDate, description) {
 	if (!frm.doc.name || frm.doc.__islocal) {
 		return;
 	}
-	
+
 	let remindDate;
 	if (specificDate) {
 		remindDate = new Date(specificDate);
@@ -1675,9 +1756,9 @@ function createCOEReminder(frm, specificDate, description) {
 		remindDate.setDate(remindDate.getDate() + 1);
 		remindDate.setHours(9, 0, 0, 0);
 	}
-	
+
 	const remindAt = frappe.datetime.obj_to_str(remindDate).replace('T', ' ') + ':00';
-	
+
 	frappe.db.get_list("Reminder", {
 		filters: {
 			reminder_doctype: "Application",
@@ -1685,7 +1766,7 @@ function createCOEReminder(frm, specificDate, description) {
 			description: description
 		},
 		limit: 1
-	}).then(function(existingReminders) {
+	}).then(function (existingReminders) {
 		if (existingReminders.length === 0) {
 			frappe.call({
 				method: 'frappe.automation.doctype.reminder.reminder.create_new_reminder',
@@ -1695,7 +1776,7 @@ function createCOEReminder(frm, specificDate, description) {
 					reminder_doctype: 'Application',
 					reminder_docname: frm.doc.name
 				},
-				callback: function(response) {
+				callback: function (response) {
 					if (response.message) {
 						frappe.show_alert({
 							message: 'Reminder set: ' + description,
@@ -1713,7 +1794,7 @@ function createAcceptanceReminder(frm, specificDate, description) {
 	if (!frm.doc.name || frm.doc.__islocal) {
 		return;
 	}
-	
+
 	let remindDate;
 	if (specificDate) {
 		remindDate = new Date(specificDate);
@@ -1723,9 +1804,9 @@ function createAcceptanceReminder(frm, specificDate, description) {
 		remindDate.setDate(remindDate.getDate() + 1);
 		remindDate.setHours(9, 0, 0, 0);
 	}
-	
+
 	const remindAt = frappe.datetime.obj_to_str(remindDate).replace('T', ' ') + ':00';
-	
+
 	frappe.db.get_list("Reminder", {
 		filters: {
 			reminder_doctype: "Application",
@@ -1733,7 +1814,7 @@ function createAcceptanceReminder(frm, specificDate, description) {
 			description: description
 		},
 		limit: 1
-	}).then(function(existingReminders) {
+	}).then(function (existingReminders) {
 		if (existingReminders.length === 0) {
 			frappe.call({
 				method: 'frappe.automation.doctype.reminder.reminder.create_new_reminder',
@@ -1743,7 +1824,7 @@ function createAcceptanceReminder(frm, specificDate, description) {
 					reminder_doctype: 'Application',
 					reminder_docname: frm.doc.name
 				},
-				callback: function(response) {
+				callback: function (response) {
 					if (response.message) {
 						frappe.show_alert({
 							message: 'Reminder set: ' + description,
@@ -1761,7 +1842,7 @@ function createGSReminder(frm, specificDate, description) {
 	if (!frm.doc.name || frm.doc.__islocal) {
 		return;
 	}
-	
+
 	let remindDate;
 	if (specificDate) {
 		remindDate = new Date(specificDate);
@@ -1771,9 +1852,9 @@ function createGSReminder(frm, specificDate, description) {
 		remindDate.setDate(remindDate.getDate() + 1);
 		remindDate.setHours(9, 0, 0, 0);
 	}
-	
+
 	const remindAt = frappe.datetime.obj_to_str(remindDate).replace('T', ' ') + ':00';
-	
+
 	frappe.db.get_list("Reminder", {
 		filters: {
 			reminder_doctype: "Application",
@@ -1781,7 +1862,7 @@ function createGSReminder(frm, specificDate, description) {
 			description: description
 		},
 		limit: 1
-	}).then(function(existingReminders) {
+	}).then(function (existingReminders) {
 		if (existingReminders.length === 0) {
 			frappe.call({
 				method: 'frappe.automation.doctype.reminder.reminder.create_new_reminder',
@@ -1791,7 +1872,7 @@ function createGSReminder(frm, specificDate, description) {
 					reminder_doctype: 'Application',
 					reminder_docname: frm.doc.name
 				},
-				callback: function(response) {
+				callback: function (response) {
 					if (response.message) {
 						frappe.show_alert({
 							message: 'Reminder set: ' + description,
@@ -1809,13 +1890,13 @@ function createTypesOfFundsReminder(frm, description) {
 	if (!frm.doc.name || frm.doc.__islocal) {
 		return;
 	}
-	
+
 	const remindDate = new Date();
 	remindDate.setDate(remindDate.getDate() + 1);
 	remindDate.setHours(9, 0, 0, 0);
-	
+
 	const remindAt = frappe.datetime.obj_to_str(remindDate).replace('T', ' ') + ':00';
-	
+
 	frappe.db.get_list("Reminder", {
 		filters: {
 			reminder_doctype: "Application",
@@ -1823,7 +1904,7 @@ function createTypesOfFundsReminder(frm, description) {
 			description: description
 		},
 		limit: 1
-	}).then(function(existingReminders) {
+	}).then(function (existingReminders) {
 		if (existingReminders.length === 0) {
 			frappe.call({
 				method: 'frappe.automation.doctype.reminder.reminder.create_new_reminder',
@@ -1833,7 +1914,7 @@ function createTypesOfFundsReminder(frm, description) {
 					reminder_doctype: 'Application',
 					reminder_docname: frm.doc.name
 				},
-				callback: function(response) {
+				callback: function (response) {
 					if (response.message) {
 						frappe.show_alert({
 							message: 'Reminder set: ' + description,
@@ -1851,13 +1932,13 @@ function createInterviewDeadlineReminder(frm, deadlineDate) {
 	if (!deadlineDate || !frm.doc.name || frm.doc.__islocal) {
 		return;
 	}
-	
+
 	const remindDate = new Date(deadlineDate);
 	remindDate.setHours(9, 0, 0, 0);
-	
+
 	const remindAt = frappe.datetime.obj_to_str(remindDate).replace('T', ' ') + ':00';
 	const description = "Interview deadline - " + frappe.datetime.str_to_user(deadlineDate);
-	
+
 	frappe.db.get_list("Reminder", {
 		filters: {
 			reminder_doctype: "Application",
@@ -1865,7 +1946,7 @@ function createInterviewDeadlineReminder(frm, deadlineDate) {
 			description: description
 		},
 		limit: 1
-	}).then(function(existingReminders) {
+	}).then(function (existingReminders) {
 		if (existingReminders.length === 0) {
 			frappe.call({
 				method: 'frappe.automation.doctype.reminder.reminder.create_new_reminder',
@@ -1875,7 +1956,7 @@ function createInterviewDeadlineReminder(frm, deadlineDate) {
 					reminder_doctype: 'Application',
 					reminder_docname: frm.doc.name
 				},
-				callback: function(response) {
+				callback: function (response) {
 					if (response.message) {
 						frappe.show_alert({
 							message: 'Interview deadline reminder set',
