@@ -7,11 +7,7 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-<<<<<<< HEAD
-  "naming_series",
-=======
   "details_tab",
->>>>>>> 95c179d59ce90ae78d2501dd90a9cc1a7c0ebb75
   "application_section",
   "student",
   "application_type",
@@ -19,14 +15,6 @@
   "status",
   "destination_country",
   "preferred_university",
-<<<<<<< HEAD
-  "campus",
-  "preferred_courses",
-  "intake",
-  "year",
-  "tab_2_tab",
-  "as"
-=======
   "intake",
   "area_of_interest",
   "column_break_ilyf",
@@ -169,7 +157,6 @@
   "college_change_documents",
   "closed_tab",
   "application_closed"
->>>>>>> 95c179d59ce90ae78d2501dd90a9cc1a7c0ebb75
  ],
  "fields": [
   {
@@ -218,11 +205,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
-<<<<<<< HEAD
-   "options": "\nApplication Fee Paid\nStarted & Submitted\nReview & Course Finalizations\nSubmitted\nLOA/OL\nTuition Fee Paid\nVisa Applied\nVisa Approved\nCancel Withdrawn\nRefund Required\nEnrolled and Closed\nOffer Letter Expired\nRefund and Closed\nRejection from Institution",
-=======
    "options": "Pending\nProcessing\nOffer Letter Received\nFinancial\nGTE Processing\nGTE Approved\nAcceptance\nCOE\nFile Lodged\nVisa\nEnrollment\nOn Shore College change\nVisa Refused\nClosed",
->>>>>>> 95c179d59ce90ae78d2501dd90a9cc1a7c0ebb75
    "reqd": 1
   },
   {
@@ -261,15 +244,6 @@
    "reqd": 1
   },
   {
-<<<<<<< HEAD
-   "fieldname": "year",
-   "fieldtype": "Int",
-   "label": "Year",
-   "reqd": 1
-  },
-  {
-   "fieldname": "tab_2_tab",
-=======
    "fieldname": "column_break_jdtj",
    "fieldtype": "Column Break",
    "options": "High\nSecondary\nGraduation\nPost Graduation"
@@ -1067,16 +1041,10 @@
   {
    "depends_on": "eval:in_list(frappe.user_roles, 'Administrator') || !in_list(frappe.user_roles, 'agents')",
    "fieldname": "offer_tab",
->>>>>>> 95c179d59ce90ae78d2501dd90a9cc1a7c0ebb75
    "fieldtype": "Tab Break",
    "label": "Tab 2"
   },
   {
-<<<<<<< HEAD
-   "fieldname": "as",
-   "fieldtype": "Data",
-   "label": "AS"
-=======
    "depends_on": "eval:in_list(frappe.user_roles, 'Administrator') || !in_list(frappe.user_roles, 'agents')",
    "fieldname": "gte_tab",
    "fieldtype": "Tab Break",
@@ -1115,18 +1083,13 @@
    "fieldtype": "Select",
    "label": "Area of Interest",
    "options": "Study\nIELTS/PTE\nTourist\nWork"
->>>>>>> 95c179d59ce90ae78d2501dd90a9cc1a7c0ebb75
   }
  ],
  "grid_page_length": 50,
  "icon": "fa fa-file-text",
  "index_web_pages_for_search": 1,
  "links": [],
-<<<<<<< HEAD
- "modified": "2026-01-03 12:05:53.153726",
-=======
  "modified": "2026-01-18 12:17:23.465183",
->>>>>>> 95c179d59ce90ae78d2501dd90a9cc1a7c0ebb75
  "modified_by": "Administrator",
  "module": "CRM",
  "name": "Application",
