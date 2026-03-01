@@ -2,7 +2,32 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on("Application", {
+	onload(frm) {
+		// Force form view (modal) for child tables that should open in dialog on Add Row
+		const form_view_tables = ["spouse_details_list", "table_ihmq"];
+		form_view_tables.forEach((fieldname) => {
+			const doctype = frm.meta.fields.find((df) => df.fieldname === fieldname && df.fieldtype === "Table")?.options;
+			if (doctype) {
+				frappe.model.with_doctype(doctype, () => {
+					const meta = frappe.get_meta(doctype);
+					if (meta) meta.editable_grid = 0;
+				});
+			}
+		});
+	},
+
 	refresh(frm) {
+		// Force Spouse Details and C. Sponsors tables to open in form/modal on Add Row
+		["spouse_details_list", "table_ihmq"].forEach((fieldname) => {
+			const control = frm.fields_dict[fieldname];
+			if (control && control.grid && !control.grid._form_view_patched) {
+				control.grid.allow_on_grid_editing = function () {
+					return false;
+				};
+				control.grid._form_view_patched = true;
+			}
+		});
+
 		// Hide assigned fields for Agents (keep visible for System Manager, Team Lead, Executive)
 		if (frappe.user.has_role("Agent") || frappe.user.has_role("B2B Agent") || frappe.user.has_role("B2C Agent")) {
 			// Only hide if NOT a Team Lead or Executive (in case of multiple roles)
@@ -333,7 +358,7 @@ frappe.ui.form.on("Application", {
 
 	pending_requirements_completed(frm) {
 		// Clear supporting documents when switching to No
-		if (!frm.doc.pending_requirements_completed) {
+		if (frm.doc.pending_requirements_completed === "No" || !frm.doc.pending_requirements_completed) {
 			frm.clear_table("supporting_documents");
 			frm.refresh_field("supporting_documents");
 		}
@@ -581,17 +606,17 @@ frappe.ui.form.on("Application", {
 	},
 
 	student_prepare(frm) {
-		if (!frm.doc.student_prepare) {
+		if (frm.doc.student_prepare === "No") {
 			// Set reminder to prepare student
 			createOfferLetterReminder(frm, "Prepare student");
 		}
 	},
 
 	schedule_interview(frm) {
-		if (frm.doc.schedule_interview) {
-			// Set reminder for interview date (you may want to add an interview date field)
+		if (frm.doc.schedule_interview === "Yes") {
+			// Set reminder for interview date
 			createOfferLetterReminder(frm, "Prepare student strongly - Interview scheduled");
-		} else if (!frm.doc.schedule_interview) {
+		} else if (frm.doc.schedule_interview === "No") {
 			createOfferLetterReminder(frm, "Prepare student - Follow up interview schedule");
 		}
 	},
@@ -924,10 +949,7 @@ function createSubmittedTabReminders(frm) {
 		// Set reminder: Follow up on Offer Letter
 		createOfferLetterReminder(frm, "Follow up on Offer Letter");
 	} else if (frm.doc.any_further_requirement_offer_letter) {
-		if (frm.doc.pending_requirements_completed) {
-			// Set reminder: Follow up on Offer Letter
-			createOfferLetterReminder(frm, "Follow up on Offer Letter");
-		} else if (!frm.doc.pending_requirements_completed) {
+		if (frm.doc.pending_requirements_completed === "No" || !frm.doc.pending_requirements_completed) {
 			// Set reminder: To Complete Pending requirements
 			createOfferLetterReminder(frm, "To Complete Pending requirements");
 		}
@@ -1473,17 +1495,17 @@ frappe.ui.form.on("Application", {
 	},
 
 	student_prepare(frm) {
-		if (!frm.doc.student_prepare && frm.doc.interview_stage_available) {
+		if (frm.doc.student_prepare === "No" && frm.doc.interview_stage_available) {
 			createGSReminder(frm, null, "Prepare Student for Interview");
 		}
 		frm.refresh();
 	},
 
 	schedule_interview(frm) {
-		if (!frm.doc.schedule_interview && frm.doc.interview_stage_available) {
+		if (frm.doc.schedule_interview === "No" && frm.doc.interview_stage_available) {
 			createGSReminder(frm, null, "Follow Up Interview Schedule");
 		}
-		if (frm.doc.schedule_interview && frm.doc.interview_deadline) {
+		if (frm.doc.schedule_interview === "Yes" && frm.doc.interview_deadline) {
 			createGSReminder(frm, frm.doc.interview_deadline, "Interview Date - " + frappe.datetime.str_to_user(frm.doc.interview_deadline));
 		}
 		frm.refresh();

@@ -11,6 +11,7 @@
         "application_section",
         "student",
         "student_email",
+        "student_contact_no",
         "agent",
         "destination_country",
         "assigned_team",
@@ -68,9 +69,6 @@
         "column_break_section_b",
         "section_c_english_test",
         "english_test_details",
-        "data_isfw",
-        "digi_locker_id_optional",
-        "digi_locker_password",
         "section_d_study_gap_proof",
         "study_gap_proof_list",
         "section_d_passport",
@@ -81,16 +79,22 @@
         "processing_agent_details",
         "section_f_applications",
         "application_filled_by",
-        "application_forms_upload",
+        "application_form_1_upload",
+        "application_form_2_upload",
+        "application_form_3_upload",
+        "application_form_4_upload",
+        "sop_upload",
+        "sop_portal_or_vendor_upload",
         "column_break_miqz",
         "documents_passport_application_form_sop",
-        "sop_upload",
         "spouse_salary_statements_verified_3_months",
         "submitted_tab",
         "submitted_date",
         "any_further_requirement_offer_letter",
+        "no_further_requirement_note",
         "pending_requirement_details",
         "pending_requirements_completed",
+        "pending_requirements_reminder_note",
         "supporting_documents",
         "offer_tab",
         "offer_section",
@@ -157,8 +161,6 @@
         "interview_condition_section",
         "interview_timing",
         "interview_deadline_date",
-        "student_prepare",
-        "schedule_interview",
         "english_requirement_section",
         "english_requirement_details",
         "english_requirement_documents",
@@ -188,8 +190,10 @@
         "interview_stage_available",
         "interview_not_available_status",
         "interview_deadline",
+        "student_prepare",
         "student_prepare_yes_status",
         "student_prepare_no_status",
+        "schedule_interview",
         "schedule_interview_yes_status",
         "schedule_interview_no_status",
         "gs_approved_check",
@@ -617,25 +621,7 @@
             "fieldname": "documents_10th_to_12th",
             "fieldtype": "Table",
             "label": "Documents (10th to 12th)/Graduation",
-            "options": "student documents"
-        },
-        {
-            "depends_on": "eval:doc.higher_education == '12th pass'",
-            "fieldname": "data_isfw",
-            "fieldtype": "Text",
-            "label": "School Domain Email ID"
-        },
-        {
-            "depends_on": "eval:doc.higher_education == '12th pass'",
-            "fieldname": "digi_locker_id_optional",
-            "fieldtype": "Text",
-            "label": "Digi Locker ID"
-        },
-        {
-            "depends_on": "eval:doc.higher_education == '12th pass'",
-            "fieldname": "digi_locker_password",
-            "fieldtype": "Password",
-            "label": "Digi Locker Password"
+            "options": "Application Documents 10th To 12th"
         },
         {
             "default": "0",
@@ -775,23 +761,45 @@
         },
         {
             "fieldname": "application_filled_by",
-            "fieldtype": "Text",
+            "fieldtype": "Select",
             "label": "Application Filled By",
             "options": "\nApplication filled by us\nFilled on portal\nFilled by Vendor"
         },
         {
             "depends_on": "eval:doc.application_filled_by == 'Application filled by us'",
-            "fieldname": "application_forms_upload",
-            "fieldtype": "Table",
-            "label": "Application Forms Upload",
-            "options": "student documents"
+            "fieldname": "application_form_1_upload",
+            "fieldtype": "Attach",
+            "label": "Application Form 1 Upload"
         },
         {
-            "depends_on": "eval:doc.application_filled_by == 'Application filled by us' || doc.application_filled_by == 'Filled on portal' || doc.application_filled_by == 'Filled by Vendor'",
+            "depends_on": "eval:doc.application_filled_by == 'Application filled by us'",
+            "fieldname": "application_form_2_upload",
+            "fieldtype": "Attach",
+            "label": "Application Form 2 Upload"
+        },
+        {
+            "depends_on": "eval:doc.application_filled_by == 'Application filled by us'",
+            "fieldname": "application_form_3_upload",
+            "fieldtype": "Attach",
+            "label": "Application Form 3 Upload"
+        },
+        {
+            "depends_on": "eval:doc.application_filled_by == 'Application filled by us'",
+            "fieldname": "application_form_4_upload",
+            "fieldtype": "Attach",
+            "label": "Application Form 4 Upload"
+        },
+        {
+            "depends_on": "eval:doc.application_filled_by == 'Application filled by us'",
             "fieldname": "sop_upload",
-            "fieldtype": "Table",
-            "label": "SOP Upload",
-            "options": "student documents"
+            "fieldtype": "Attach",
+            "label": "SOP Upload"
+        },
+        {
+            "depends_on": "eval:doc.application_filled_by == 'Filled on portal' || doc.application_filled_by == 'Filled by Vendor'",
+            "fieldname": "sop_portal_or_vendor_upload",
+            "fieldtype": "Attach",
+            "label": "SOP Upload"
         },
         {
             "fieldname": "documents_passport_application_form_sop",
@@ -1466,13 +1474,13 @@
             "depends_on": "eval:doc.visa_status == 'Visa Approved' && (in_list(frappe.user_roles, 'System Manager') || in_list(frappe.user_roles, 'Team Lead') || in_list(frappe.user_roles, 'Team Executive'))",
             "fieldname": "enrollment_tab",
             "fieldtype": "Tab Break",
-            "label": "Enrollment"
+            "label": "Enrolled"
         },
         {
             "fieldname": "enrollment_documents",
             "fieldtype": "Table",
             "label": "Enrollment Documents",
-            "options": "student documents"
+            "options": "Enrollment Document"
         },
         {
             "depends_on": "eval:doc.visa_status == 'Visa Approved' && (in_list(frappe.user_roles, 'System Manager') || in_list(frappe.user_roles, 'Team Lead') || in_list(frappe.user_roles, 'Team Executive'))",
@@ -1672,6 +1680,11 @@
             "label": "Student Email"
         },
         {
+            "fieldname": "student_contact_no",
+            "fieldtype": "Phone",
+            "label": "Student Contact No"
+        },
+        {
             "fieldname": "dob",
             "fieldtype": "Date",
             "label": "DOB",
@@ -1746,38 +1759,38 @@
             "label": "Interview Deadline"
         },
         {
-            "default": "0",
             "depends_on": "eval:doc.interview_stage_available",
             "fieldname": "student_prepare",
-            "fieldtype": "Check",
-            "label": "Student Prepare"
+            "fieldtype": "Select",
+            "label": "Student Prepare",
+            "options": "\nYes\nNo"
         },
         {
-            "default": "\u2713 Schedule Interview",
-            "depends_on": "eval:doc.interview_stage_available && doc.student_prepare",
+            "default": "\u2713 Schedule Interview (if not scheduled)",
+            "depends_on": "eval:doc.interview_stage_available && doc.student_prepare == 'Yes'",
             "fieldname": "student_prepare_yes_status",
             "fieldtype": "Text",
             "label": "Status",
             "read_only": 1
         },
         {
-            "default": "\u26a0 Prepare Student - Reminder Set",
-            "depends_on": "eval:doc.interview_stage_available && !doc.student_prepare",
+            "default": "\u26a0 Prepare Student - Set Reminder to Prepare Student",
+            "depends_on": "eval:doc.interview_stage_available && doc.student_prepare == 'No'",
             "fieldname": "student_prepare_no_status",
             "fieldtype": "Text",
             "label": "Status",
             "read_only": 1
         },
         {
-            "default": "0",
             "depends_on": "eval:doc.interview_stage_available",
             "fieldname": "schedule_interview",
-            "fieldtype": "Check",
-            "label": "Schedule Interview"
+            "fieldtype": "Select",
+            "label": "Schedule Interview",
+            "options": "\nYes\nNo"
         },
         {
             "default": "\u2713 Prepare Student Strongly - Reminder Set for Interview Date",
-            "depends_on": "eval:doc.interview_stage_available && doc.schedule_interview",
+            "depends_on": "eval:doc.interview_stage_available && doc.schedule_interview == 'Yes'",
             "fieldname": "schedule_interview_yes_status",
             "fieldtype": "Text",
             "label": "Status",
@@ -1785,7 +1798,7 @@
         },
         {
             "default": "\u26a0 Prepare Student - Set Reminder for Follow Up Interview Schedule",
-            "depends_on": "eval:doc.interview_stage_available && !doc.schedule_interview",
+            "depends_on": "eval:doc.interview_stage_available && doc.schedule_interview == 'No'",
             "fieldname": "schedule_interview_no_status",
             "fieldtype": "Text",
             "label": "Status",
@@ -2249,20 +2262,20 @@
         },
         {
             "default": "Note: Select conditions in the Offer Letter tab to see condition fields here",
-            "depends_on": "eval:!doc.conditions_on_offer_letter || doc.conditions_on_offer_letter == ''",
+            "depends_on": "eval:!doc.conditions_on_offer_letter || !Array.isArray(doc.conditions_on_offer_letter) || doc.conditions_on_offer_letter.length === 0",
             "fieldname": "conditions_note",
             "fieldtype": "Text",
             "label": "Note",
             "read_only": 1
         },
         {
-            "depends_on": "eval:doc.conditions_on_offer_letter && doc.conditions_on_offer_letter.indexOf('Interview') !== -1",
+            "depends_on": "eval:doc.conditions_on_offer_letter && Array.isArray(doc.conditions_on_offer_letter) && doc.conditions_on_offer_letter.some(function(r){ return (r.condition || '').indexOf('Interview') !== -1; })",
             "fieldname": "interview_condition_section",
             "fieldtype": "Section Break",
             "label": "Interview Condition"
         },
         {
-            "depends_on": "eval:doc.conditions_on_offer_letter && doc.conditions_on_offer_letter.indexOf('Interview') !== -1",
+            "depends_on": "eval:doc.conditions_on_offer_letter && Array.isArray(doc.conditions_on_offer_letter) && doc.conditions_on_offer_letter.some(function(r){ return (r.condition || '').indexOf('Interview') !== -1; })",
             "description": "Select when the interview needs to be scheduled. 'Before Acceptance' will be handled in GS stage, 'Before COE' in Acceptance stage.",
             "fieldname": "interview_timing",
             "fieldtype": "Select",
@@ -2270,27 +2283,27 @@
             "options": "\nBefore GS Approval\nBefore Acceptance\nBefore COE"
         },
         {
-            "depends_on": "eval:doc.conditions_on_offer_letter && doc.conditions_on_offer_letter.indexOf('Interview') !== -1 && doc.interview_timing == 'Before GS Approval'",
+            "depends_on": "eval:doc.conditions_on_offer_letter && Array.isArray(doc.conditions_on_offer_letter) && doc.conditions_on_offer_letter.some(function(r){ return (r.condition || '').indexOf('Interview') !== -1; }) && doc.interview_timing == 'Before GS Approval'",
             "description": "Set the deadline date for the interview. A reminder will be automatically created for this date.",
             "fieldname": "interview_deadline_date",
             "fieldtype": "Date",
             "label": "Interview Deadline Date"
         },
         {
-            "depends_on": "eval:doc.conditions_on_offer_letter && doc.conditions_on_offer_letter.indexOf('English Requirement') !== -1",
+            "depends_on": "eval:doc.conditions_on_offer_letter && Array.isArray(doc.conditions_on_offer_letter) && doc.conditions_on_offer_letter.some(function(r){ return (r.condition || '').indexOf('English Requirement') !== -1; })",
             "fieldname": "english_requirement_section",
             "fieldtype": "Section Break",
             "label": "English Requirement"
         },
         {
-            "depends_on": "eval:doc.conditions_on_offer_letter && doc.conditions_on_offer_letter.indexOf('English Requirement') !== -1",
+            "depends_on": "eval:doc.conditions_on_offer_letter && Array.isArray(doc.conditions_on_offer_letter) && doc.conditions_on_offer_letter.some(function(r){ return (r.condition || '').indexOf('English Requirement') !== -1; })",
             "description": "Enter the details of the English requirement condition",
             "fieldname": "english_requirement_details",
             "fieldtype": "Text",
             "label": "Details"
         },
         {
-            "depends_on": "eval:doc.conditions_on_offer_letter && doc.conditions_on_offer_letter.indexOf('English Requirement') !== -1",
+            "depends_on": "eval:doc.conditions_on_offer_letter && Array.isArray(doc.conditions_on_offer_letter) && doc.conditions_on_offer_letter.some(function(r){ return (r.condition || '').indexOf('English Requirement') !== -1; })",
             "description": "Upload any supporting documents related to the English requirement",
             "fieldname": "english_requirement_documents",
             "fieldtype": "Table",
@@ -2298,20 +2311,20 @@
             "options": "student documents"
         },
         {
-            "depends_on": "eval:doc.conditions_on_offer_letter && doc.conditions_on_offer_letter.indexOf('Gap Justification') !== -1",
+            "depends_on": "eval:doc.conditions_on_offer_letter && Array.isArray(doc.conditions_on_offer_letter) && doc.conditions_on_offer_letter.some(function(r){ return (r.condition || '').indexOf('Gap Justification') !== -1; })",
             "fieldname": "gap_justification_section",
             "fieldtype": "Section Break",
             "label": "Gap Justification"
         },
         {
-            "depends_on": "eval:doc.conditions_on_offer_letter && doc.conditions_on_offer_letter.indexOf('Gap Justification') !== -1",
+            "depends_on": "eval:doc.conditions_on_offer_letter && Array.isArray(doc.conditions_on_offer_letter) && doc.conditions_on_offer_letter.some(function(r){ return (r.condition || '').indexOf('Gap Justification') !== -1; })",
             "description": "Provide details explaining the study gap",
             "fieldname": "gap_justification_details",
             "fieldtype": "Text",
             "label": "Details"
         },
         {
-            "depends_on": "eval:doc.conditions_on_offer_letter && doc.conditions_on_offer_letter.indexOf('Gap Justification') !== -1",
+            "depends_on": "eval:doc.conditions_on_offer_letter && Array.isArray(doc.conditions_on_offer_letter) && doc.conditions_on_offer_letter.some(function(r){ return (r.condition || '').indexOf('Gap Justification') !== -1; })",
             "description": "Upload documents that justify the study gap",
             "fieldname": "gap_justification_documents",
             "fieldtype": "Table",
@@ -2319,13 +2332,13 @@
             "options": "student documents"
         },
         {
-            "depends_on": "eval:doc.conditions_on_offer_letter && doc.conditions_on_offer_letter.indexOf('Verification') !== -1",
+            "depends_on": "eval:doc.conditions_on_offer_letter && Array.isArray(doc.conditions_on_offer_letter) && doc.conditions_on_offer_letter.some(function(r){ return (r.condition || '').indexOf('Verification') !== -1; })",
             "fieldname": "verification_section",
             "fieldtype": "Section Break",
             "label": "Verification"
         },
         {
-            "depends_on": "eval:doc.conditions_on_offer_letter && doc.conditions_on_offer_letter.indexOf('Verification') !== -1",
+            "depends_on": "eval:doc.conditions_on_offer_letter && Array.isArray(doc.conditions_on_offer_letter) && doc.conditions_on_offer_letter.some(function(r){ return (r.condition || '').indexOf('Verification') !== -1; })",
             "description": "Select what needs to be verified",
             "fieldname": "verification_type",
             "fieldtype": "Select",
@@ -2515,20 +2528,38 @@
             "label": "Any Further Requirement for offer letter?"
         },
         {
+            "bold": 1,
+            "default": "If no \u2192 Set reminder: Follow up on Offer Letter",
+            "depends_on": "eval:!doc.any_further_requirement_offer_letter",
+            "fieldname": "no_further_requirement_note",
+            "fieldtype": "Text",
+            "label": "Note",
+            "read_only": 1
+        },
+        {
             "depends_on": "eval:doc.any_further_requirement_offer_letter == 1",
             "fieldname": "pending_requirement_details",
             "fieldtype": "Text",
             "label": "Pending Requirement Details"
         },
         {
-            "default": "0",
             "depends_on": "eval:doc.any_further_requirement_offer_letter == 1",
             "fieldname": "pending_requirements_completed",
-            "fieldtype": "Check",
-            "label": "Pending requirements Completed?"
+            "fieldtype": "Select",
+            "label": "Pending requirements Completed?",
+            "options": "\nYes\nNo"
         },
         {
-            "depends_on": "eval:doc.any_further_requirement_offer_letter == 1 && doc.pending_requirements_completed == 1",
+            "bold": 1,
+            "default": "\u2192 Set reminder: To Complete Pending requirements",
+            "depends_on": "eval:doc.any_further_requirement_offer_letter == 1 && doc.pending_requirements_completed == 'No'",
+            "fieldname": "pending_requirements_reminder_note",
+            "fieldtype": "Text",
+            "label": "Note",
+            "read_only": 1
+        },
+        {
+            "depends_on": "eval:doc.any_further_requirement_offer_letter == 1 && doc.pending_requirements_completed == 'Yes'",
             "fieldname": "supporting_documents",
             "fieldtype": "Table",
             "label": "Supporting Documents",
