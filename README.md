@@ -1,161 +1,238 @@
-<div align="center">
-    <a href="https://frappe.io/erpnext">
-	<img src="./erpnext/public/images/v16/erpnext.svg" alt="ERPNext Logo" height="80px" width="80xp"/>
-    </a>
-    <h2>ERPNext</h2>
-    <p align="center">
-        <p>Powerful, Intuitive and Open-Source ERP</p>
-    </p>
+# Unideft – AI‑Driven Visa Management CRM
 
-[![Learn on Frappe School](https://img.shields.io/badge/Frappe%20School-Learn%20ERPNext-blue?style=flat-square)](https://frappe.school)<br><br>
-[![CI](https://github.com/frappe/erpnext/actions/workflows/server-tests-mariadb.yml/badge.svg?event=schedule)](https://github.com/frappe/erpnext/actions/workflows/server-tests-mariadb.yml)
-[![docker pulls](https://img.shields.io/docker/pulls/frappe/erpnext-worker.svg)](https://hub.docker.com/r/frappe/erpnext-worker)
+Unideft is an **AI‑driven visa management CRM** built on the Frappe/ERPNext framework, designed specifically for **overseas education and migration consultancies**.  
+It centralizes student applications, documents, visa stages, financials, and team workflows into a single, auditable system.
 
-</div>
+---
 
-<div align="center">
-	<img src="./erpnext/public/images/v16/hero_image.png"/>
-</div>
+## 🚀 Key Highlights
 
-<div align="center">
-	<a href="https://erpnext-demo.frappe.cloud/api/method/erpnext_demo.erpnext_demo.auth.login_demo">Live Demo</a>
-	-
-	<a href="https://frappe.io/erpnext">Website</a>
-	-
-	<a href="https://docs.frappe.io/erpnext/">Documentation</a>
-</div>
+- **End‑to‑end visa lifecycle**: From initial enquiry and offer letter to COE, file lodging, visa decision, enrollment, and post‑visa scenarios.
+- **Rich Application doctype**:
+  - Multi‑tab layout: Details, Processing, Financials, GS Processing, Acceptance, COE, File Lodged, Visa, Enrolled, On‑shore College Change, Visa Refused, Refund, etc.
+  - Deep linkage with Students, Agents, Universities, Courses, Sponsors, and Documents.
+- **AI‑assisted operations** (conceptual / pluggable):
+  - Eligibility triage and risk flags (gap, funds, refusals).
+  - Task recommendations and reminders based on stage + conditions.
+  - Structured, machine‑readable data for future ML models.
 
-## ERPNext
+---
 
-100% Open-Source ERP system to help you run your business.
+## 🧩 Core Features (Application Workflow)
 
-### Motivation
+### 1. Details Tab – Application Information
 
-Running a business is a complex task - handling invoices, tracking stock, managing personnel and even more ad-hoc activities. In a market where software is sold separately to manage each of these tasks, ERPNext does all of the above and more, for free.
+- Student profile & contact:
+  - Student link, **Student Email**, **Student Contact No**, DOB, marital status.
+  - Auto‑calculated **current age**.
+- Visa history & gap:
+  - Any visa refused? (with notes and outcomes).
+  - Study gap, **Study Gap Proof** (linked to structured child tables), and “OK” status.
+- Preferences:
+  - Destination country, higher education level, preferred universities and courses, intake.
+- Case 4 – Spouse logic:
+  - Spouse qualification, marriage duration, and dynamic recommendations for proceeding with/without spouse.
 
-### Key Features
+---
 
-- **Accounting**: All the tools you need to manage cash flow in one place, right from recording transactions to summarizing and analyzing financial reports.
-- **Order Management**: Track inventory levels, replenish stock, and manage sales orders, customers, suppliers, shipments, deliverables, and order fulfillment.
-- **Manufacturing**: Simplifies the production cycle, helps track material consumption, exhibits capacity planning, handles subcontracting, and more!
-- **Asset Management**: From purchase to perishment, IT infrastructure to equipment. Cover every branch of your organization, all in one centralized system.
-- **Projects**: Delivery both internal and external Projects on time, budget and Profitability. Track tasks, timesheets, and issues by project.
+### 2. Processing Tab
 
-<details open>
+#### A. Email & Package Case
 
-<summary>More</summary>
-	<img src="https://erpnext.com/files/v16_bom.png"/>
-	<img src="https://erpnext.com/files/v16_stock_summary.png"/>
-	<img src="https://erpnext.com/files/v16_job_card.png"/>
-	<img src="https://erpnext.com/files/v16_tasks.png"/>
-</details>
+- Fields for email login, passwords, recovery email, and login contact – conditionally mandatory when **Package Case** is checked.
 
-### Under the Hood
+#### B. Documents 10th to 12th / Graduation
 
-- [**Frappe Framework**](https://github.com/frappe/frappe): A full-stack web application framework written in Python and Javascript. The framework provides a robust foundation for building web applications, including a database abstraction layer, user authentication, and a REST API.
+- Child table: **Application Documents 10th To 12th**
+  - `Document Type` (Select):
+    - 12th Admit card  
+    - school domain email id  
+    - digilocker id/password
+  - `Write Details` (Small Text) – appears when:
+    - Document Type = **school domain email id** or **digilocker id/password**
+  - `Upload Document` (Attach)
+- 12th admit card uploaded flag and consolidated **“Upload in Single PDF”** table for verified docs.
+- Graduation verification section (separate child table and DigiLocker credentials for graduates).
 
-- [**Frappe UI**](https://github.com/frappe/frappe-ui): A Vue-based UI library, to provide a modern user interface. The Frappe UI library provides a variety of components that can be used to build single-page applications on top of the Frappe Framework.
+#### C. English Proficiency Test
 
-## Production Setup
+- Child table: **Application English Test**
+  - Test Type: IELTS / PTE / TOEFL
+  - Structured score sections per test
+  - Login credentials & verification status
+  - **TOEFL Type**:
+    - IBT Center Based  
+    - **IBT Home Edition Based**  
+  - When **IBT Home Edition Based** is selected:
+    - Status field: `"This test type is not accepted"` appears.
 
-### Managed Hosting
+#### D. Study Gap Proof
 
-You can try [Frappe Cloud](https://frappecloud.com), a simple, user-friendly and sophisticated [open-source](https://github.com/frappe/press) platform to host Frappe applications with peace of mind.
+- Main Application:
+  - `study_gap` (Check), `study_gap_proof` (Table), `study_gap_ok` (auto text)
+- Child doctype: **Study Gap Proof**
+  - Types: Educational / Work / Other
+  - **For Work**:
+    - Work Experience Details:
+      - Company Name (text)
+      - Position (text)
+      - Duration (text / from–to)
+      - Employer Domain ID (text)
+    - Attachments:
+      - ITR
+      - Salary Slips
+      - Experience Letter
+      - Bank Statement
+    - Verification checkboxes:
+      - Work Experience Verified
+      - ITR Verified (as per Work Experience)
+      - Salary Slips Verified (6 Months)
+      - Bank Statement Verified
+  - Educational + Other scenarios supported with their own structured fields.
 
-It takes care of installation, setup, upgrades, monitoring, maintenance and support of your Frappe deployments. It is a fully featured developer platform with an ability to manage and control multiple Frappe deployments.
+#### E. Passport
 
-<div>
-	<a href="https://erpnext-demo.frappe.cloud/app/home" target="_blank">
-		<picture>
-			<source media="(prefers-color-scheme: dark)" srcset="https://frappe.io/files/try-on-fc-white.png">
-			<img src="https://frappe.io/files/try-on-fc-black.png" alt="Try on Frappe Cloud" height="28" />
-		</picture>
-	</a>
-</div>
+- Flags for passport uploaded, attached documents, and verification outputs.
 
+#### F. Applications (Who Filled the Application)
 
+- `Application Filled By` (Select):
+  - Application filled by us
+  - Filled on portal
+  - Filled by Vendor
+- If **Application filled by us**:
+  - Application Form 1–4 Upload (Attach fields)
+  - SOP Upload (Attach)
+- If **Filled on portal**:
+  - SOP Upload
+- If **Filled by Vendor**:
+  - SOP Upload
 
-### Self-Hosted
-#### Docker
+---
 
-Prerequisites: docker, docker-compose, git. Refer [Docker Documentation](https://docs.docker.com) for more details on Docker setup.
+### 3. Financials Tab
 
-Run following commands:
+- **Conditions on Offer Letter** (Table MultiSelect) linking to **Offer Letter Condition** master:
+  - Drives visibility of the following condition sections:
+    - Interview Condition (timing, deadline)
+    - English Requirement
+    - Gap Justification
+    - Verification
+- **Section B – Conditions**:
+  - Logic uses the **child rows’ `condition` values** to decide which sections to show:
+    - Interview
+    - English Requirement
+    - Gap Justification
+    - Verification
+- All funds, tuition fee, OSHC, living/travel expenses, and multi‑sponsor structures are captured and linked to sponsor documents.
 
-```
-git clone https://github.com/frappe/frappe_docker
-cd frappe_docker
-docker compose -f pwd.yml up -d
-```
+---
 
-After a couple of minutes, site should be accessible on your localhost port: 8080. Use below default login credentials to access the site.
-- Username: Administrator
-- Password: admin
+### 4. GS Processing Tab
 
-See [Frappe Docker](https://github.com/frappe/frappe_docker?tab=readme-ov-file#to-run-on-arm64-architecture-follow-this-instructions) for ARM based docker setup.
+- **GS Processing** stage with:
+  - `interview_stage_available` (Check)
+  - `interview_deadline` (Date)
+- **Student Prepare** – Select (Yes/No):
+  - Yes → status: “✓ Schedule Interview (if not scheduled)”
+  - No → status: “⚠ Prepare Student – Set Reminder to Prepare Student”
+- **Schedule Interview** – Select (Yes/No):
+  - Yes → status: “✓ Prepare Student Strongly – Reminder Set for Interview Date”
+  - No → status: “⚠ Prepare Student – Set Reminder for Follow Up Interview Schedule”
+- Additional logic in `application.js`:
+  - Creates GS reminders based on dropdown selections and deadlines.
 
+---
 
-## Development Setup
-### Manual Install
+### 5. Acceptance, COE, File Lodged, Visa & Enrolled Tabs
 
-The Easy Way: our install script for bench will install all dependencies (e.g. MariaDB). See https://github.com/frappe/bench for more details.
+#### Acceptance
 
-New passwords will be created for the ERPNext "Administrator" user, the MariaDB root user, and the frappe user (the script displays the passwords and saves them to ~/frappe_passwords.txt).
+- Acceptance before COE logic and interview scheduling.
+- Requirements and upload handling similar to GS Processing.
 
+#### Submitted Tab (Offer Letter Follow‑up)
 
-### Local
+- `Any Further Requirement for offer letter?` (Check):
+  - If **No**:
+    - Note: **“If no → Set reminder: Follow up on Offer Letter”**
+  - If **Yes**:
+    - `Pending Requirement Details` (Text)
+    - `Pending requirements Completed?` – Select (Yes/No)
+    - If **No**:
+      - Note: **“→ Set reminder: To Complete Pending requirements”**
+    - If **Yes**:
+      - `Supporting Documents` (student documents table)
+- `application.js` also creates reminder records in the background.
 
-To setup the repository locally follow the steps mentioned below:
+#### Enrolled Tab
 
-1. Setup bench by following the [Installation Steps](https://frappeframework.com/docs/user/en/installation) and start the server
-   ```
-   bench start
-   ```
+- Tab renamed to **“Enrolled”**.
+- Child table uses new **Enrollment Document** doctype:
+  - Document Name (Data)
+  - Upload (Attach)
+- Used to track final enrollment‑stage documents post visa approval.
 
-2. In a separate terminal window, run the following commands:
-   ```
-   # Create a new site
-   bench new-site erpnext.localhost
-   ```
+---
 
-3. Get the ERPNext app and install it
-   ```
-   # Get the ERPNext app
-   bench get-app https://github.com/frappe/erpnext
+### 6. Spouse & Sponsors UX Improvements
 
-   # Install the app
-   bench --site erpnext.localhost install-app erpnext
-   ```
+- **Spouse Details** child table (`spouse_details_list`):
+  - Uses **Spouse Details** doctype with `editable_grid = 0`.
+  - “Add Row” opens a **full modal form**, easier for complex data.
+- **C. Sponsors** table (`table_ihmq`):
+  - Uses **Application Sponsor Complete** doctype with `editable_grid = 0`.
+  - “Add Row” opens complete sponsor form in a **modal**.
+- `application.js` additionally forces form‑view for these tables via `allow_on_grid_editing = false` to ensure consistent modal behavior.
 
-4. Open the URL `http://erpnext.localhost:8000/app` in your browser, you should see the app running
+---
 
-## Learning and community
+## 🧱 Tech Stack
 
-1. [Frappe School](https://school.frappe.io) - Learn Frappe Framework and ERPNext from the various courses by the maintainers or from the community.
-2. [Official documentation](https://docs.erpnext.com/) - Extensive documentation for ERPNext.
-3. [Discussion Forum](https://discuss.frappe.io/c/erpnext/6) - Engage with community of ERPNext users and service providers.
-4. [Telegram Group](https://erpnext_public.t.me) - Get instant help from huge community of users.
+- **Framework**: Frappe / ERPNext
+- **Language**: Python (backend), JavaScript (client scripts)
+- **Database**: MariaDB (via Frappe)
+- **UI**: Frappe Desk, Form Views, Child Tables
 
+---
 
-## Contributing
+## 🖼 Screenshots
 
-1. [Issue Guidelines](https://github.com/frappe/erpnext/wiki/Issue-Guidelines)
-1. [Report Security Vulnerabilities](https://erpnext.com/security)
-1. [Pull Request Requirements](https://github.com/frappe/erpnext/wiki/Contribution-Guidelines)
-2. [Translations](https://crowdin.com/project/frappe)
+> Replace the placeholders below with actual image links or GitHub‑hosted screenshots.
 
+### Application Overview
 
-## Logo and Trademark Policy
+*(Screenshot: Application list or main form header with tabs)*  
+`![Application Overview](./docs/screenshots/application-overview.png)`
 
-Please read our [Logo and Trademark Policy](TRADEMARK_POLICY.md).
+### Processing Tab – Documents & English Tests
 
-<br />
-<br />
-<div align="center" style="padding-top: 0.75rem;">
-	<a href="https://frappe.io" target="_blank">
-		<picture>
-			<source media="(prefers-color-scheme: dark)" srcset="https://frappe.io/files/Frappe-white.png">
-			<img src="https://frappe.io/files/Frappe-black.png" alt="Frappe Technologies" height="28"/>
-		</picture>
-	</a>
-</div>
+*(Screenshot: Processing tab with Documents (10th to 12th), English Test child table, and Study Gap Proof)*  
+`![Processing Tab](./docs/screenshots/processing-tab.png)`
+
+### GS Processing – Interview Flow
+
+*(Screenshot: GS Processing tab showing Student Prepare & Schedule Interview dropdowns and statuses)*  
+`![GS Processing](./docs/screenshots/gs-processing.png)`
+
+### Financials – Conditions on Offer Letter
+
+*(Screenshot: Financials tab, Conditions on Offer Letter + dynamically shown sections)*  
+`![Financials Conditions](./docs/screenshots/financials-conditions.png)`
+
+### Enrolled Tab – Final Enrollment Docs
+
+*(Screenshot: Enrolled tab with Enrollment Documents table)*  
+`![Enrolled Tab](./docs/screenshots/enrolled-tab.png)`
+
+---
+
+## 🛠 Setup (High‑Level)
+
+> This is intentionally brief; adjust for your exact bench/app setup.
+
+1. Install Frappe/ERPNext and create a bench.
+2. Clone this app:
+   cd /path/to/frappe-bench/apps
+   git clone https://github.com/<your-username>/unidef-erp.git
+   
