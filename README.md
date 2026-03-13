@@ -5,6 +5,8 @@ It centralizes student applications, documents, visa stages, financials, and tea
 
 ---
 
+<img width="1438" height="809" alt="Screenshot 2026-03-03 at 6 57 25 PM" src="https://github.com/user-attachments/assets/051f7d45-ca00-484d-a9cf-cd9b2db06e66" />
+
 ### 🔑 Key Highlights (Forensic & Analytics Focus)
 
 - **End‑to‑end case lifecycle modeling**: Structured the full visa journey (enquiry → offer → COE → file lodged → visa decision → enrollment) into a single, auditable **Application** entity with defined stages and transitions.
@@ -36,7 +38,6 @@ Finally, the CRM is built as an **analytics‑ready foundation** for advanced an
 
 ## 🖼 Screenshots
 
-<img width="1438" height="809" alt="Screenshot 2026-03-03 at 6 57 25 PM" src="https://github.com/user-attachments/assets/051f7d45-ca00-484d-a9cf-cd9b2db06e66" />
 
 <img width="1440" height="810" alt="Screenshot 2026-03-13 at 11 27 31 AM" src="https://github.com/user-attachments/assets/ef53ca68-797b-4023-a77e-15009f154af8" />
 
