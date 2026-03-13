@@ -1,7 +1,7 @@
-# Unideft – AI‑Driven Visa Management CRM
+# Unideft – AI-Driven Visa Management CRM
 
-Unideft is an **AI‑driven visa management CRM** built on the Frappe/ERPNext framework, designed specifically for **overseas education and migration consultancies**.  
-It centralizes student applications, documents, visa stages, financials, and team workflows into a single, auditable system.
+Unideft is an **AI-driven visa management CRM** built on the Frappe/ERPNext framework, designed specifically for **overseas education and migration consultancies**.  
+It centralizes student applications, documents, visa stages, financials, and team workflows into a single, auditable system, while leveraging **Python-based automation and data analytics to generate insights, streamline decision-making, and improve operational efficiency.**
 
 ---
 
@@ -11,7 +11,7 @@ It centralizes student applications, documents, visa stages, financials, and tea
 - **Rich Application doctype**:
   - Multi‑tab layout: Details, Processing, Financials, GS Processing, Acceptance, COE, File Lodged, Visa, Enrolled, On‑shore College Change, Visa Refused, Refund, etc.
   - Deep linkage with Students, Agents, Universities, Courses, Sponsors, and Documents.
-- **AI‑assisted operations** (conceptual / pluggable):
+- **AI‑assisted operations**:
   - Eligibility triage and risk flags (gap, funds, refusals).
   - Task recommendations and reminders based on stage + conditions.
   - Structured, machine‑readable data for future ML models.
