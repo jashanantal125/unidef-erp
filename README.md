@@ -5,185 +5,23 @@ It centralizes student applications, documents, visa stages, financials, and tea
 
 ---
 
-## 🚀 Key Highlights
+### 🔑 Key Highlights (Forensic & Analytics Focus)
 
-- **End‑to‑end visa lifecycle**: From initial enquiry and offer letter to COE, file lodging, visa decision, enrollment, and post‑visa scenarios.
-- **Rich Application doctype**:
-  - Multi‑tab layout: Details, Processing, Financials, GS Processing, Acceptance, COE, File Lodged, Visa, Enrolled, On‑shore College Change, Visa Refused, Refund, etc.
-  - Deep linkage with Students, Agents, Universities, Courses, Sponsors, and Documents.
-- **AI‑assisted operations**:
-  - Eligibility triage and risk flags (gap, funds, refusals).
-  - Task recommendations and reminders based on stage + conditions.
-  - Structured, machine‑readable data for future ML models.
+- **End‑to‑end case lifecycle modeling**: Structured the full visa journey (enquiry → offer → COE → file lodged → visa decision → enrollment) into a single, auditable **Application** entity with defined stages and transitions.
+- **Forensic‑grade traceability**: Normalized linked data (student, agent, sponsor, financials, conditions, refusals, study gap proofs, documents) so any case’s decisions and timeline can be reconstructed quickly.
+- **Rule‑based logic & risk flags**: Implemented business logic for offer‑letter conditions, English requirements, gap justification, interview scheduling, and refusal handling—similar to expert‑system workflows used in regulatory/dispute contexts.
+- **Evidence & document workflows**: Built granular document schemas (ITR, salary slips, SOPs, offer letters, OSHC, sponsor docs) with verification flags/status fields to support review and investigation.
+- **Analytics‑ready foundation**: Designed structured tables and status fields suitable for downstream advanced analytics/ML (risk scoring, anomaly detection, pattern analysis).
 
 ---
 
-## 🧩 Core Features (Application Workflow)
+## 🧩 Core Features (Dispute, Risk & Regulatory‑Ready)
 
-### 1. Details Tab – Application Information
+This project is an **AI‑driven visa management CRM** designed as a **case management system** for a migration consultancy, built to support high‑stakes, evidence‑heavy workflows similar to those seen in **dispute advisory, investigations, and regulatory/litigation support**. The platform models each client matter as a single **Application** record with a clearly defined lifecycle (Processing → Financials → GS Processing → Acceptance → COE → File Lodged → Visa → Enrolled), capturing decisions, conditions, dependencies, and status outcomes in a structured and repeatable format. Dynamic sections appear only when relevant (e.g., spouse scenarios, refusal handling, interview requirements, study gap proofs), ensuring the workflow is both operationally efficient and **audit‑ready**.
 
-- Student profile & contact:
-  - Student link, **Student Email**, **Student Contact No**, DOB, marital status.
-  - Auto‑calculated **current age**.
-- Visa history & gap:
-  - Any visa refused? (with notes and outcomes).
-  - Study gap, **Study Gap Proof** (linked to structured child tables), and “OK” status.
-- Preferences:
-  - Destination country, higher education level, preferred universities and courses, intake.
-- Case 4 – Spouse logic:
-  - Spouse qualification, marriage duration, and dynamic recommendations for proceeding with/without spouse.
+A major emphasis is **forensic‑grade traceability and evidence management**. The system normalizes data across linked entities (student, agent, sponsor, university/course, documents, tests, gap proof types) and stores key “why” signals (conditions on offer letter, verification flags, and compliance‑style status fields). Document workflows cover the full spectrum of case evidence—SOPs, offer letters, sponsor proofs, and financial artifacts (e.g., ITR, salary slips, bank statements)—with structured verification checkpoints to support review, escalation, and defensible decisioning. This design enables rapid reconstruction of timelines and supporting evidence for any matter, which is central to investigative and litigation contexts.
 
----
-
-### 2. Processing Tab
-
-#### A. Email & Package Case
-
-- Fields for email login, passwords, recovery email, and login contact – conditionally mandatory when **Package Case** is checked.
-
-#### B. Documents 10th to 12th / Graduation
-
-- Child table: **Application Documents 10th To 12th**
-  - `Document Type` (Select):
-    - 12th Admit card  
-    - school domain email id  
-    - digilocker id/password
-  - `Write Details` (Small Text) – appears when:
-    - Document Type = **school domain email id** or **digilocker id/password**
-  - `Upload Document` (Attach)
-- 12th admit card uploaded flag and consolidated **“Upload in Single PDF”** table for verified docs.
-- Graduation verification section (separate child table and DigiLocker credentials for graduates).
-
-#### C. English Proficiency Test
-
-- Child table: **Application English Test**
-  - Test Type: IELTS / PTE / TOEFL
-  - Structured score sections per test
-  - Login credentials & verification status
-  - **TOEFL Type**:
-    - IBT Center Based  
-    - **IBT Home Edition Based**  
-  - When **IBT Home Edition Based** is selected:
-    - Status field: `"This test type is not accepted"` appears.
-
-#### D. Study Gap Proof
-
-- Main Application:
-  - `study_gap` (Check), `study_gap_proof` (Table), `study_gap_ok` (auto text)
-- Child doctype: **Study Gap Proof**
-  - Types: Educational / Work / Other
-  - **For Work**:
-    - Work Experience Details:
-      - Company Name (text)
-      - Position (text)
-      - Duration (text / from–to)
-      - Employer Domain ID (text)
-    - Attachments:
-      - ITR
-      - Salary Slips
-      - Experience Letter
-      - Bank Statement
-    - Verification checkboxes:
-      - Work Experience Verified
-      - ITR Verified (as per Work Experience)
-      - Salary Slips Verified (6 Months)
-      - Bank Statement Verified
-  - Educational + Other scenarios supported with their own structured fields.
-
-#### E. Passport
-
-- Flags for passport uploaded, attached documents, and verification outputs.
-
-#### F. Applications (Who Filled the Application)
-
-- `Application Filled By` (Select):
-  - Application filled by us
-  - Filled on portal
-  - Filled by Vendor
-- If **Application filled by us**:
-  - Application Form 1–4 Upload (Attach fields)
-  - SOP Upload (Attach)
-- If **Filled on portal**:
-  - SOP Upload
-- If **Filled by Vendor**:
-  - SOP Upload
-
----
-
-### 3. Financials Tab
-
-- **Conditions on Offer Letter** (Table MultiSelect) linking to **Offer Letter Condition** master:
-  - Drives visibility of the following condition sections:
-    - Interview Condition (timing, deadline)
-    - English Requirement
-    - Gap Justification
-    - Verification
-- **Section B – Conditions**:
-  - Logic uses the **child rows’ `condition` values** to decide which sections to show:
-    - Interview
-    - English Requirement
-    - Gap Justification
-    - Verification
-- All funds, tuition fee, OSHC, living/travel expenses, and multi‑sponsor structures are captured and linked to sponsor documents.
-
----
-
-### 4. GS Processing Tab
-
-- **GS Processing** stage with:
-  - `interview_stage_available` (Check)
-  - `interview_deadline` (Date)
-- **Student Prepare** – Select (Yes/No):
-  - Yes → status: “✓ Schedule Interview (if not scheduled)”
-  - No → status: “⚠ Prepare Student – Set Reminder to Prepare Student”
-- **Schedule Interview** – Select (Yes/No):
-  - Yes → status: “✓ Prepare Student Strongly – Reminder Set for Interview Date”
-  - No → status: “⚠ Prepare Student – Set Reminder for Follow Up Interview Schedule”
-- Additional logic in `application.js`:
-  - Creates GS reminders based on dropdown selections and deadlines.
-
----
-
-### 5. Acceptance, COE, File Lodged, Visa & Enrolled Tabs
-
-#### Acceptance
-
-- Acceptance before COE logic and interview scheduling.
-- Requirements and upload handling similar to GS Processing.
-
-#### Submitted Tab (Offer Letter Follow‑up)
-
-- `Any Further Requirement for offer letter?` (Check):
-  - If **No**:
-    - Note: **“If no → Set reminder: Follow up on Offer Letter”**
-  - If **Yes**:
-    - `Pending Requirement Details` (Text)
-    - `Pending requirements Completed?` – Select (Yes/No)
-    - If **No**:
-      - Note: **“→ Set reminder: To Complete Pending requirements”**
-    - If **Yes**:
-      - `Supporting Documents` (student documents table)
-- `application.js` also creates reminder records in the background.
-
-#### Enrolled Tab
-
-- Tab renamed to **“Enrolled”**.
-- Child table uses new **Enrollment Document** doctype:
-  - Document Name (Data)
-  - Upload (Attach)
-- Used to track final enrollment‑stage documents post visa approval.
-
----
-
-### 6. Spouse & Sponsors UX Improvements
-
-- **Spouse Details** child table (`spouse_details_list`):
-  - Uses **Spouse Details** doctype with `editable_grid = 0`.
-  - “Add Row” opens a **full modal form**, easier for complex data.
-- **C. Sponsors** table (`table_ihmq`):
-  - Uses **Application Sponsor Complete** doctype with `editable_grid = 0`.
-  - “Add Row” opens complete sponsor form in a **modal**.
-- `application.js` additionally forces form‑view for these tables via `allow_on_grid_editing = false` to ensure consistent modal behavior.
+Finally, the CRM is built as an **analytics‑ready foundation** for advanced analytics and AI. Because the data model is strongly structured (normalized child tables, consistent field naming, categorical status states, and conditional logic), it is well‑suited for downstream applications such as **risk scoring**, exception handling, anomaly detection, and cohort analysis (e.g., identifying patterns across refusals, gap categories, sponsor strength, or interview readiness). In practice, this turns operational case data into a high‑quality dataset that can support analytics deliverables aligned with FTI’s Data & Analytics work across critical business events.
 
 ---
 
@@ -198,32 +36,19 @@ It centralizes student applications, documents, visa stages, financials, and tea
 
 ## 🖼 Screenshots
 
-> Replace the placeholders below with actual image links or GitHub‑hosted screenshots.
+<img width="1438" height="809" alt="Screenshot 2026-03-03 at 6 57 25 PM" src="https://github.com/user-attachments/assets/051f7d45-ca00-484d-a9cf-cd9b2db06e66" />
 
-### Application Overview
+<img width="1440" height="810" alt="Screenshot 2026-03-13 at 11 27 31 AM" src="https://github.com/user-attachments/assets/ef53ca68-797b-4023-a77e-15009f154af8" />
 
-*(Screenshot: Application list or main form header with tabs)*  
-`![Application Overview](./docs/screenshots/application-overview.png)`
+<img width="1440" height="813" alt="Screenshot 2026-03-13 at 11 27 42 AM" src="https://github.com/user-attachments/assets/2664ab54-735c-4773-acd7-83dff993400a" />
 
-### Processing Tab – Documents & English Tests
+<img width="1440" height="811" alt="Screenshot 2026-03-13 at 11 27 56 AM" src="https://github.com/user-attachments/assets/3e64a313-35a5-4883-9cf6-b90fd7ebcaf3" />
 
-*(Screenshot: Processing tab with Documents (10th to 12th), English Test child table, and Study Gap Proof)*  
-`![Processing Tab](./docs/screenshots/processing-tab.png)`
+<img width="1440" height="808" alt="Screenshot 2026-03-13 at 11 28 29 AM" src="https://github.com/user-attachments/assets/323ae299-c396-4b88-bb7b-814f63a17ae9" />
 
-### GS Processing – Interview Flow
+<img width="1440" height="814" alt="Screenshot 2026-03-13 at 11 28 54 AM" src="https://github.com/user-attachments/assets/4a5f2cb9-0513-44c0-a601-866dbd9f8d3a" />
 
-*(Screenshot: GS Processing tab showing Student Prepare & Schedule Interview dropdowns and statuses)*  
-`![GS Processing](./docs/screenshots/gs-processing.png)`
 
-### Financials – Conditions on Offer Letter
-
-*(Screenshot: Financials tab, Conditions on Offer Letter + dynamically shown sections)*  
-`![Financials Conditions](./docs/screenshots/financials-conditions.png)`
-
-### Enrolled Tab – Final Enrollment Docs
-
-*(Screenshot: Enrolled tab with Enrollment Documents table)*  
-`![Enrolled Tab](./docs/screenshots/enrolled-tab.png)`
 
 ---
 
